@@ -14,7 +14,6 @@
   - Management
 
 ## 🔧 기술 스택
-- Frontend `HTML/CSS/JS` `EJS`
-- Backend `Node.js` `Express`
-- Database `Mysql`
-- 
+- Frontend: `HTML/CSS/JS` `EJS`
+- Backend: `Node.js` `Express`
+- Database: `Mysql`
