@@ -14,6 +14,8 @@ app.use('/img', express.static(__dirname + 'public/img'));
 //     res.sendFile(__dirname+'/views/index.html')
 // })
 
+// ds
+
 // Set view (ejs)
 app.set('views', './views');
 app.set('view engine', 'ejs');
