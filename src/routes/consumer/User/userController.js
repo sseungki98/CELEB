@@ -8,7 +8,8 @@ const login = (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.render(userService.userLogout);
+  const email = req.body;
+  res.render(userService.userLogout(email));
 };
 module.exports = {
   login,
