@@ -27,3 +27,18 @@ exports.userLogout = async function (email) {
     res.json({ message: 'LogOut Success' });
   });
 };
+
+//User SignUp Function
+exports.userSignUp = async function (email, password, name, phoneNumber, address) {
+  const connection = await pool.getConnection(async conn => conn);
+  const params = [email, password, name, phoneNumber, address];
+  connection.query('Insert Into UserInfo(email, password, name, phoneNumber, address) Values(?,?,?,?,?)', params, function (err, result) {
+    if (err) {
+      connection.release();
+      console.log(err);
+      res.json({ message: 'Sign-Up Failure' });
+    }
+    connection.release();
+    res.json({ message: 'Sign-Up Success' });
+  });
+};
