@@ -1,5 +1,4 @@
 'use strict';
-const jwtMiddleware = require('../../../config/jwtMiddleware');
 const userService = require('./userService');
 
 //1. 로그인

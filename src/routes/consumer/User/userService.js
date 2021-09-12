@@ -1,6 +1,6 @@
 const { pool } = require('../../../../config/database');
 const jwt = require('jsonwebtoken');
-const secret_config = require('../../../config/jwtSecretKey');
+const secret_config = require('../../../../config/jwtSecretKey');
 
 //User LogIn Function
 exports.userLogin = async function (emailAddress, password) {
