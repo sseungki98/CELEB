@@ -8,7 +8,7 @@ class UserStorage {
       const query = 'SELECT * FROM User WHERE id = ?;';
       db.query(query, [id], (err, data) => {
         if (err) reject(`${err}`);
-        resolve(data);
+        resolve(data[0]);
       });
     });
   }
