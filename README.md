@@ -1,8 +1,9 @@
 # 🎁 CELEB
 축하/기념 커스터마이징 선물 주문 서비스 - 단국대 경소톤
+- [경소톤 프로젝트 계획서](./.github/report.pdf)
 
 ## 👨‍👩‍👧‍👦 프로젝트 팀원
-투유(2U)
+**투유(2U)**
 - 최지윤 [@J1Yun](https://github.com/J1Yun)
   - Leader(FE/BE/DB)
 - 황승환 [@xx0hn](https://github.com/xx0hn)
@@ -17,4 +18,4 @@
 ## 🔧 기술 스택
 - Frontend: `HTML/CSS/JS` `EJS`
 - Backend: `Node.js` `Express`
-- Database: `Mysql`
+- Database: `Mysql` `AWS RDS`
