@@ -33,6 +33,19 @@ class User {
       return { success: false, message: '회원가입에 실패하였습니다.' };
     }
   }
+  async myPage(email) {
+    try {
+      const userCheck = await UserStorage.checkUserInfo(email);
+      if (userCheck) {
+        const myPageInfo = await UserStorage.getMyPageInfo(email);
+        return myPageInfo;
+      } else {
+        return { success: false, message: '잘못된 조회 요청입니다.' };
+      }
+    } catch (err) {
+      return { success: false, message: '마이페이지 조회에 실패하였습니다.' };
+    }
+  }
 }
 
 module.exports = User;
