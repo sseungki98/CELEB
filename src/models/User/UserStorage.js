@@ -3,10 +3,10 @@
 const db = require('../config/database');
 
 class UserStorage {
-  static getUserInfo(id) {
+  static getUserInfo(email) {
     return new Promise((resolve, reject) => {
-      const query = 'SELECT * FROM User WHERE id = ?;';
-      db.query(query, [id], (err, data) => {
+      const query = 'SELECT * FROM User WHERE email = ?;';
+      db.query(query, [email], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data[0]);
       });
