@@ -25,6 +25,11 @@ const process = {
     }
     return res.json(response);
   },
+  signUp: async (req, res) => {
+    const user = new User(req.body);
+    const response = await user.signUp();
+    return res.json(response);
+  },
 };
 
 module.exports = {

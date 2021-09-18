@@ -12,6 +12,15 @@ class UserStorage {
       });
     });
   }
+  static postUserInfo(params) {
+    return new Promise((resolve, reject) => {
+      const query = 'INSERT INTO User(email,password,nickname,phoneNum,address) VALUES (?,?,?,?,?);';
+      db.query(query, [params], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data[0]);
+      });
+    });
+  }
 }
 
 module.exports = UserStorage;
