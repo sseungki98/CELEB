@@ -1,6 +1,6 @@
 'user strict';
 
-const db = require('../config/database');
+const db = require('../../config/database');
 
 class UserStorage {
   static getUserInfo(email) {
@@ -15,9 +15,9 @@ class UserStorage {
   static postUserInfo(params) {
     return new Promise((resolve, reject) => {
       const query = 'INSERT INTO User(email,password,name,phoneNum,address) VALUES (?,?,?,?,?);';
-      db.query(query, [params], (err, data) => {
+      db.query(query, params, (err, data) => {
         if (err) reject(`${err}`);
-        resolve(data[0]);
+        resolve();
       });
     });
   }

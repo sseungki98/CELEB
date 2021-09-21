@@ -9,7 +9,7 @@ const output = {
   login: (req, res) => {
     res.render('consumer/login');
   },
-  myPage: (req, res) => {
+  myPage: async (req, res) => {
     if (req.session.user) {
       const email = req.session.user.email;
       const user = new User(req.body);
@@ -44,9 +44,14 @@ const process = {
       return res.redirect('consumer/login', { success: false, message: '로그인이 되어있지 않습니다.' });
     }
   },
-  signUp: async (req, res) => {
+  register: async (req, res) => {
+    if (!req.body.email) return res.json({ success: false, message: '이메일을 입력해주세요.' });
+    if (!req.body.password) return res.json({ success: false, message: '비밀번호를 입력해주세요.' });
+    if (!req.body.name) return res.json({ success: false, message: '이름을 입력해주세요.' });
+    if (!req.body.phoneNum) return res.json({ success: false, message: '핸드폰 번호를 입력해주세요.' });
+    if (!req.body.address) return res.json({ success: false, message: '주소를 입력해주세요.' });
     const user = new User(req.body);
-    const response = await user.signUp();
+    const response = await user.register();
     return res.json(response);
   },
 };

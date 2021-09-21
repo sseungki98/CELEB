@@ -18,7 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^0.15.8",
-    "mysql2-promise": "^0.1.4"
+    "mysql2-promise": "^0.1.4",
+    "notenv": "^2.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
