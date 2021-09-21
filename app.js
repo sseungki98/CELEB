@@ -15,6 +15,7 @@ app.use('/img', express.static(__dirname + '/src/public/img'));
 // Templating Engine
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
+app.set('layout', './src/views/common/header');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
