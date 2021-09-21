@@ -9,7 +9,7 @@ const output = {
   login: (req, res) => {
     res.render('consumer/login');
   },
-  myPage: (req, res) => {
+  myPage: async (req, res) => {
     if (req.session.user) {
       const email = req.session.user.email;
       const user = new User(req.body);
