@@ -12,4 +12,7 @@ router.post('/login', userController.process.login); //로그인
 router.post('/logout', userController.process.logout); //로그아웃
 router.post('/register', userController.process.register); //회원가입
 router.get('/mypage', userController.output.myPage); //마이페이지 조회
+
+router.post('/inquiry/:storeId/:productId', userController.process.inquiry); //문의 생성
+
 module.exports = router;
