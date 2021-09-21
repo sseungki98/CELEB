@@ -12,7 +12,7 @@ class UserStorage {
       });
     });
   }
-  static postUserInfo(params) {
+  static register(params) {
     return new Promise((resolve, reject) => {
       const query = 'INSERT INTO User(email,password,name,phoneNum,address) VALUES (?,?,?,?,?);';
       db.query(query, [params], (err, data) => {

@@ -44,9 +44,9 @@ const process = {
       return res.redirect('consumer/login', { success: false, message: '로그인이 되어있지 않습니다.' });
     }
   },
-  signUp: async (req, res) => {
+  register: async (req, res) => {
     const user = new User(req.body);
-    const response = await user.signUp();
+    const response = await user.register();
     return res.json(response);
   },
 };

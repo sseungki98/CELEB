@@ -22,17 +22,19 @@ class User {
       return { success: false, message: `${err}` };
     }
   }
-  async signUp() {
+
+  async register() {
     const client = this.body;
     try {
       const hashedPassword = await crypto.createHash('sha512').update(client.password).digest('hex'); //비밀번호 암호화
       const params = [client.email, hashedPassword, client.nickname, client.phoneNum, client.address];
-      const userInfo = await UserStorage.postUserInfo(params);
+      await UserStorage.register(params);
       return { success: true, message: '회원가입이 완료되었습니다.' };
     } catch (err) {
       return { success: false, message: '회원가입에 실패하였습니다.' };
     }
   }
+
   async myPage(email) {
     try {
       const userCheck = await UserStorage.checkUserInfo(email);

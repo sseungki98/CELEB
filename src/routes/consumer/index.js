@@ -10,6 +10,6 @@ router.get('/login', userController.output.login); //로그인 페이지 요청
 //User Request
 router.post('/login', userController.process.login); //로그인
 router.post('/logout', userController.process.logout); //로그아웃
-router.post('/sign-up', userController.process.signUp); //회원가입
-router.get('/my-page', userController.output.myPage); //마이페이지 조회
+router.post('/register', userController.process.register); //회원가입
+router.get('/mypage', userController.output.myPage); //마이페이지 조회
 module.exports = router;
