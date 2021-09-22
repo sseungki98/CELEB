@@ -62,6 +62,7 @@ const process = {
       const { type, contents } = req.body;
       if (!type) return res.json({ success: false, message: '문의 유형을 입력해주세요. ' });
       if (!contents) return res.json({ success: false, message: '문의 내용을 입력해주세요. ' });
+      const user = new User(req.body);
       const response = await user.inquiry(id, storeId, productId, type, contents);
       return res.json(response);
     } else {
