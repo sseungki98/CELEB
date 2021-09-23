@@ -16,5 +16,6 @@ router.post('/register', userController.process.register); //회원가입
 router.get('/mypage', userController.output.myPage); //마이페이지 조회
 
 router.post('/inquiry/:storeId/:productId', inquiryController.process.inquiry); //문의 생성
+router.get('/inquiry/:storeId', inquiryController.output.inquiry); //문의 조회
 
 module.exports = router;

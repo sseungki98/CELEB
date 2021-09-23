@@ -14,6 +14,15 @@ class Inquiry {
       return { success: false, message: '문의 게시에 실패하였습니다. ' };
     }
   }
+  async getInquiry(id, storeId) {
+    try {
+      const getInquiryRow = await InquiryStorage.getInquiryRow(id, storeId);
+      return getInquiryRow;
+    } catch (err) {
+      console.log(err);
+      return { success: false, message: '문의 조회에 실패하였습니다. ' };
+    }
+  }
 }
 
 module.exports = Inquiry;
