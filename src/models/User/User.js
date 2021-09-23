@@ -13,7 +13,7 @@ class User {
       const hashedPassword = await crypto.createHash('sha512').update(client.password).digest('hex');
       if (userInfo) {
         if (userInfo.email === client.email && userInfo.password === hashedPassword) {
-          return { success: true, nickname: userInfo.nickname };
+          return { success: true, id: userInfo.id, name: userInfo.name };
         }
         return { success: false, message: '비밀번호가 틀렸습니다.' };
       }
@@ -49,14 +49,10 @@ class User {
   }
   async inquiry(id, storeId, productId, type, contents) {
     try {
-      const userCheck = await UserStorage.checkUserById(id);
-      if (userCheck) {
-        const inquiry = await UserStorage.postInquiry(id, storeId, productId, type, contents);
-        return { success: true, message: '문의 게시가 완료되었습니다. ' };
-      } else {
-        return { success: false, message: '잘못된 게시 요청입니다. ' };
-      }
+      await UserStorage.postInquiry(id, storeId, productId, type, contents);
+      return { success: true, message: '문의 게시가 완료되었습니다. ' };
     } catch (err) {
+      console.log(err);
       return { success: false, message: '문의 게시에 실패하였습니다. ' };
     }
   }
