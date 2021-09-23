@@ -1,6 +1,7 @@
 'use strict';
 
 const User = require('../../models/User/User');
+const UserStorage = require('../../models/User/UserStorage');
 
 const output = {
   main: (req, res) => {
@@ -11,12 +12,15 @@ const output = {
   },
   myPage: async (req, res) => {
     if (req.session.user) {
-      const email = req.session.user.email;
-      const user = new User(req.body);
-      const response = await user.myPage(email);
-      return res.json(response);
+      try {
+        const email = req.session.user.email;
+        const myPageInfo = await UserStorage.getMyPageInfo(email);
+        res.render('consumer/mypage', { myPageInfo });
+      } catch (err) {
+        res.render('common/500error', { layout: false });
+      }
     } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
+      res.render('consumer/login');
     }
   },
   popularStore: async (req, res) => {
@@ -30,13 +34,17 @@ const process = {
   login: async (req, res) => {
     const user = new User(req.body);
     const response = await user.login();
+    console.log(response);
+
     if (response.success) {
       req.session.user = {
+        id: response.id,
         email: req.body.email,
-        nickname: response.name,
+        name: response.name,
         authorized: true,
       };
     }
+    console.log(req.session.user);
     return res.json(response);
   },
   logout: async (req, res) => {
@@ -67,6 +75,7 @@ const process = {
       const { type, contents } = req.body;
       if (!type) return res.json({ success: false, message: '문의 유형을 입력해주세요. ' });
       if (!contents) return res.json({ success: false, message: '문의 내용을 입력해주세요. ' });
+      const user = new User(req.body);
       const response = await user.inquiry(id, storeId, productId, type, contents);
       return res.json(response);
     } else {

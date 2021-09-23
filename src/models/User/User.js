@@ -13,7 +13,7 @@ class User {
       const hashedPassword = await crypto.createHash('sha512').update(client.password).digest('hex');
       if (userInfo) {
         if (userInfo.email === client.email && userInfo.password === hashedPassword) {
-          return { success: true, name: userInfo.name };
+          return { success: true, id: userInfo.id, name: userInfo.name };
         }
         return { success: false, message: '비밀번호가 틀렸습니다.' };
       }
@@ -27,34 +27,11 @@ class User {
     try {
       const hashedPassword = await crypto.createHash('sha512').update(client.password).digest('hex'); //비밀번호 암호화
       const params = [client.email, hashedPassword, client.name, client.phoneNum, client.address];
-      await UserStorage.postUserInfo(params);
-      return { success: true, message: '회원가입이 완료되었습니다.' };
-    } catch (err) {
-      return { success: false, message: '회원가입에 실패하였습니다.' };
-    }
-  }
-  async register() {
-    const client = this.body;
-    try {
-      const hashedPassword = await crypto.createHash('sha512').update(client.password).digest('hex'); //비밀번호 암호화
-      const params = [client.email, hashedPassword, client.nickname, client.phoneNum, client.address];
       await UserStorage.register(params);
       return { success: true, message: '회원가입이 완료되었습니다.' };
     } catch (err) {
+      console.log(err);
       return { success: false, message: '회원가입에 실패하였습니다.' };
-    }
-  }
-  async myPage(email) {
-    try {
-      const userCheck = await UserStorage.getUserInfo(email);
-      if (userCheck) {
-        const myPageInfo = await UserStorage.getMyPageInfo(email);
-        return myPageInfo;
-      } else {
-        return { success: false, message: '잘못된 조회 요청입니다.' };
-      }
-    } catch (err) {
-      return { success: false, message: '마이페이지 조회에 실패하였습니다.' };
     }
   }
   async popularStore() {
@@ -67,14 +44,10 @@ class User {
   }
   async inquiry(id, storeId, productId, type, contents) {
     try {
-      const userCheck = await UserStorage.checkUserById(id);
-      if (userCheck) {
-        const inquiry = await UserStorage.postInquiry(id, storeId, productId, type, contents);
-        return { success: true, message: '문의 게시가 완료되었습니다. ' };
-      } else {
-        return { success: false, message: '잘못된 게시 요청입니다. ' };
-      }
+      await UserStorage.postInquiry(id, storeId, productId, type, contents);
+      return { success: true, message: '문의 게시가 완료되었습니다. ' };
     } catch (err) {
+      console.log(err);
       return { success: false, message: '문의 게시에 실패하였습니다. ' };
     }
   }
