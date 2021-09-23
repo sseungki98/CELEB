@@ -4,6 +4,8 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('./user.controller');
+const inquiryController = require('./inquiry.controller');
+const reviewController = require('./review.controller');
 //Page Info Router
 router.get('/', userController.output.main); //메인화면 페이지 요청
 router.get('/login', userController.output.login); //로그인 페이지 요청
@@ -13,6 +15,7 @@ router.post('/logout', userController.process.logout); //로그아웃
 router.post('/register', userController.process.register); //회원가입
 router.get('/mypage', userController.output.myPage); //마이페이지 조회
 
-router.post('/inquiry/:storeId/:productId', userController.process.inquiry); //문의 생성
+router.post('/inquiry/:storeId/:productId', inquiryController.process.inquiry); //문의 생성
+router.get('/inquiry/:storeId', inquiryController.output.inquiry); //문의 조회
 
 module.exports = router;

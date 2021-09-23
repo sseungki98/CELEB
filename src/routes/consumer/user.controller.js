@@ -29,13 +29,17 @@ const process = {
   login: async (req, res) => {
     const user = new User(req.body);
     const response = await user.login();
+    console.log(response);
+
     if (response.success) {
       req.session.user = {
+        id: response.id,
         email: req.body.email,
         name: response.name,
         authorized: true,
       };
     }
+    console.log(req.session.user);
     return res.json(response);
   },
   logout: async (req, res) => {
@@ -45,7 +49,8 @@ const process = {
         return res.redirect('consumer/login', { success: true, message: '로그아웃에 성공하였습니다.' });
       });
     } else {
-      return res.redirect('consumer/login', { success: false, message: '로그인이 되어있지 않습니다.' });
+      // return res.redirect('consumer/login', { success: false, message: '로그인이 되어있지 않습니다.' });
+      return res.redirect('consumer/login');
     }
   },
   register: async (req, res) => {
