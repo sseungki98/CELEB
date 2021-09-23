@@ -1,6 +1,7 @@
 'use strict';
 
 const User = require('../../models/User/User');
+const UserStorage = require('../../models/User/UserStorage');
 
 const output = {
   main: (req, res) => {
@@ -11,12 +12,15 @@ const output = {
   },
   myPage: async (req, res) => {
     if (req.session.user) {
-      const email = req.session.user.email;
-      const user = new User(req.body);
-      const response = await user.myPage(email);
-      return res.json(response);
+      try {
+        const email = req.session.user.email;
+        const myPageInfo = await UserStorage.getMyPageInfo(email);
+        res.render('consumer/mypage', { myPageInfo });
+      } catch (err) {
+        res.render('common/500error', { layout: false });
+      }
     } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
+      res.render('consumer/login');
     }
   },
 };
@@ -28,7 +32,7 @@ const process = {
     if (response.success) {
       req.session.user = {
         email: req.body.email,
-        nickname: response.nickname,
+        name: response.name,
         authorized: true,
       };
     }
