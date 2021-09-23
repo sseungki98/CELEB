@@ -19,6 +19,11 @@ const output = {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
     }
   },
+  popularStore: async (req, res) => {
+    const user = new User(req.body);
+    const response = await user.popularStore();
+    return res.json(response);
+  },
 };
 
 const process = {
@@ -28,7 +33,7 @@ const process = {
     if (response.success) {
       req.session.user = {
         email: req.body.email,
-        nickname: response.nickname,
+        nickname: response.name,
         authorized: true,
       };
     }
@@ -38,10 +43,10 @@ const process = {
     if (req.session.user) {
       req.session.destroy(function (err) {
         if (err) throw err;
-        return res.redirect('consumer/login', { success: true, message: '로그아웃에 성공하였습니다.' });
+        return res.redirect('/login');
       });
     } else {
-      return res.redirect('consumer/login', { success: false, message: '로그인이 되어있지 않습니다.' });
+      return res.redirect('/login');
     }
   },
   register: async (req, res) => {

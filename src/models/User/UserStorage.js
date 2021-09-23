@@ -21,15 +21,6 @@ class UserStorage {
       });
     });
   }
-  static checkUserInfo(email) {
-    return new Promise((resolve, reject) => {
-      const query = 'SELECT id FROM User WHERE email=?;';
-      db.query(query, [email], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data[0]);
-      });
-    });
-  }
   static getMyPageInfo(email) {
     return new Promise((resolve, reject) => {
       const query = 'SELECT email,name,phoneNum,address FROM User WHERE email=?;';
@@ -43,6 +34,15 @@ class UserStorage {
     return new Promise((resolve, reject) => {
       const query = 'SELECT email FROM User WHERE id=?;';
       db.query(query, [id], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data[0]);
+      });
+    });
+  }
+  static getPopularStoreInfo() {
+    return new Promise((resolve, reject) => {
+      const query = '';
+      db.query(query, (err, data) => {
         if (err) reject(`${err}`);
         resolve(data[0]);
       });
