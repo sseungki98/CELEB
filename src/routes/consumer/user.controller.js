@@ -51,11 +51,10 @@ const process = {
     if (req.session.user) {
       req.session.destroy(function (err) {
         if (err) throw err;
-        return res.redirect('/login', { success: true, message: '로그아웃에 성공하였습니다.' });
+        return res.redirect('/login');
       });
     } else {
-      // return res.redirect('consumer/login', { success: false, message: '로그인이 되어있지 않습니다.' });
-      return res.redirect('consumer/login');
+      return res.redirect('/login');
     }
   },
   register: async (req, res) => {

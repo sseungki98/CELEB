@@ -27,7 +27,7 @@ app.set('layout', 'common/layout');
 app.use(cookieParser());
 app.use(
   expressSession({
-    secret: process.env.SESSION_SECRET,
+    secret: 'celeb',
     resave: true,
     saveUninitialized: true,
   }),
