@@ -21,5 +21,6 @@ router.get('/inquiry/:storeId', inquiryController.output.inquiry); //스토어�
 router.get('/my-inquiry', inquiryController.output.myInquiry); //나의 문의 내역 조회 → 문의한 스토어 리스트
 
 router.post('/cart', orderController.process.cart); //장바구니 담기
+router.get('/cart', orderController.output.cart); //장바구니 조회
 
 module.exports = router;
