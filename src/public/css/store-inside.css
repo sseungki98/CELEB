@@ -1,0 +1,35 @@
+.container {
+  margin-top: 20px;
+  border: solid 1px black;
+}
+
+.col-8 {
+  border-right: solid 1px gray;
+}
+
+h1 {
+  text-align: center;
+}
+
+.main-image {
+  margin-left: 25%;
+}
+
+.plus-price {
+  float: right;
+}
+
+.design-request {
+  width: 200px;
+  height: 20px;
+  margin-left: 30px;
+}
+
+label {
+  display: inline-block;
+}
+​ .consumer-request {
+  height: 200px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
