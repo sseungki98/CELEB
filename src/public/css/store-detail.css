@@ -1,0 +1,63 @@
+.jumbotron {
+    width: 70%;
+  }
+  
+  .shop-logo {
+    position: relative;
+    top: 30%;
+  }
+  
+  ul{
+     list-style:none;
+     padding-left:0px;
+     }
+  
+  .row {
+    vertical-align: middle;
+    border:solid 1px gray;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .col-3:nth-child(1) {
+    padding-left:0px;
+    padding-right:auto;
+  
+  }
+  .col-6:nth-child(2) {
+   border-right:solid 1px gray;
+   padding:left:10px;
+  }
+  
+  .container {
+    margin-top : 20px;
+    border:solid 1px gray;
+  }
+  
+  
+  .store-width-height {
+    width:900px;
+    height:180px;
+    margin-left:100px;
+    margin-top:30px;
+  }
+  .store-width-height:last-child {
+    margin-bottom : 30px;
+  }
+  
+  .container {
+    border:solid 2px pink;
+  }
+  
+  .fa-arrow-circle-left {
+    position:absolute;
+  left:50px;
+  top:110px;
+  text-decoration: none;
+  }
+  .div>.div>.div>span {
+    margin-left : 10px;
+  }
+  
