@@ -23,6 +23,24 @@ class Inquiry {
       return { success: false, message: '문의 조회에 실패하였습니다. ' };
     }
   }
+  async getMyInquiry(id) {
+    try {
+      const getMyInquiry = await InquiryStorage.getMyInquiry(id);
+      return getMyInquiry;
+    } catch (err) {
+      console.log(err);
+      return { success: false, message: '나의 문의 내역 조회에 실패하였습니다. ' };
+    }
+  }
+  async getLastInquiry(id, storeId) {
+    try {
+      const getLastInquiry = await InquiryStorage.getLastInquiry(id, storeId);
+      return getLastInquiry;
+    } catch (err) {
+      console.log(err);
+      return { success: false, message: '스토어 문의 내용 조회에 실패하였습니다. ' };
+    }
+  }
 }
 
 module.exports = Inquiry;

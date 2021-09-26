@@ -35,6 +35,40 @@ class InquiryStorage {
       });
     });
   }
+  static getMyInquiry(id) {
+    return new Promise((resolve, reject) => {
+      const query = `select a.userId as UserId
+      , a.storeId as StoreId
+      , b.imageUrl as StoreImage
+      , date_format(a.createdAt, "%Y-%m-%d %H:%i") as CreatedAt
+from Inquiry a
+left join ( select id
+              , storeName
+              , imageUrl
+          from Store ) as b
+          on a.storeId = b.id
+where a.userId = ?
+group by a.storeId
+order by a.createdAt desc;`;
+      db.query(query, [id], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static getLastInquiry(id, storeId) {
+    return new Promise((resolve, reject) => {
+      const query = `select id as InquiryId
+      , contents as Contents
+from Inquiry
+where userId = ? and storeId = ?
+order by createdAt desc limit 1;`;
+      db.query(query, [id, storeId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
 }
 
 module.exports = InquiryStorage;
