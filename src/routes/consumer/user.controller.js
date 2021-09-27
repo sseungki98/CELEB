@@ -5,15 +5,22 @@ const UserStorage = require('../../models/User/UserStorage');
 
 const output = {
   main: async (req, res) => {
-    try {
-      const storeInfo = await UserStorage.getPopularStoreInfo();
-      res.render('consumer/main', { storeInfo });
-    } catch (err) {
-      res.render('common/500error', { layout: false });
+    if (req.session.user) {
+      try {
+        const storeInfo = await UserStorage.getPopularStoreInfo();
+        res.render('consumer/main', { storeInfo });
+      } catch (err) {
+        res.render('common/500error', { err, layout: false });
+      }
+    } else {
+      res.render('common/500error', { err, login: false });
     }
   },
   login: (req, res) => {
     res.render('consumer/login');
+  },
+  register: (req, res) => {
+    res.render('consumer/register');
   },
   myPage: async (req, res) => {
     if (req.session.user) {
@@ -22,7 +29,7 @@ const output = {
         const myPageInfo = await UserStorage.getMyPageInfo(email);
         res.render('consumer/mypage', { myPageInfo });
       } catch (err) {
-        res.render('common/500error', { layout: false });
+        res.render('common/500error', { err, layout: false });
       }
     } else {
       res.render('consumer/login');
@@ -34,7 +41,6 @@ const process = {
   login: async (req, res) => {
     const user = new User(req.body);
     const response = await user.login();
-    console.log(response);
 
     if (response.success) {
       req.session.user = {

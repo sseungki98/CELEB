@@ -5,8 +5,7 @@ body {
 }
 body::before {
   content: '';
-
-  background-image: url(images.jpeg);
+  background-color: #d063da;
   background-size: cover;
   opacity: 0.9;
   position: absolute;
