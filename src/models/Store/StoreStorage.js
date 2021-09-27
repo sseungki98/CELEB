@@ -26,8 +26,10 @@ class StoreStorage {
   }
   static getStoreByCategoryId(categoryId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, concat(p.name,' ',c.name) as location, type  
-      FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.status='COMPLETE' Group by s.id) tt ON s.id=tt.sid
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, rtt.avgstar as star, concat(p.name,' ',c.name) as location, type  
+      FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
+                   JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.status='COMPLETE' Group by s.id) tt ON s.id=tt.sid
+                   JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.status='ACTIVE'
       ORDER BY tt.cnt DESC;`;
       db.query(query, [categoryId], (err, data) => {
@@ -38,8 +40,10 @@ class StoreStorage {
   }
   static getStoreByCategoryIdWithProvinceId(categoryId, provinceId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, concat(p.name,' ',c.name) as location, type  
-      FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.status='COMPLETE' Group by s.id) tt ON s.id=tt.sid
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, rtt.avgstar as star, concat(p.name,' ',c.name) as location, type  
+      FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
+                   JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.status='COMPLETE' Group by s.id) tt ON s.id=tt.sid
+                   JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.status='ACTIVE'
       ORDER BY tt.cnt DESC;`;
       db.query(query, [categoryId, provinceId], (err, data) => {
@@ -50,8 +54,9 @@ class StoreStorage {
   }
   static getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, concat(p.name,' ',c.name) as location, type  
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, rtt.avgstar as star, concat(p.name,' ',c.name) as location, type  
       FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id 
+                   JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
       ORDER BY s.createdAt DESC;`;
       db.query(query, [categoryId, provinceId, cityId], (err, data) => {
