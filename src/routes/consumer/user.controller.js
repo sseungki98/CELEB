@@ -9,11 +9,14 @@ const output = {
       const storeInfo = await UserStorage.getPopularStoreInfo();
       res.render('consumer/main', { storeInfo });
     } catch (err) {
-      res.render('common/500error', { layout: false });
+      res.render('common/500error', { err, layout: false });
     }
   },
   login: (req, res) => {
     res.render('consumer/login');
+  },
+  register: (req, res) => {
+    res.render('consumer/register');
   },
   myPage: async (req, res) => {
     if (req.session.user) {
@@ -22,7 +25,7 @@ const output = {
         const myPageInfo = await UserStorage.getMyPageInfo(email);
         res.render('consumer/mypage', { myPageInfo });
       } catch (err) {
-        res.render('common/500error', { layout: false });
+        res.render('common/500error', { err, layout: false });
       }
     } else {
       res.render('consumer/login');
