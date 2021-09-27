@@ -10,6 +10,14 @@ const output = {
     const productInfo = await StoreStorage.getProductInfoByStoreId(req.params.storeId); //상품정보
     res.render('/storePage', { storeDetailInfo, productInfo });
   },
+  storeList: async (req, res) => {
+    try {
+      const storeList = await StoreStorage.getStoreByCategoryId(req.params.categoryId);
+      res.render('consumer/storeList', { storeList });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
+    }
+  },
 };
 
 const process = {};

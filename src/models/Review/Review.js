@@ -1,4 +1,4 @@
-'review strict';
+'use strict';
 const ReviewStorage = require('./ReviewStorage');
 
 class Review {
