@@ -17,19 +17,44 @@ class StoreStorage {
   }
   static getProductInfoByStoreId(storeId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT name,imageUrl,info,price,detailImageUrl FROM Product WHERE storeId=? and status='ACTIVE';`;
+      const query = `SELECT id,name,imageUrl,info,price,detailImageUrl FROM Product WHERE storeId=? and status='ACTIVE';`;
       db.query(query, [storeId], (err, data) => {
         if (err) reject(`${err}`);
-        resolve([data]);
+        resolve(data);
       });
     });
   }
   static getStoreByCategoryId(categoryId) {
     return new Promise((resolve, reject) => {
-      // TODO: 지역별, 인기순 필터링
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, p.name as province, c.name as city, type  
-          FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id WHERE s.categoryId = ?;`;
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, concat(p.name,' ',c.name) as location, type  
+      FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.status='COMPLETE' Group by s.id) tt ON s.id=tt.sid
+      WHERE s.categoryId = ? and s.status='ACTIVE'
+      ORDER BY tt.cnt DESC;`;
       db.query(query, [categoryId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static getStoreByCategoryIdWithProvinceId(categoryId, provinceId) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, concat(p.name,' ',c.name) as location, type  
+      FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.status='COMPLETE' Group by s.id) tt ON s.id=tt.sid
+      WHERE s.categoryId = ? and s.provinceId = ? and s.status='ACTIVE'
+      ORDER BY tt.cnt DESC;`;
+      db.query(query, [categoryId, provinceId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, concat(p.name,' ',c.name) as location, type  
+      FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id 
+      WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
+      ORDER BY s.createdAt DESC;`;
+      db.query(query, [categoryId, provinceId, cityId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });

@@ -27,7 +27,7 @@ class User {
     try {
       const emailcheck = await UserStorage.getUserInfo(client.email);
       if (emailcheck) return { success: false, message: '중복된 이메일입니다.' };
-      if (client.password != client.checkpassowrd) return { success: false, message: '비밀번호가 일치하지 않습니다.' };
+      if (client.password != client.checkpassowrd) return { success: false, message: '비밀번호 확인에 실패하였습니다.' };
       const hashedPassword = await crypto.createHash('sha512').update(client.password).digest('hex'); //비밀번호 암호화
       const params = [client.email, hashedPassword, client.name, client.phoneNum, client.address];
       await UserStorage.register(params);
@@ -55,5 +55,4 @@ class User {
     }
   }
 }
-
 module.exports = User;
