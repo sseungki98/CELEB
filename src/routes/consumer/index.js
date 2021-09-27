@@ -23,5 +23,6 @@ router.get('/my-inquiry', inquiryController.output.myInquiry); //나의 문의 �
 router.post('/cart', orderController.process.cart); //장바구니 담기
 router.get('/cart', orderController.output.cart); //장바구니 조회
 router.post('/order', orderController.process.order); //주문하기
+router.get('/order/:orderId', orderController.output.order); //주문 확인 조회 → 주문 완료 직후
 
 module.exports = router;

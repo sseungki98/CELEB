@@ -13,6 +13,17 @@ const output = {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
     }
   },
+  order: async (req, res) => {
+    if (req.session.user) {
+      const id = req.session.user.id;
+      const orderId = req.params.orderId;
+      const order = new Order(req.body);
+      const response = await order.getOrderInfo(id, orderId);
+      return res.json(response);
+    } else {
+      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
+    }
+  },
 };
 const process = {
   cart: async (req, res) => {
