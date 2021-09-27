@@ -29,6 +29,26 @@ const process = {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
     }
   },
+  order: async (req, res) => {
+    if (req.session.user) {
+      const id = req.session.user.id;
+      var { cartId, productId, option, location, totalPrice } = req.body;
+      const order = new Order(req.body);
+      if (cartId) {
+        const getCart = await order.getCartInfo(cartId);
+        productId = getCart[0].productId;
+        option = getCart[0].options;
+        totalPrice = getCart[0].totalPrice;
+      } else {
+        if (!productId) return res.json({ success: false, message: '상품 id를 입력해주세요. ' });
+        if (!totalPrice) return res.json({ success: false, message: '금액을 입력해주세요.' });
+      }
+      const response = await order.order(id, productId, option, location, totalPrice);
+      return res.json(response);
+    } else {
+      return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
+    }
+  },
 };
 
 module.exports = {

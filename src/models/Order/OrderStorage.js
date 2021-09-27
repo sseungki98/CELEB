@@ -22,5 +22,24 @@ class OrderStorage {
       });
     });
   }
+  static getCartInfo(cartId) {
+    return new Promise((resolve, reject) => {
+      const query =
+        'select id as cartId, productId as productId, `option` as options, totalPrice as totalPrice from Cart where id = ? and status = "ACTIVE";';
+      db.query(query, [cartId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static postOrder(id, productId, option, location, totalPrice) {
+    return new Promise((resolve, reject) => {
+      const query = 'insert into Orders(userId, productId, `option`, location, totalPrice) values(?,?,?,?,?);';
+      db.query(query, [id, productId, option, location, totalPrice], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true });
+      });
+    });
+  }
 }
 module.exports = OrderStorage;

@@ -22,5 +22,6 @@ router.get('/my-inquiry', inquiryController.output.myInquiry); //나의 문의 �
 //Order Info Router
 router.post('/cart', orderController.process.cart); //장바구니 담기
 router.get('/cart', orderController.output.cart); //장바구니 조회
+router.post('/order', orderController.process.order); //주문하기
 
 module.exports = router;
