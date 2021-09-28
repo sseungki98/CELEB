@@ -16,6 +16,11 @@
     ></script>
     <script src="https://kit.fontawesome.com/4e048ac703.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
     <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
 
@@ -130,7 +135,7 @@
           </form>
         </div> -->
   <body>
-    <div class="navbar">
+    <!-- <div class="navbar">
       <img class="image-logo" src="/img/logo2.png" width="110px" height="50px" alt="main-logo" width="60px" height="60px" />
       <div class="search-bar push">
         <input type="search" placeholder="스토어를 검색하세요" />
@@ -164,10 +169,63 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="/img/logo2.jpeg" width="100px" height="40px" /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/login">로그인</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                카테고리
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="/1">🎂 레터링 케이크</a></li>
+                <li><a class="dropdown-item" href="/2">💐 꽃다발</a></li>
+                <li><a class="dropdown-item" href="/3">🚩 현수막/배너</a></li>
+                <li><a class="dropdown-item" href="/4">📱 폰케이스</a></li>
+                <li><a class="dropdown-item" href="/5">🎁 선물</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">마이페이지</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <%- body %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
   </body>
 </html>
