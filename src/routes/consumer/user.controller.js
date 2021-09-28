@@ -13,7 +13,7 @@ const output = {
         res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('common/500error', { err, login: false });
+      res.render('consumer/login');
     }
   },
   login: (req, res) => {
