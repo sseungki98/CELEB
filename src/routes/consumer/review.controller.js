@@ -1,8 +1,17 @@
 'use strict';
 
+const { json } = require('body-parser');
 const Review = require('../../models/Review/Review');
 
-const output = {};
+const output = {
+  review: async (req, res) => {
+    const storeId = req.params.storeId;
+    if (!storeId) return res.json({ success: false, message: '스토어 id를 입력해주세요. ' });
+    const review = new Review(req.body);
+    const response = await review.getReview(storeId);
+    return res.json(response);
+  },
+};
 
 const process = {
   review: async (req, res) => {
