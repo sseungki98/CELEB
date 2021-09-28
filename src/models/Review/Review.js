@@ -14,6 +14,15 @@ class Review {
       return { success: false, message: '리뷰 게시에 실패하였습니다. ' };
     }
   }
+  async patchReview(id, reviewId) {
+    try {
+      await ReviewStorage.patchReview(id, reviewId);
+      return { success: true, message: '리뷰가 삭제되었습니다. ' };
+    } catch (err) {
+      console.log(err);
+      return { success: false, message: '리뷰 삭제에 실패하였습니다. ' };
+    }
+  }
 }
 
 module.exports = Review;

@@ -12,6 +12,15 @@ class ReviewStorage {
       });
     });
   }
+  static patchReview(id, reviewId) {
+    return new Promise((resolve, reject) => {
+      const query = 'update Review set status="DELETED" where userId = ? and id = ?;';
+      db.query(query, [id, reviewId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true });
+      });
+    });
+  }
 }
 
 module.exports = ReviewStorage;

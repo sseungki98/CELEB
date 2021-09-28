@@ -21,6 +21,18 @@ const process = {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
     }
   },
+  patchReview: async (req, res) => {
+    if (req.session.user) {
+      const id = req.session.user.id;
+      const reviewId = req.params.reviewId;
+      if (!reviewId) return res.json({ success: false, message: '리뷰 id를 입력해주세요. ' });
+      const review = new Review(req.body);
+      const response = await review.patchReview(id, reviewId);
+      return res.json(response);
+    } else {
+      return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
+    }
+  },
 };
 
 module.exports = {

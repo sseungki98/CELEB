@@ -37,5 +37,6 @@ router.get('/store/:storeId/product/:productId', productController.output.produc
 
 //Review Info Router
 router.post('/review/store/:storeId', reviewController.process.review); //스토어 리뷰 작성하기
+router.patch('/review/:reviewId', reviewController.process.patchReview); //스토어 리뷰 삭제하기
 
 module.exports = router;
