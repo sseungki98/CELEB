@@ -40,7 +40,7 @@ const output = {
       if (!req.params.productId) return res.render('common/500error', { productId: false });
       const productDetailInfo = await StoreStorage.getProductDetailInfo(req.params.storeId, req.params.productId);
       const productOptionInfo = await StoreStorage.getProductOptionInfoByProductId(req.params.productId);
-      res.render('consumer/storeDetail', { productDetailInfo, productOptionInfo });
+      res.render('consumer/productDetail', { productDetailInfo, productOptionInfo });
     } catch (err) {
       res.render('common/500error', { err, layout: false });
     }
