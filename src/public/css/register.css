@@ -5,8 +5,7 @@ body {
 }
 body::before {
   content: '';
-
-  background-image: url(images.jpeg);
+  background-color: #ff6699;
   background-size: cover;
   opacity: 0.9;
   position: absolute;
@@ -15,22 +14,34 @@ body::before {
   left: 0;
   right: 0;
 }
+.bg {
+  width: 400px;
+  height: 650px;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  opacity: 0.5;
+  z-index: 10;
+}
 
 h2 {
-  color: white;
+  color: black;
 }
 .box {
-  width: 300px;
+  z-index: 11;
+  width: 500px;
   padding: 40px;
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: none;
   text-align: center;
 }
 .box h1 {
-  color: white;
+  color: black;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -44,26 +55,26 @@ h2 {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid #000;
   opacity: 0.5;
   padding: 14px 10px;
   width: 200px;
   outline: none;
-  color: white;
+  color: black;
   transition: 0.25s;
 }
 .box input[type='text']::placeholder,
 .box input[type='password']::placeholder,
 .box input[type='email']::placeholder,
 .box input[type='tel']::placeholder {
-  color: white;
+  color: black;
 }
 .box input[type='text']:focus,
 .box input[type='password']:focus,
 .box input[type='email']:focus,
 .box input[type='tel']:focus {
   width: 280px;
-  border-color: #60b8f9;
+  border-color: #ff0066;
 }
 
 .box input[type='submit'] {
@@ -72,16 +83,16 @@ h2 {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #60b8f9;
+  border: 2px solid #ff0066;
   padding: 14px 40px;
   margin-top: 50px;
   width: 240px;
   outline: none;
-  color: white;
+  color: black;
   border-radius: 24px;
   transition: 0.25s;
   cursor: pointer;
 }
 .box input[type='submit']:hover {
-  background: #60b8f9;
+  background: #ff0066;
 }
