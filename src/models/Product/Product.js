@@ -1,10 +1,10 @@
 'use strict';
-const StoreStorage = require('./StoreStorage');
+const ProductStorage = require('./ProductStorage');
 
-class Store {
+class Product {
   constructor(body) {
     this.body = body;
   }
 }
 
-module.exports = Store;
+module.exports = Product;

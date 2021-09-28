@@ -2,7 +2,11 @@
 
 const Product = require('../../models/Product/Product');
 
-const output = {};
+const output = {
+  productDetail: async (req, res) => {
+    res.render('consumer/productDetail');
+  },
+};
 
 const process = {};
 
