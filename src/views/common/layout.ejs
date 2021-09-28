@@ -9,7 +9,86 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://kit.fontawesome.com/4e048ac703.js" crossorigin="anonymous"></script>
+    <style>
+      .main-logo {
+        width: 100%;
+        height: 400px;
+      }
+      .search-bar {
+        background-color: plum;
+        width: 440px;
+        padding: 3px;
+        border: solid 1px gainsboro;
+        border-radius: 15px;
+      }
+      .push {
+        margin-right: auto;
+        margin-left: 30px;
+      }
+
+      i.fa-search {
+        margin-left: 7px;
+      }
+
+      input[type='search'] {
+        width: 400px;
+        height: 40px;
+        padding-left: 10px;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .navbar {
+        z-index: 10;
+        position: sticky;
+        top: 0px;
+        font-size: 14px;
+        background-color: whitesmoke;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+      }
+
+      .image-logo {
+        margin-left: 20px;
+      }
+
+      .menu {
+        text-align: right;
+        float: right;
+        width: 320px;
+        display: flex;
+        flex-wrap: nowrap;
+      }
+
+      .nav__link {
+        padding: 0;
+        margin-top: 14px;
+        list-style: none;
+        font-family: 'Montserrat', sans-serif;
+      }
+      .nav__link li {
+        display: inline-block;
+        padding: 0px 10px;
+        font-size: 17px;
+      }
+      .nav__link li a {
+        text-decoration: none;
+        color: black;
+        transition: all 0.3s ease 0s;
+      }
+
+      .nav__link li a:hover {
+        color: purple;
+      }
+    </style>
   </head>
   <!-- <body style="min-width: 1500px">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #eee">
@@ -48,32 +127,36 @@
         </div> -->
   <body style="min-width: 1500px">
     <div class="navbar">
-      <img
-        class="image-logo"
-        src="assets/img/category/KakaoTalk_Photo_2021-09-25-15-56-23.jpeg"
-        width="110px"
-        height="50px"
-        alt="main-logo"
-        width="60px"
-        height="60px"
-      />
+      <img class="image-logo" src="/img/logo2.png" width="110px" height="50px" alt="main-logo" width="60px" height="60px" />
       <div class="search-bar push">
         <input type="search" placeholder="스토어를 검색하세요" />
         <i class="fas fa-search"></i>
       </div>
       <div class="menu">
-        <ul class="nav__link">
+        <ul class="nav__link" style="list-style: none">
           <%if (user) { %>
-          <li class="nav-item">
-            <a class="nav-link active" href="/logout">로그아웃</a>
+          <li class>
+            <a href="/logout"><b>로그아웃</b></a>
           </li>
           <% }else{ %>
-          <li class="nav-item">
-            <a class="nav-link active" href="/login">로그인</a>
+          <li>
+            <a href="/login"><b>로그인</b></a>
           </li>
           <%}%>
-          <li class="nav-item">
-            <a class="nav-link active" href="/mypage">마이페이지</a>
+          <li class="dropdown">
+            <a class="nav__link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <b>카테고리</b>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="/1">🎂 레터링 케이크</a></li>
+              <li><a class="dropdown-item" href="/2">💐 꽃다발</a></li>
+              <li><a class="dropdown-item" href="/3">🚩 현수막/배너</a></li>
+              <li><a class="dropdown-item" href="/4">📱 폰케이스</a></li>
+              <li><a class="dropdown-item" href="/5">🎁 선물</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/mypage"><b>마이페이지</b></a>
           </li>
         </ul>
       </div>
