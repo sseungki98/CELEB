@@ -5,15 +5,11 @@ const UserStorage = require('../../models/User/UserStorage');
 
 const output = {
   main: async (req, res) => {
-    if (req.session.user) {
-      try {
-        const storeInfo = await UserStorage.getPopularStoreInfo();
-        res.render('consumer/main', { storeInfo });
-      } catch (err) {
-        res.render('common/500error', { err, layout: false });
-      }
-    } else {
-      res.render('common/500error', { err, login: false });
+    try {
+      const storeInfo = await UserStorage.getPopularStoreInfo();
+      res.render('consumer/main', { storeInfo });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
     }
   },
   login: (req, res) => {

@@ -2,6 +2,6 @@
 
 const db = require('../../config/database');
 
-class StoreStorage {}
+class ProductStorage {}
 
-module.exports = StoreStorage;
+module.exports = ProductStorage;
