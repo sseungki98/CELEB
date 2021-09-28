@@ -33,7 +33,12 @@ router.post('/cart', orderController.process.cart); //장바구니 담기
 router.get('/cart', orderController.output.cart); //장바구니 조회
 router.post('/order', orderController.process.order); //주문하기
 router.get('/order/:orderId', orderController.output.order); //주문 확인 조회 → 주문 완료 직후
+router.get('/mypage/order', orderController.output.myOrder); //나의 주문 내역 조회 → 최신순 (마이페이지)
 //Product Info Router
 router.get('/store/:storeId/product/:productId', productController.output.productDetail); // 상품 디테일 조회
+
+//Review Info Router
+router.post('/review/store/:storeId', reviewController.process.review); //스토어 리뷰 작성하기
+router.patch('/review/:reviewId', reviewController.process.patchReview); //스토어 리뷰 삭제하기
 
 module.exports = router;
