@@ -35,4 +35,7 @@ router.get('/mypage/order', orderController.output.myOrder); //나의 주문 내
 //Product Info Router
 router.get('/store/:storeId/product/:productId', productController.output.productDetail); // 상품 디테일 조회
 
+//Review Info Router
+router.post('/review/store/:storeId', reviewController.process.review); //스토어 리뷰 작성하기
+
 module.exports = router;
