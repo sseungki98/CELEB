@@ -97,79 +97,25 @@
       .nav__link li a:hover {
         color: purple;
       }
+      .form-control {
+        background-color: green;
+        opacity: 0.6;
+      }
+      input[type='search']::placeholder {
+        color: white;
+      }
+      input[type='search']:focus {
+        background-color: green;
+        color: white;
+      }
+      input:focus::-webkit-input-placeholder,
+      textarea:focus::-webkit-input-placeholder {
+        color: transparent;
+      }
     </style>
   </head>
-  <!-- <body style="min-width: 1500px">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #eee">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">CELEB</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-            <%if (user) { %>
-            <li class="nav-item">
-              <a class="nav-link active" href="/logout">로그아웃</a>
-            </li>
-            <% }else{ %>
-            <li class="nav-item">
-              <a class="nav-link active" href="/login">로그인</a>
-            </li>
-            <%}%>
-            <li class="nav-item">
-              <a class="nav-link active" href="/mypage">마이페이지</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-outline-primary" type="submit">Search</button>
-          </form>
-        </div> -->
+
   <body>
-    <!-- <div class="navbar">
-      <img class="image-logo" src="/img/logo2.png" width="110px" height="50px" alt="main-logo" width="60px" height="60px" />
-      <div class="search-bar push">
-        <input type="search" placeholder="스토어를 검색하세요" />
-        <i class="fas fa-search"></i>
-      </div>
-      <div class="menu">
-        <ul class="nav__link" style="list-style: none">
-          <%if (user) { %>
-          <li class>
-            <a href="/logout"><b>로그아웃</b></a>
-          </li>
-          <% }else{ %>
-          <li>
-            <a href="/login"><b>로그인</b></a>
-          </li>
-          <%}%>
-          <li class="dropdown">
-            <a class="nav__link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <b>카테고리</b>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="/1">🎂 레터링 케이크</a></li>
-              <li><a class="dropdown-item" href="/2">💐 꽃다발</a></li>
-              <li><a class="dropdown-item" href="/3">🚩 현수막/배너</a></li>
-              <li><a class="dropdown-item" href="/4">📱 폰케이스</a></li>
-              <li><a class="dropdown-item" href="/5">🎁 선물</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="/mypage"><b>마이페이지</b></a>
-          </li>
-        </ul>
-      </div>
-    </div> -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"><img src="/img/logo2.jpeg" width="100px" height="40px" /></a>
@@ -186,8 +132,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="스토어를 검색하세요" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit"><i class="xi-search"></i></button>
           </form>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
