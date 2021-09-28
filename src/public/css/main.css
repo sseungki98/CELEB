@@ -14,7 +14,6 @@ a {
 }
 
 .category-contanier {
-  min-width: 1200px;
   padding-top: 20px;
   padding-bottom: 20px;
   margin-top: 50px;
@@ -30,7 +29,6 @@ a {
 
 .content {
   margin-top: 50px;
-  min-width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
