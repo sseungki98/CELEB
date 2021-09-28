@@ -51,5 +51,15 @@ class OrderStorage {
       });
     });
   }
+  static getMyOrder(id) {
+    return new Promise((resolve, reject) => {
+      const query =
+        'select a.id as OrderId, a.userId as UserId, a.productId as ProductId, a.`option` as Options, a.location as Location, concat(format(a.totalPrice, 0), "원") as TotalPrice, a.orderStatusId as OrderStatus, date_format(a.createdAt, "%Y-%m-%d %H:%i") as CreatedAt from Orders a left join ( select id, storeId, name, imageUrl from Product ) as b on a.productId = b.id left join( select id, storeName, imageUrl from Store) as c on b.storeId = c.id where a.userId = ? and a.status = "ACTIVE" order by a.createdAt desc;';
+      db.query(query, [id], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
 }
 module.exports = OrderStorage;
