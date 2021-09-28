@@ -34,6 +34,26 @@ const output = {
       res.render('common/500error', { err, layout: false });
     }
   },
+  productDetail: async (req, res) => {
+    try {
+      if (!req.params.storeId) return res.render('common/500error', { storeId: false });
+      if (!req.params.productId) return res.render('common/500error', { productId: false });
+      const productDetailInfo = await StoreStorage.getProductDetailInfo(req.params.storeId, req.params.productId);
+      const productOptionInfo = await StoreStorage.getProductOptionInfoByProductId(req.params.productId);
+      res.render('consumer/productDetail', { productDetailInfo, productOptionInfo });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
+    }
+  },
+  storeReservationDate: async (req, res) => {
+    try {
+      if (!req.params.storeId) return res.render('common/500error', { storeId: false });
+      const productReservationDateInfo = await StoreStorage.getProductReservationDateByProductId(req.params.storeId);
+      res.render('consumer/reservationDate', { productReservationDateInfo });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
+    }
+  },
 };
 
 const process = {};
