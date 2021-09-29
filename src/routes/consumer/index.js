@@ -11,7 +11,7 @@ const orderController = require('./order.controller');
 const productController = require('./product.controller');
 
 //Page Info Router
-router.get('/', userController.output.main); //메인화면 페이지 요청
+router.get('/', storeController.output.popularStore); //메인화면 페이지 요청
 router.get('/login', userController.output.login); //로그인 페이지 요청
 router.get('/register', userController.output.register);
 //User Info Router
@@ -24,6 +24,7 @@ router.get('/store/:storeId', storeController.output.storeDetail); //각 스토�
 router.get('/category/:categoryId', storeController.output.storeList); //카테고리별 스토어 리스트 조회
 router.get('/store/:storeId/:productId', storeController.output.productDetail); //상품 상세 조회
 router.get('/store/reservation/:storeId', storeController.output.storeReservationDate); //스토어 예약 불가능일 조회
+router.get('/store', storeController.output.searchStore); //스토어 통합 검색
 //Inquiry Info Router
 router.post('/inquiry/:storeId/:productId', inquiryController.process.inquiry); //문의 생성
 router.get('/inquiry/:storeId', inquiryController.output.inquiry); //스토어별 문의 내용 조회 → 수신/발신 체크

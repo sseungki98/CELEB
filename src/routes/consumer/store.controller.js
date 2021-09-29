@@ -4,6 +4,14 @@ const Store = require('../../models/Store/Store');
 const StoreStorage = require('../../models/Store/StoreStorage');
 
 const output = {
+  popularStore: async (req, res) => {
+    try {
+      const storeInfo = await StoreStorage.getPopularStoreInfo();
+      res.render('consumer/main', { storeInfo });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
+    }
+  },
   storeDetail: async (req, res) => {
     try {
       if (!req.params.storeId) return res.render('common/500error', { storeId: false });
@@ -53,6 +61,19 @@ const output = {
     } catch (err) {
       res.render('common/500error', { err, layout: false });
     }
+  },
+  searchStore: async (req, res) => {
+    const { keyword } = req.query;
+    const categoryName = '%' + keyword + '%';
+    const storeName = '%' + keyword + '%';
+    const productName = '%' + keyword + '%';
+    const provinceName = '%' + keyword + '%';
+    const cityName = '%' + keyword + '%';
+    if (!keyword) return res.json({ success: false, message: '검색어를 입력해주세요. ' });
+    const params = [categoryName, storeName, productName, provinceName, cityName];
+    const store = new Store(req.body);
+    const response = await store.searchStore(params);
+    return res.json(response);
   },
 };
 
