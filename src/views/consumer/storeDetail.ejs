@@ -1,10 +1,9 @@
 <link rel="stylesheet" href="/css/storeDetail.css" />
-<a href="."><i class="fas fa-arrow-circle-left fa-2x"></i></a>
-<div class="container">
+<!-- <div class="container">
   <div class="container">
     <div class="row">
       <div class="col-3">
-        <img src="" alt="" width="250px" height="250px" />
+        <img class="productImage" src="/img/ex-cake1.png" alt="" />
       </div>
       <div class="col-6">
         <h1>스토어이름</h1>
@@ -12,18 +11,19 @@
       </div>
       <div class="col-3">
         <ul>
-          <li>평점 :</li>
-          <li>위치 :</li>
-          <li>영업시간 :</li>
-          <li>전화번호 :</li>
+          <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
+          <li><i class="xi-maker" style="color: red"></i>위치 :</li>
+          <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
+          <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
+          <button type="button" class="btn btn-outline-secondary btn-lg">리뷰보기</button>
         </ul>
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row store-width-height">
+  <div class="container" style="padding: 10%; border-bottom: none">
+    <div class="row">
       <div class="col-3">
-        <img src="" alt="" width="180px" height="180px" />
+        <img class="productImage" src="/img/ex-cake2.png" alt="" />
       </div>
       <div class="col-6">
         <h2>상품명</h2>
@@ -35,12 +35,12 @@
           <li>사이즈</li>
           <li>특징</li>
         </ul>
-        <button>구매하기</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm">구매하기</button>
       </div>
     </div>
-    <div class="row store-width-height">
+    <div class="row">
       <div class="col-3">
-        <img src="" alt="" width="180px" height="180px" />
+        <img class="productImage" src="/img/ex-cake3.png" alt="" />
       </div>
       <div class="col-6">
         <h2>상품명</h2>
@@ -52,12 +52,12 @@
           <li>사이즈</li>
           <li>특징</li>
         </ul>
-        <button>구매하기</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm">구매하기</button>
       </div>
     </div>
-    <div class="row store-width-height">
+    <div class="row">
       <div class="col-3">
-        <img src="" alt="" width="180px" height="180px" />
+        <img class="productImage" src="/img/product2.png" alt="" />
       </div>
       <div class="col-6">
         <h2>상품명</h2>
@@ -69,11 +69,72 @@
           <li>사이즈</li>
           <li>특징</li>
         </ul>
-        <button>구매하기</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm">구매하기</button>
       </div>
     </div>
   </div>
 </div>
 <div class="foot">
   <hr />
+</div> -->
+
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 align-items-center my-5">
+    <div class="col-lg-7">
+      <img class="img-fluid rounded mb-4 mb-lg-0" src="/img/ex-cake3.png" alt="..." />
+    </div>
+    <div class="col-lg-5">
+      <h1 class="font-weight-light">스토어 이름</h1>
+      <ul>
+        <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
+        <li><i class="xi-maker" style="color: red"></i>위치 :</li>
+        <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
+        <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
+      </ul>
+      <a class="btn btn-primary" href="#!">리뷰보기</a>
+    </div>
+  </div>
+  <div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body">
+      <p class="text-white m-0"><i class="fas fa-exclamation"></i> <공지사항> 추석 연휴 (9월 20일 ~ 9월 22일)은 휴무입니다~</p>
+    </div>
+  </div>
+  <div class="row gx-4 gx-lg-5">
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title text-center">도시락 케이크</h2>
+          <img class="card-img" src="/img/ex-cake1.png" />
+        </div>
+        <div class="card-footer">
+          <div class="card-text">
+            <ul>
+              <li>가격 : 15,000~</li>
+              <li>사이즈 : 고정</li>
+              <li>특징 : 편하게 즐길 수 있는</li>
+            </ul>
+          </div>
+          <a class="btn btn-primary btn-sm" href="#!">주문하기</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title text-center">홀 케이크</h2>
+          <img class="card-img" src="/img/ex-cake1.png" />
+        </div>
+        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">주문하기</a></div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title text-center">케이킹</h2>
+          <img class="card-img" src="/img/ex-cake1.png" />
+        </div>
+        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">주문하기</a></div>
+      </div>
+    </div>
+  </div>
 </div>
