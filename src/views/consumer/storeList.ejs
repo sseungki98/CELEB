@@ -17,10 +17,23 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="regionDropDown">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">서울</a>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >서울</a
+          >
+          <ul class="dropdown-menu" aria-labelledby="regionDropDown">
+            <li><a class="dropdown-item" href="#">강남</a></li>
+            <li><a class="dropdown-item" href="#">강북</a></li>
+            <li><a class="dropdown-item" href="#">서초</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">경기</a>
@@ -58,9 +71,9 @@
       </ul>
       <div>
         <label class="rate-order" for="rate-order">평점순</label>
-        <input type="checkbox" name="order" id="rate-order" />
+        <input type="radio" name="order" id="rate-order" />
         <label class="sell-order" for="sell-order">판매순</label>
-        <input type="checkbox" name="order" id="sell-order" />
+        <input type="radio" name="order" id="sell-order" />
       </div>
     </div>
   </div>
