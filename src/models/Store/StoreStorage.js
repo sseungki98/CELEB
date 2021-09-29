@@ -108,5 +108,44 @@ class StoreStorage {
       });
     });
   }
+  static searchStore(params) {
+    return new Promise((resolve, reject) => {
+      const query = `select a.id as StoreId
+      , a.storeName as StoreName
+      , a.imageUrl as StoreImage
+      , a.info as StoreInfo
+      , starGrade as StarGrade
+      , reviewCount as ReviewCount
+      , concat(d.name,' ',e.name) as Location
+      , a.type as StoreType
+from Store a
+left join ( select id, name
+          from Category ) as b
+          on a.categoryId = b.id
+left join  ( select id, storeId, name
+          from Product ) as c
+          on a.id = c.storeId
+left join ( select id, name
+          from Province ) as d
+          on a.provinceId = d.id
+left join ( select id, name
+          from City ) as e
+          on a.cityId = e.id
+left join ( select id, storeId, score, round(sum(score)/count(storeId), 1) as 'starGrade', count(storeId) as 'reviewCount'
+          from Review
+          group by storeId) as f
+          on a.id = f.storeId
+left join ( select id, productId, count(productId) as 'orderCount'
+          from Orders
+          group by productId) as g
+          on c.id = g.productId
+where b.name like ? or c.name like ? or d.name like ? or e.name like ? and a.status = 'ACTIVE'
+order by orderCount desc;`;
+      db.query(query, params, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
 }
 module.exports = StoreStorage;
