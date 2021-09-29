@@ -14,13 +14,6 @@ a {
   background-color: darkorchid;
 }
 
-.image-with-text {
-  vertical-align: top;
-  display: inline-block;
-  text-align: center;
-  width: 120px;
-}
-
 .caption {
   display: block;
   margin-left: 5px;

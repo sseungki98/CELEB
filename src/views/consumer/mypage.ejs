@@ -1,1 +1,82 @@
 <%= myPageInfo.name %>
+<link rel="stylesheet" href="/css/mypage.css" />
+<div class="container user-info">
+  <div class="row">
+    <div class="col-4">
+      <img class="user-info-image" src="assets/img/portfolio/cabin.png" />
+    </div>
+    <div class="col-8">
+      <div>닉네임 : 이승현</div>
+      <div>이메일 : appp_le@naver.com</div>
+      <div>
+        기본주소 : 경기도 성남시 분당구 중앙공원로 17 308-1202
+        <button type="button" class="btn btn-outline-secondary btn-sm">변경</button><br />
+      </div>
+      <div>
+        휴대폰번호 : 010-4800-1335
+        <button type="button" class="btn btn-outline-secondary btn-sm">변경</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">주문번호</th>
+        <th scope="col">상품명</th>
+        <th scope="col">스토어명</th>
+        <th scope="col">금액</th>
+        <th scope="col">현황</th>
+        <th scope="col">옵션</th>
+        <th scope="col">날짜</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">3215</th>
+        <td>3단 레이어 케이크</td>
+        <td>레몬트리케이크</td>
+        <td>20000원</td>
+        <td>작업완료</td>
+        <td><button type="button" class="btn btn-outline-secondary btn-sm">옵션보기</button></td>
+        <td>픽업날짜1</td>
+      </tr>
+      <tr>
+        <th scope="row">2241</th>
+        <td>웨딩케이크</td>
+        <td>스토어2</td>
+        <td>100000원</td>
+        <td>작업중</td>
+        <td><button type="button" class="btn btn-outline-secondary btn-sm">옵션보기</button></td>
+        <td>픽업날짜2</td>
+      </tr>
+      <tr>
+        <th scope="row">3552</th>
+        <td>도시락 케이크</td>
+        <td>스토어3</td>
+        <td>15000원</td>
+        <td>주문확인중</td>
+        <td><button type="button" class="btn btn-outline-secondary btn-sm">옵션보기</button></td>
+        <td>픽업날짜3</td>
+      </tr>
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

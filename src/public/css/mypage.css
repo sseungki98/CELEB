@@ -1,0 +1,26 @@
+a {
+  text-decoration: none;
+}
+
+.user-info-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  margin-top: 15px;
+}
+
+ul {
+  list-style: none;
+}
+
+.user-info {
+  padding-bottom: 20px;
+}
+
+.container {
+  text-align: center;
+}
+
+.col-8 {
+  text-align: left;
+}
