@@ -1,4 +1,4 @@
-.container {
+/* .container {
   margin-top: 20px;
   border: solid 1px black;
 }
@@ -32,4 +32,39 @@ label {
   height: 200px;
   margin-right: 20px;
   margin-left: 20px;
+} */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+* {
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.container {
+  border: solid 1px gray;
+}
+
+span {
+  margin-left: auto;
+}
+.input-group {
+  margin-top: 5%;
+}
+h2 {
+  margin-top: 5%;
+}
+
+input {
+  color: white;
+}
+
+.slide-image img {
+  width: 13em;
+  height: 8em;
+}
+
+.card-header {
+  text-align: center;
+}
+
+.card {
+  margin-top: 5%;
 }
