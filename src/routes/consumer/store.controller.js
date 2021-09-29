@@ -6,7 +6,7 @@ const StoreStorage = require('../../models/Store/StoreStorage');
 const output = {
   popularStore: async (req, res) => {
     try {
-      const storeInfo = await UserStorage.getPopularStoreInfo();
+      const storeInfo = await StoreStorage.getPopularStoreInfo();
       res.render('consumer/main', { storeInfo });
     } catch (err) {
       res.render('common/500error', { err, layout: false });
