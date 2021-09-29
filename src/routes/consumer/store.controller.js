@@ -4,6 +4,14 @@ const Store = require('../../models/Store/Store');
 const StoreStorage = require('../../models/Store/StoreStorage');
 
 const output = {
+  popularStore: async (req, res) => {
+    try {
+      const storeInfo = await UserStorage.getPopularStoreInfo();
+      res.render('consumer/main', { storeInfo });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
+    }
+  },
   storeDetail: async (req, res) => {
     try {
       if (!req.params.storeId) return res.render('common/500error', { storeId: false });
