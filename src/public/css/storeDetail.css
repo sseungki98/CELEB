@@ -9,7 +9,8 @@ ul {
 
 #storeInfo {
   background-color: white;
-  height: 100%;
+  padding: 30px;
+  line-height: 3vw;
 }
 
 /*
