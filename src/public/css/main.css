@@ -67,7 +67,8 @@ h2 {
 
 .banner img {
   width: 100vw;
-  height: 50vh;
+  height: 300px;
+  min-height: 300px;
 }
 
 /* .banner {
