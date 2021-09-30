@@ -5,7 +5,7 @@ body {
 }
 body::before {
   content: '';
-  background-color: #ff6699;
+  background-color: #ffd5d5;
   background-size: cover;
   opacity: 0.9;
   position: absolute;
@@ -15,10 +15,10 @@ body::before {
   right: 0;
 }
 .bg {
-  width: 400px;
+  width: 420px;
   height: 650px;
   position: absolute;
-  top: 55%;
+  top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
@@ -83,7 +83,7 @@ h2 {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #ff0066;
+  border: 2px solid #fdbebe;
   padding: 14px 40px;
   margin-top: 50px;
   width: 240px;
@@ -94,5 +94,5 @@ h2 {
   cursor: pointer;
 }
 .box input[type='submit']:hover {
-  background: #ff0066;
+  background: #fdbebe;
 }
