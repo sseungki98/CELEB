@@ -38,10 +38,6 @@ label {
   font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-.container {
-  border: solid 1px gray;
-}
-
 span {
   margin-left: auto;
 }
