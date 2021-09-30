@@ -5,7 +5,7 @@ body {
 }
 body::before {
   content: '';
-  background-color: #ff6699;
+  background-color: #ffd5d5;
   background-size: cover;
   opacity: 0.9;
   position: absolute;
@@ -15,8 +15,8 @@ body::before {
   right: 0;
 }
 .bg {
-  width: 400px;
-  height: 450px;
+  width: 420px;
+  height: 480px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -76,7 +76,7 @@ body::before {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #ff0066;
+  border: 2px solid #fdbebe;
   padding: 14px 40px;
   margin-top: 50px;
   width: 240px;
@@ -87,7 +87,7 @@ body::before {
   cursor: pointer;
 }
 .box input[type='submit']:hover {
-  background: #ff0066;
+  background: #fdbebe;
 }
 
 span {
@@ -97,9 +97,14 @@ span {
 
 a {
   text-decoration: none;
-  color: deeppink;
+  color: #ff0066;
 }
 
 a:visited {
-  color: deeppink;
+  color: #ff0066;
+}
+
+.logo {
+  margin-top: -150px;
+  width: 65%;
 }
