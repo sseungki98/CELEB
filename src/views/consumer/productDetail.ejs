@@ -128,7 +128,14 @@
         </div>
         <div>
           <h2>픽업 날짜 설정</h2>
-          <div class="calendar"></div>
+          <input id="datepicker" width="276" />
+          <script>
+              $('#datepicker').datepicker({
+                  uiLibrary: 'bootstrap4',
+                  disabled:['2021-10-10']
+              });
+          </script>
+        </div>
         <div class="d-grid mx-auto" style="margin-bottom:5%">
           <button class="btn btn-outline-success" type="submit" value="Submit">주문하기</button>
         </div>
