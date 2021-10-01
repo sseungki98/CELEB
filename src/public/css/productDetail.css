@@ -44,9 +44,6 @@ span {
 .input-group {
   margin-top: 5%;
 }
-h2 {
-  margin-top: 5%;
-}
 
 input {
   color: white;
@@ -61,6 +58,29 @@ input {
   text-align: center;
 }
 
-.card {
-  margin-top: 5%;
+.option-section {
+  margin-bottom: 7%;
+}
+
+#productName {
+  margin: 20px 0;
+}
+
+.far {
+  margin-right: 10px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+.text-end {
+  float: right;
+  align-self: center;
 }

@@ -98,7 +98,7 @@
         color: purple;
       }
       .d-flex {
-        max-width: 700px;
+        max-width: 600px;
       }
       .form-control {
         background-color: rgb(247, 238, 238);
@@ -114,6 +114,11 @@
       input:focus::-webkit-input-placeholder,
       textarea:focus::-webkit-input-placeholder {
         color: transparent;
+      }
+
+      #searchIcon {
+        background-color: #ffd5d5;
+        color: grey;
       }
     </style>
   </head>
@@ -136,7 +141,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="스토어를 검색하세요" aria-label="Search" />
-            <button class="btn btn-outline-warning" type="submit"><i class="xi-search"></i></button>
+            <button class="btn" id="searchIcon" type="submit"><i class="xi-search"></i></button>
           </form>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
