@@ -17,13 +17,21 @@
             <p class="card-text">판매자의 유의사항</p>
           </div>
         </div>
-        <div class="card mx-auto">
+        <div class="card mx-auto mt-4 mb-4">
           <div class="card-header">상품 상세보기</div>
-          <div class="card-body slide-image">
-            <div><img src="/img/ex-cake1.png" /></div>
-            <div><img src="/img/ex-cake2.png" /></div>
-            <div><img src="/img/ex-cake3.png" /></div>
+          <div class="card-body slide-image gx-2">
+            <div><img class="example-image" src="/img/ex-cake1.png" /></div>
+            <div><img class="example-image" src="/img/ex-cake2.png" /></div>
+            <div><img class="example-image" src="/img/ex-cake3.png" /></div>
+            <div><img class="example-image" src="/img/product2.png" /></div>
           </div>
+          <script type="text/javascript">
+            $('.slide-image').slick({
+              infinite: true,
+              slidesToShow: 3,
+              slidesToScroll: 3,
+            });
+          </script>
         </div>
       </div>
       <div class="col-md-4">
@@ -47,9 +55,50 @@
             <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color" />
             <span class="text-end">+3000원</span>
           </div>
-          <div class="input-group">
+          <div class="input-group mb-2">
             <span class="input-group-text">글씨색</span>
             <input class="form-control" aria-label="With textarea" />
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox1" />
+            <label class="form-check-label" for="checkbox1"> 상단 꽃장식 추가 </label>
+            <span class="text-end">+1000원</span>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox2" />
+            <label class="form-check-label" for="checkbox2"> 하단 꽃장식 추가 </label>
+            <span class="text-end">+1000원</span>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox3" />
+            <label class="form-check-label" for="checkbox3"> 초콜릿 토핑 추가 </label>
+            <span class="text-end">+500원</span>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox4" />
+            <label class="form-check-label" for="checkbox4"> 체리 추가 </label>
+            <span class="text-end">+3000원</span>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox8" />
+            <label class="form-check-label" for="checkbox8"> 딸기 추가 </label>
+            <span class="text-end">+3000원</span>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox5" />
+            <label class="form-check-label" for="checkbox5"> 문구 추가 </label>
+            <span class="text-end">+100원</span>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox6" />
+            <label class="form-check-label" for="checkbox6"> 리본 추가 </label>
+            <span class="text-end">+500원</span>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox7" />
+            <label class="form-check-label" for="checkbox7"> 꽃가루 추가 </label>
+            <span class="text-end">+500원</span>
           </div>
         </div>
         <div class="option-section">
@@ -65,7 +114,7 @@
         </div>
         <div>
           <h2>픽업 날짜 설정</h2>
-          <input id="datepicker" width="276" />
+          <input id="datepicker" class="d-grid mx-auto" />
           <script>
             $('#datepicker').datepicker({
               uiLibrary: 'bootstrap4',
@@ -73,18 +122,10 @@
             });
           </script>
         </div>
-        <div class="d-grid mx-auto" style="margin-bottom: 5%">
+        <div class="d-grid mx-auto" style="margin-top: 74%; margin-bottom: 5%">
           <button class="btn btn-outline-success" type="submit" value="Submit">주문하기</button>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<script type="text/javascript">
-  $('.slide-image').slick({
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-  });
-</script>
