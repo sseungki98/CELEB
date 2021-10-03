@@ -50,7 +50,7 @@ input {
 }
 
 .slide-image img {
-  width: 13em;
+  width: 14vw;
   height: 8em;
 }
 
@@ -84,3 +84,65 @@ a:hover {
   float: right;
   align-self: center;
 }
+
+#exampleColorInput {
+  margin-right: 0.7em;
+}
+
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  position: absolute;
+  bottom: 50%;
+  transform: translateY(50%);
+  color: white;
+  opacity: 0.4;
+  border: 0;
+  background: none;
+  z-index: 1;
+}
+
+.slick-prev {
+  left: 20px;
+}
+
+.slick-prev:after {
+  content: '\f104';
+  font: 40px/1 'FontAwesome';
+}
+
+.slick-next {
+  right: 20px;
+  text-align: right;
+}
+
+.slick-next:after {
+  content: '\f105';
+  font: 40px/1 'FontAwesome';
+}
+
+.slick-prev:hover:after,
+.slick-next:hover:after {
+  color: #fcdeff;
+}
+
+/* .example-image {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.example-image:hover {
+  -webkit-transform: scale(1.7);
+  -moz-transform: scale(1.7);
+  -ms-transform: scale(1.7);
+  -o-transform: scale(1.7);
+  transform: scale(1.7);
+} */
