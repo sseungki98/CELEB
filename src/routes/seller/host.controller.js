@@ -21,6 +21,16 @@ const process = {
     console.log(req.session.host);
     return res.json(response);
   },
+  logout: async (req, res) => {
+    if (req.session.host) {
+      req.session.destroy(function (err) {
+        if (err) throw err;
+        return res.redirect('/s/login');
+      });
+    } else {
+      return res.redirect('/s/login');
+    }
+  },
   register: async (req, res) => {
     if (!req.body.storeId) return res.json({ success: false, message: '스토어 ID을 입력해주세요.' });
     if (!req.body.password) return res.json({ success: false, message: '비밀번호를 입력해주세요.' });

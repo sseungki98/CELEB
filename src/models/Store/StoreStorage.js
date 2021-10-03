@@ -147,5 +147,16 @@ order by orderCount desc;`;
       });
     });
   }
+  static updateStorePage(params) {
+    return new Promise((resolve, reject) => {
+      const query = `UPDATE Store
+      SET storeName=?, imageUrl=?, info=?, phoneNum=?, categoryId=?, provinceId=?, cityId=?, roadAddress=?, detailAddress=?, type=?, openTime=?, closeTime=?, limit=?
+      WHERE id=?;`;
+      db.query(query, [params], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
 }
 module.exports = StoreStorage;
