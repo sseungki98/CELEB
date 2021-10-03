@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.22.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
+    "elementtree": "^0.1.7",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.17.2",
@@ -21,7 +23,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^0.15.8",
     "mysql2-promise": "^0.1.4",
-    "notenv": "^2.0.3"
+    "notenv": "^2.0.3",
+    "xml": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

@@ -13,8 +13,8 @@ const process = {
     if (response.success) {
       req.session.host = {
         id: response.id,
-        email: req.body.email,
-        name: response.name,
+        storeId: req.body.storeId,
+        storeName: response.storeName,
         authorized: true,
       };
     }
@@ -22,9 +22,9 @@ const process = {
     return res.json(response);
   },
   register: async (req, res) => {
-    if (!req.body.email) return res.json({ success: false, message: '이메일을 입력해주세요.' });
+    if (!req.body.storeId) return res.json({ success: false, message: '스토어 ID을 입력해주세요.' });
     if (!req.body.password) return res.json({ success: false, message: '비밀번호를 입력해주세요.' });
-    if (!req.body.name) return res.json({ success: false, message: '스토어 이름을 입력해주세요.' });
+    if (!req.body.storeName) return res.json({ success: false, message: '스토어 이름을 입력해주세요.' });
     if (!req.body.phoneNum) return res.json({ success: false, message: '스토어 연락처를 입력해주세요.' });
     if (!req.body.licenseNum) return res.json({ success: false, message: '사업자 등록번호를 입력해주세요.' });
     if (!req.body.categoryId) return res.json({ success: false, message: '스토어 유형을 선택해주세요.' });
