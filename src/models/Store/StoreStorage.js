@@ -5,7 +5,7 @@ const db = require('../../config/database');
 class StoreStorage {
   static getPopularStoreInfo() {
     return new Promise((resolve, reject) => {
-      const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image,concat(st.openTime,'-',st.closeTime) as 'Operating Hour',tt.cnt as cnt, rtt.avgstar as 'star rating',concat(pv.name,' ',ct.name) as location, type
+      const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image,st.openTime as 'Operating Hour',tt.cnt as cnt, rtt.avgstar as 'star rating',concat(pv.name,' ',ct.name) as location, type
        FROM Store st join (Select st.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store st on st.id=pd.storeId WHERE od.status='COMPLETE' Group by st.id) tt on st.id=tt.sid
                      join (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=st.id
                      join Province pv on pv.id=st.provinceId join City ct on ct.id=st.cityId
@@ -13,13 +13,13 @@ class StoreStorage {
        ORDER BY cnt DESC,'star rating' DESC;`;
       db.query(query, (err, data) => {
         if (err) reject(`${err}`);
-        resolve(data[0]);
+        resolve(data);
       });
     });
   }
   static getStoreInfoByStoreId(storeId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image,concat(st.openTime,'-',st.closeTime) as 'Operating Hour', rtt.avgstar as 'star rating', st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location
+      const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image, st.openTime as 'Operating Hour', rtt.avgstar as 'star rating', st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location
           FROM Store st join (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=st.id
                         join Province pv on pv.id=st.provinceId join City ct on ct.id=st.cityId
           WHERE st.status='ACTIVE' and st.id=?;`;
