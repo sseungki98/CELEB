@@ -3,10 +3,8 @@ a {
 }
 
 .user-info-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 100%;
-  margin-top: 15px;
+  width: 15vw;
+  height: 15vw;
 }
 
 ul {
@@ -14,13 +12,21 @@ ul {
 }
 
 .user-info {
-  padding-bottom: 20px;
+  padding: 3% 0;
 }
 
 .container {
   text-align: center;
+  border: 1px solid black;
+  margin-top: 5%;
 }
 
-.col-8 {
+.col-7 {
   text-align: left;
+  margin: auto 0;
+  font-size: 1rem;
+}
+
+.col-7 div {
+  margin: 1vw 0;
 }
