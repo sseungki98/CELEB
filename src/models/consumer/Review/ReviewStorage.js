@@ -1,6 +1,6 @@
 'use strict';
 
-const db = require('../../config/database');
+const db = require('../../../config/database');
 
 class ReviewStorage {
   static postReview(id, storeId, ordersId, imageUrl, contents, score) {

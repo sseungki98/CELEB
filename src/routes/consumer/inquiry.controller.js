@@ -1,7 +1,7 @@
 'use strict';
 
-const Inquiry = require('../../models/Inquiry/Inquiry');
-const { getLastInquiry } = require('../../models/Inquiry/InquiryStorage');
+const Inquiry = require('../../models/consumer/Inquiry/Inquiry');
+const InquiryStorage = require('../../models/consumer/Inquiry/InquiryStorage');
 
 const output = {
   inquiry: async (req, res) => {

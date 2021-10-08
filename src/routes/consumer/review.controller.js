@@ -1,7 +1,7 @@
 'use strict';
 
 const { json } = require('body-parser');
-const Review = require('../../models/Review/Review');
+const Review = require('../../models/consumer/Review/Review');
 
 const output = {
   review: async (req, res) => {
