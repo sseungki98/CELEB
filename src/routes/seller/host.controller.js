@@ -1,7 +1,7 @@
 'use strict';
 
-const Host = require('../../models/Host/Host');
-const HostStorage = require('../../models/Host/HostStorage');
+const Host = require('../../models/seller/Host/Host');
+const HostStorage = require('../../models/seller/Host/HostStorage');
 
 const output = {};
 
