@@ -1,6 +1,6 @@
 'user strict';
 
-const db = require('../../config/database');
+const db = require('../../../config/database');
 
 class UserStorage {
   static getUserInfo(email) {

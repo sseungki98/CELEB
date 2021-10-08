@@ -1,7 +1,7 @@
 'use strict';
 
-const User = require('../../models/User/User');
-const UserStorage = require('../../models/User/UserStorage');
+const User = require('../../models/consumer/User/User');
+const UserStorage = require('../../models/consumer/User/UserStorage');
 
 const output = {
   login: (req, res) => {

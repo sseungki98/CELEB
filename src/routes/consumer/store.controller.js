@@ -1,7 +1,7 @@
 'use strict';
 
-const Store = require('../../models/Store/Store');
-const StoreStorage = require('../../models/Store/StoreStorage');
+const Store = require('../../models/consumer/Store/Store');
+const StoreStorage = require('../../models/consumer/Store/StoreStorage');
 
 const output = {
   popularStore: async (req, res) => {

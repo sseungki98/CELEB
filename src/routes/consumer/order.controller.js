@@ -1,6 +1,6 @@
 'use strict';
 
-const Order = require('../../models/Order/Order');
+const Order = require('../../models/consumer/Order/Order');
 
 const output = {
   cart: async (req, res) => {

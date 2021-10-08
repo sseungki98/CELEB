@@ -1,6 +1,6 @@
 'order strict';
 
-const db = require('../../config/database');
+const db = require('../../../config/database');
 
 class OrderStorage {
   static postCart(id, productId, option, totalPrice) {

@@ -1,6 +1,6 @@
 'inquiry strict';
 
-const db = require('../../config/database');
+const db = require('../../../config/database');
 
 class InquiryStorage {
   static postInquiry(id, storeId, productId, type, contents) {
