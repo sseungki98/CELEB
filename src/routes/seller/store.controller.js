@@ -1,7 +1,7 @@
 'use strict';
 
-const Store = require('../../models/Store/Store');
-const StoreStorage = require('../../models/Store/StoreStorage');
+const Store = require('../../models/seller/Store/Store');
+const StoreStorage = require('../../models/seller/Store/StoreStorage');
 const axios = require('axios');
 const emt = require('elementTree');
 

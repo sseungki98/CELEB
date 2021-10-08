@@ -1,6 +1,6 @@
 'use strict';
 
-const Product = require('../../models/Product/Product');
+const Product = require('../../models/consumer/Product/Product');
 
 const output = {
   productDetail: async (req, res) => {

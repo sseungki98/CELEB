@@ -1,6 +1,6 @@
 'Host strict';
 
-const db = require('../../config/database');
+const db = require('../../../config/database');
 
 class HostStorage {
   static getHostInfo(storeId) {
