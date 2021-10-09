@@ -158,7 +158,13 @@
           </form>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
+              <%if (user) { %>
+              <form name="logout" action="/logout" method="POST">
+                <a class="nav-link" href="javascript:document.logout.submit()">로그아웃</a>
+              </form>
+              <% }else{ %>
               <a class="nav-link" href="/login">로그인</a>
+              <%}%>
             </li>
             <li class="nav-item dropdown">
               <a
