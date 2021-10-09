@@ -14,6 +14,15 @@ class Order {
       return { success: false, message: '주문 상태 변경에 실패하였습니다. ' };
     }
   }
+  async getOrder(id) {
+    try {
+      const getOrder = await OrderStorage.getOrder(id);
+      return getOrder;
+    } catch (err) {
+      console.log(err);
+      return { success: false, message: '주문 조회에 실패하였습니다. ' };
+    }
+  }
 }
 
 module.exports = Order;

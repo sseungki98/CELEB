@@ -17,5 +17,6 @@ router.post('/logout', hostController.process.logout); //스토어 로그아웃
 router.post('/licenseNum', storeController.process.licenseNum); //사업자 등록번호 조회
 router.post('/store/storePage', storeController.process.storePage); //스토어 상세정보 수정
 //Order Info Router
-router.patch('/order-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문 확정→제작완료→픽업대기→픽업완료)
+router.patch('/order-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)
+router.get('/total-order', orderController.output.order); //주문 내역 리스트 조회 → pagenation,
 module.exports = router;

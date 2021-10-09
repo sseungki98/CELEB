@@ -3,7 +3,18 @@
 const Order = require('../../models/seller/Order/Order');
 const OrderStorage = require('../../models/seller/Order/OrderStorage');
 
-const output = {};
+const output = {
+  order: async (req, res) => {
+    if (req.session.host) {
+      const id = req.session.host.id;
+      const order = new Order(req.body);
+      const response = await order.getOrder(id);
+      return res.json(response);
+    } else {
+      return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+    }
+  },
+};
 const process = {
   orderStatus: async (req, res) => {
     if (req.session.host) {
