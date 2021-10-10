@@ -16,6 +16,16 @@ const output = {
       return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
     }
   },
+  orderDetail: async (req, res) => {
+    if (req.session.host) {
+      const orderId = req.params.orderId;
+      const order = new Order(req.body);
+      const response = await order.getOrderDetail(orderId);
+      return res.json(response);
+    } else {
+      return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+    }
+  },
 };
 const process = {
   orderStatus: async (req, res) => {

@@ -29,6 +29,15 @@ class Order {
       return { success: false, message: '주문 조회에 실패하였습니다. ' };
     }
   }
+  async getOrderDetail(orderId) {
+    try {
+      const getOrderDetail = await OrderStorage.getOrderDetail(orderId);
+      return getOrderDetail;
+    } catch (err) {
+      console.log(err);
+      return { success: false, message: '주문 상제 조회에 실패하였습니다. ' };
+    }
+  }
 }
 
 module.exports = Order;
