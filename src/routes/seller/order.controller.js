@@ -7,8 +7,10 @@ const output = {
   order: async (req, res) => {
     if (req.session.host) {
       const id = req.session.host.id;
+      const { page } = req.query;
+      const pageSize = 10;
       const order = new Order(req.body);
-      const response = await order.getOrder(id);
+      const response = await order.getOrder(id, page, pageSize);
       return res.json(response);
     } else {
       return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
