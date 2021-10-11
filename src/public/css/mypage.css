@@ -17,8 +17,12 @@ ul {
 
 .container {
   text-align: center;
-  border: 1px solid black;
   margin-top: 5%;
+  background-color: white;
+}
+
+.pagination {
+  padding-bottom: 2%;
 }
 
 .col-7 {
