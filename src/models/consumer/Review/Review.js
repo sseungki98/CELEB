@@ -23,15 +23,6 @@ class Review {
       return { success: false, message: '리뷰 삭제에 실패하였습니다. ' };
     }
   }
-  async getReview(storeId) {
-    try {
-      const getReview = await ReviewStorage.getReview(storeId);
-      return getReview;
-    } catch (err) {
-      console.log(err);
-      return { success: false, message: '리뷰 조회에 실패하였습니다.' };
-    }
-  }
 }
 
 module.exports = Review;

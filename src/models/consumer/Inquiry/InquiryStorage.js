@@ -3,7 +3,7 @@
 const db = require('../../../config/database');
 
 class InquiryStorage {
-  static postInquiry(id, storeId, productId, type, contents) {
+  static createInquiry(id, storeId, productId, type, contents) {
     return new Promise((resolve, reject) => {
       const query = 'INSERT INTO Inquiry(userId, storeId, productId, type, contents) VALUES(?,?,?,?,?);';
       db.query(query, [id, storeId, productId, type, contents], (err, data) => {
@@ -12,7 +12,7 @@ class InquiryStorage {
       });
     });
   }
-  static getInquiryRow(id, storeId) {
+  static getInquiryDetailByStoreId(id, storeId) {
     return new Promise((resolve, reject) => {
       const query = `select a.id as Id
       , a.type as Type
@@ -35,7 +35,7 @@ class InquiryStorage {
       });
     });
   }
-  static getMyInquiry(id) {
+  static getInquiryListByUser(id) {
     return new Promise((resolve, reject) => {
       const query = `select a.userId as UserId
       , a.storeId as StoreId

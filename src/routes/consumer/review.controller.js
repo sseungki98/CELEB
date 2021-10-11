@@ -1,15 +1,17 @@
 'use strict';
 
-const { json } = require('body-parser');
 const Review = require('../../models/consumer/Review/Review');
+const ReviewStorage = require('../../models/consumer/Review/ReviewStorage');
 
 const output = {
   review: async (req, res) => {
     const storeId = req.params.storeId;
-    if (!storeId) return res.json({ success: false, message: '스토어 id를 입력해주세요. ' });
-    const review = new Review(req.body);
-    const response = await review.getReview(storeId);
-    return res.json(response);
+    try {
+      const review = await ReviewStorage.getReview(storeId);
+      res.render('consumer/review', { review });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
+    }
   },
 };
 

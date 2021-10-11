@@ -1,8 +1,10 @@
 .rate-status {
   padding: 1%;
   max-width: 1000px;
-  border: solid 1px gray;
   margin-top: 5%;
+  border-radius: 6px;
+  margin-bottom: 5%;
+  background-color: white;
 }
 
 .heading {
@@ -42,7 +44,7 @@
 
 .bar-container {
   width: 100%;
-  background-color: #f1f1f1;
+  background-color: #ededed;
   text-align: center;
   color: white;
 }
@@ -50,17 +52,17 @@
 .bar-5 {
   width: 60%;
   height: 18px;
-  background-color: #04aa6d;
+  background-color: #ff9800;
 }
 .bar-4 {
   width: 30%;
   height: 18px;
-  background-color: #2196f3;
+  background-color: #ff9800;
 }
 .bar-3 {
   width: 10%;
   height: 18px;
-  background-color: #00bcd4;
+  background-color: #ff9800;
 }
 .bar-2 {
   width: 4%;
@@ -70,7 +72,7 @@
 .bar-1 {
   width: 15%;
   height: 18px;
-  background-color: #f44336;
+  background-color: #ff9800;
 }
 
 @media (max-width: 400px) {
@@ -81,4 +83,63 @@
   .right {
     display: none;
   }
+}
+
+.card {
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 10px;
+}
+
+.c-details span {
+  font-weight: 300;
+  font-size: 13px;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background-color: #eee;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 39px;
+}
+
+.badge span {
+  background-color: #fffbec;
+  width: 60px;
+  height: 25px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  display: flex;
+  color: #fed85d;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  height: 10px;
+  border-radius: 10px;
+}
+
+.text1 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.text2 {
+  color: #a5aec0;
+}
+
+.icon img {
+  border-radius: 5px;
+}
+
+span i {
+  color: gray;
+}
+i .checked {
+  color: #ffc02b;
 }

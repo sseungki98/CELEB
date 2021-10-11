@@ -1,5 +1,6 @@
 'use strict';
 const HostStorage = require('./HostStorage');
+const crypto = require('crypto');
 
 class Host {
   constructor(body) {
