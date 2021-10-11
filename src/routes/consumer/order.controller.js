@@ -1,29 +1,37 @@
 'use strict';
 
 const Order = require('../../models/consumer/Order/Order');
+const OrderStorage = require('../../models/consumer/Order/OrderStorage');
 
 const output = {
   cart: async (req, res) => {
     if (req.session.user) {
-      const id = req.session.user.id;
-      const order = new Order(req.body);
-      const response = await order.getCart(id);
-      return res.json(response);
+      try {
+        const userId = req.session.user.id;
+        const cartList = await OrderStorage.getCartListByUser(userId);
+        res.render('consumer/cart', { cartList });
+      } catch (err) {
+        res.render('common/500error', { err, layout: false });
+      }
     } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
+      res.render('consumer/login');
     }
   },
   order: async (req, res) => {
     if (req.session.user) {
-      const id = req.session.user.id;
-      const orderId = req.params.orderId;
-      const order = new Order(req.body);
-      const response = await order.getOrderInfo(id, orderId);
-      return res.json(response);
+      try {
+        const userId = req.session.user.id;
+        const orderId = req.params.orderId;
+        const orderDetail = await OrderStorage.getOrderDetail(userId, orderId);
+        res.render('consumer/orderDetail', { orderDetail });
+      } catch (err) {
+        res.render('common/500error', { err, layout: false });
+      }
     } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
+      res.render('consumer/login');
     }
   },
+  //TODO: userInfo랑 합치기 (mypage)
   myOrder: async (req, res) => {
     if (req.session.user) {
       const id = req.session.user.id;
@@ -56,7 +64,7 @@ const process = {
       var { cartId, productId, option, location, totalPrice } = req.body;
       const order = new Order(req.body);
       if (cartId) {
-        const getCart = await order.getCartInfo(cartId);
+        const getCart = await order.getCartDetailByCartId(cartId);
         productId = getCart[0].productId;
         option = getCart[0].options;
         totalPrice = getCart[0].totalPrice;

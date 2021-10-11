@@ -14,15 +14,6 @@ class Order {
       return { success: false, message: '상품을 장바구니에 추가하는데 실패하였습니다. ' };
     }
   }
-  async getCart(id) {
-    try {
-      const getCart = await OrderStorage.getCart(id);
-      return getCart;
-    } catch (err) {
-      console.log(err);
-      return { success: false, message: '장바구니 조회에 실패하였습니다.' };
-    }
-  }
   async getCartInfo(cartId) {
     try {
       const getCartInfo = await OrderStorage.getCartInfo(cartId);
@@ -41,15 +32,7 @@ class Order {
       return { success: false, message: '주문에 실패하였습니다.' };
     }
   }
-  async getOrderInfo(id, orderId) {
-    try {
-      const getOrderInfo = await OrderStorage.getOrderInfo(id, orderId);
-      return getOrderInfo;
-    } catch (err) {
-      console.log(err);
-      return { success: false, message: '주문 확인 정보 조회에 실패하였습니다.' };
-    }
-  }
+
   async getMyOrder(id) {
     try {
       const getMyOrder = await OrderStorage.getMyOrder(id);
