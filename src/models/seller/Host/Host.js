@@ -53,6 +53,15 @@ class Host {
       return { success: false, message: '스토어 회원가입에 실패하였습니다.' };
     }
   }
+  async registerS3() {
+    const host = this.body;
+    try {
+      const Img = host.file;
+      console.log('s3 이미지 경로 :', Img.location);
+    } catch (err) {
+      return { success: false, message: `${err}` };
+    }
+  }
 }
 
 module.exports = Host;

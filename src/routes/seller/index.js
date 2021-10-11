@@ -15,4 +15,5 @@ router.post('/login', hostController.process.login); //스토어 로그인
 router.post('/logout', hostController.process.logout); //스토어 로그아웃
 router.post('/licenseNum', storeController.process.licenseNum); //사업자 등록번호 조회
 router.post('/store/storePage', storeController.process.storePage); //스토어 상세정보 수정
+router.post('/uploadImage', hostController.process.uploadImage); //이미지 업로드
 module.exports = router;

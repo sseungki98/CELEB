@@ -5,10 +5,10 @@ const db = require('../../../config/database');
 class StoreStorage {
   static getPopularStoreInfo() {
     return new Promise((resolve, reject) => {
-      const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image,st.openTime as 'Operating Hour',tt.cnt as cnt, rtt.avgstar as 'star rating',concat(pv.name,' ',ct.name) as location, type
-       FROM Store st join (Select st.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store st on st.id=pd.storeId WHERE od.status='COMPLETE' Group by st.id) tt on st.id=tt.sid
-                     join (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=st.id
-                     join Province pv on pv.id=st.provinceId join City ct on ct.id=st.cityId
+      const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image,st.openTime as 'OperatingHour',tt.cnt as cnt, rtt.avgstar as star,concat(pv.name,' ',ct.name) as location, type
+       FROM Store st join (Select st.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store st on st.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by st.id) tt on st.id=tt.sid
+                     left join (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=st.id
+                     left join Province pv on pv.id=st.provinceId join City ct on ct.id=st.cityId
        WHERE st.status='ACTIVE'
        ORDER BY cnt DESC,'star rating' DESC;`;
       db.query(query, (err, data) => {
@@ -19,7 +19,7 @@ class StoreStorage {
   }
   static getStoreInfoByStoreId(storeId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image, st.openTime as 'Operating Hour', rtt.avgstar as 'star rating', st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location
+      const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image, st.openTime as 'OperatingHour', rtt.avgstar as star, st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location
           FROM Store st join (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=st.id
                         join Province pv on pv.id=st.provinceId join City ct on ct.id=st.cityId
           WHERE st.status='ACTIVE' and st.id=?;`;
@@ -42,8 +42,8 @@ class StoreStorage {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, rtt.avgstar as star, concat(p.name,' ',c.name) as location, type  
       FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
-                   JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.status='COMPLETE' Group by s.id) tt ON s.id=tt.sid
-                   JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
+                   left JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by s.id) tt ON s.id=tt.sid
+                   left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.status='ACTIVE'
       ORDER BY tt.cnt DESC;`;
       db.query(query, [categoryId], (err, data) => {
@@ -56,7 +56,7 @@ class StoreStorage {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, rtt.avgstar as star, concat(p.name,' ',c.name) as location, type  
       FROM Store s JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
-                   JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.status='COMPLETE' Group by s.id) tt ON s.id=tt.sid
+                   JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by s.id) tt ON s.id=tt.sid
                    JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.status='ACTIVE'
       ORDER BY tt.cnt DESC;`;

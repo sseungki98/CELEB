@@ -47,6 +47,12 @@ const process = {
     const response = await host.register();
     return res.json(response);
   },
+  uploadImage: async (req, res) => {
+    const { upload } = require('../../config/awsconfig.js');
+    upload.single('imageUrl');
+    const host = new Host(req.body);
+    await host.registerS3();
+  },
 };
 
 module.exports = {
