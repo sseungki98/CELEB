@@ -4,33 +4,31 @@ const Inquiry = require('../../models/consumer/Inquiry/Inquiry');
 const InquiryStorage = require('../../models/consumer/Inquiry/InquiryStorage');
 
 const output = {
-  inquiry: async (req, res) => {
+  inquiryDetail: async (req, res) => {
     if (req.session.user) {
-      const id = req.session.user.id;
-      const storeId = req.params.storeId;
-      if (!storeId) return res.json({ success: false, message: '스토어 id를 입력해주세요. ' });
-      const inquiry = new Inquiry(req.body);
-      const response = await inquiry.getInquiry(id, storeId);
-      return res.json(response);
+      try {
+        const userId = req.session.user.id;
+        const storeId = req.params.storeId;
+        const inquiryDetail = await InquiryStorage.getInquiryDetailByStoreId(userId, storeId);
+        res.render('consumer/inquiryDetail', { inquiryDetail });
+      } catch (err) {
+        res.render('common/500error', { err, layout: false });
+      }
     } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
+      res.render('consumer/login');
     }
   },
-  myInquiry: async (req, res) => {
+  inquiryList: async (req, res) => {
     if (req.session.user) {
-      const id = req.session.user.id;
-      const inquiry = new Inquiry(req.body);
-      const response = await inquiry.getMyInquiry(id);
-      const result = [];
-      for (let i = 0; i < response.length; i++) {
-        const lastInquiry = await inquiry.getLastInquiry(id, response[i].StoreId);
-        console.log(response[i].StoreId);
-        console.log(response);
-        result.push({ Store: response[i], Inquiry: lastInquiry });
+      try {
+        const userId = req.session.user.id;
+        const inquiryList = await InquiryStorage.getInquiryDetailByStoreId(userId, storeId);
+        res.render('consumer/inquiryList', { inquiryList });
+      } catch (err) {
+        res.render('common/500error', { err, layout: false });
       }
-      return res.json(result);
     } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
+      res.render('consumer/login');
     }
   },
 };
