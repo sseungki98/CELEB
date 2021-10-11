@@ -48,10 +48,13 @@ const process = {
     return res.json(response);
   },
   uploadImage: async (req, res) => {
-    const { upload } = require('../../config/awsconfig.js');
-    upload.single('imageUrl');
-    const host = new Host(req.body);
-    await host.registerS3();
+    try {
+      const uploadImageName = req.file.originalname;
+      const s3ImageLocation = req.file.location;
+      return res.json({ uploadImage: uploadImageName, s3ImageUrl: s3ImageLocation });
+    } catch (err) {
+      return res.json({ success: false, ErrorCode: err, message: '사진 업로드에 실패하였습니다.' });
+    }
   },
 };
 
