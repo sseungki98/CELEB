@@ -3,7 +3,7 @@
 const db = require('../../../config/database');
 
 class StoreStorage {
-  static getPopularStoreInfo() {
+  static getPopularStore() {
     return new Promise((resolve, reject) => {
       const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image,st.openTime as 'Operating Hour',tt.cnt as cnt, rtt.avgstar as 'star rating',concat(pv.name,' ',ct.name) as location, type
        FROM Store st join (Select st.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store st on st.id=pd.storeId WHERE od.status='COMPLETE' Group by st.id) tt on st.id=tt.sid
@@ -17,7 +17,7 @@ class StoreStorage {
       });
     });
   }
-  static getStoreInfoByStoreId(storeId) {
+  static getStoreDetailByStoreId(storeId) {
     return new Promise((resolve, reject) => {
       const query = `SELECT st.id,st.storeName as 'name',st.ImageUrl as Image, st.openTime as 'Operating Hour', rtt.avgstar as 'star rating', st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location
           FROM Store st join (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=st.id
@@ -29,7 +29,7 @@ class StoreStorage {
       });
     });
   }
-  static getProductInfoByStoreId(storeId) {
+  static getProductByStoreId(storeId) {
     return new Promise((resolve, reject) => {
       const query = `SELECT id,name,imageUrl,info,price,detailImageUrl FROM Product WHERE storeId=? and status='ACTIVE';`;
       db.query(query, [storeId], (err, data) => {
@@ -74,26 +74,6 @@ class StoreStorage {
       WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
       ORDER BY s.createdAt DESC;`;
       db.query(query, [categoryId, provinceId, cityId], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data);
-      });
-    });
-  }
-  static getProductDetailInfo(storeId, productId) {
-    return new Promise((resolve, reject) => {
-      const query = `SELECT id,name,imageUrl,info,price,detailImageUrl FROM Product WHERE storeId=? and id=? and status='ACTIVE';`;
-      db.query(query, [storeId, productId], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data);
-      });
-    });
-  }
-  static getProductOptionInfoByProductId(productId) {
-    return new Promise((resolve, reject) => {
-      const query = `SELECT po.id as 'OptionId',po.name as 'OptionName',po.price,po.type,poc.id as 'CategoryId',poc.name as 'CategoryName'
-      FROM ProductOption po JOIN ProductOptionCategory poc ON po.optionCategoryId=poc.id
-      WHERE po.productId=? and po.status='ACTIVE';`;
-      db.query(query, [productId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
