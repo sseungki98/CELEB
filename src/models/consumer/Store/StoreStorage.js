@@ -20,7 +20,7 @@ class StoreStorage {
   }
   static getStoreDetailByStoreId(storeId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT st.id as storeId, st.storeName as 'name',st.ImageUrl as image, st.openTime as 'operatingHour', rtt.avgstar as star, st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location
+      const query = `SELECT st.id as storeId, st.storeName as 'name',st.ImageUrl as image, st.openTime as 'operatingHour', rtt.avgstar as star, st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location, st.notice
           FROM Store st left join (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=st.id
                         left join Province pv on pv.id=st.provinceId join City ct on ct.id=st.cityId
           WHERE st.status='ACTIVE' and st.id=?;`;
@@ -30,15 +30,7 @@ class StoreStorage {
       });
     });
   }
-  static getProductByStoreId(storeId) {
-    return new Promise((resolve, reject) => {
-      const query = `SELECT id,name,imageUrl,info,price,detailImageUrl FROM Product WHERE storeId=? and status='ACTIVE';`;
-      db.query(query, [storeId], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data);
-      });
-    });
-  }
+
   static getStoreByCategoryId(categoryId) {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
