@@ -15,15 +15,15 @@ class Inquiry {
     }
   }
   // TODO: 수정 필요 합쳐야 함
-  async getLastInquiry(id, storeId) {
-    try {
-      const getLastInquiry = await InquiryStorage.getLastInquiry(id, storeId);
-      return getLastInquiry;
-    } catch (err) {
-      console.log(err);
-      return { success: false, message: '스토어 문의 내용 조회에 실패하였습니다. ' };
-    }
-  }
+  // async getLastInquiry(id, storeId) {
+  //   try {
+  //     const getLastInquiry = await InquiryStorage.getLastInquiry(id, storeId);
+  //     return getLastInquiry;
+  //   } catch (err) {
+  //     console.log(err);
+  //     return { success: false, message: '스토어 문의 내용 조회에 실패하였습니다. ' };
+  //   }
+  // }
 }
 
 module.exports = Inquiry;
