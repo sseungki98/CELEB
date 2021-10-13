@@ -35,11 +35,13 @@ class InquiryStorage {
       });
     });
   }
-  static getInquiryListByUser(id) {
+  static getInquiryListByUserId(userId) {
     return new Promise((resolve, reject) => {
-      const query = `select a.userId as UserId
-      , a.storeId as StoreId
+      const query = `select a.storeId as StoreId
       , b.imageUrl as StoreImage
+      , a.userId as UserId
+      , a.id as InquiryId
+      , a.contents as InquiryContents
       , date_format(a.createdAt, "%Y-%m-%d %H:%i") as CreatedAt
 from Inquiry a
 left join ( select id
@@ -50,25 +52,25 @@ left join ( select id
 where a.userId = ?
 group by a.storeId
 order by a.createdAt desc;`;
-      db.query(query, [id], (err, data) => {
+      db.query(query, [userId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
     });
   }
-  static getLastInquiry(id, storeId) {
-    return new Promise((resolve, reject) => {
-      const query = `select id as InquiryId
-      , contents as Contents
-from Inquiry
-where userId = ? and storeId = ?
-order by createdAt desc limit 1;`;
-      db.query(query, [id, storeId], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data);
-      });
-    });
-  }
+  //   static getLastInquiry(id, storeId) {
+  //     return new Promise((resolve, reject) => {
+  //       const query = `select id as InquiryId
+  //       , contents as Contents
+  // from Inquiry
+  // where userId = ? and storeId = ?
+  // order by createdAt desc limit 1;`;
+  //       db.query(query, [id, storeId], (err, data) => {
+  //         if (err) reject(`${err}`);
+  //         resolve(data);
+  //       });
+  //     });
+  //   }
 }
 
 module.exports = InquiryStorage;
