@@ -31,17 +31,6 @@ const output = {
       res.render('consumer/login');
     }
   },
-  //TODO: userInfo랑 합치기 (mypage)
-  myOrder: async (req, res) => {
-    if (req.session.user) {
-      const id = req.session.user.id;
-      const order = new Order(req.body);
-      const response = await order.getMyOrder(id);
-      return res.json(response);
-    } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
-    }
-  },
 };
 const process = {
   cart: async (req, res) => {

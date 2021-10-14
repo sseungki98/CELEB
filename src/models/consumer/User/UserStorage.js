@@ -21,10 +21,10 @@ class UserStorage {
       });
     });
   }
-  static getMyPageInfo(email) {
+  static getMyPageInfo(userId) {
     return new Promise((resolve, reject) => {
-      const query = 'SELECT email,name,phoneNum,address FROM User WHERE email=?;';
-      db.query(query, [email], (err, data) => {
+      const query = 'SELECT email,name,phoneNum,address FROM User WHERE id=?;';
+      db.query(query, [userId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data[0]);
       });
