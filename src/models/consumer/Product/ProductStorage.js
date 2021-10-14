@@ -5,7 +5,7 @@ const db = require('../../../config/database');
 class ProductStorage {
   static getProductDetail(storeId, productId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT id as productId,name,imageUrl,info,price,detailImageUrl FROM Product WHERE storeId=? and id=? and status='ACTIVE';`;
+      const query = `SELECT id as productId, name,imageUrl,info,price,detailImageUrl FROM Product WHERE storeId=? and id=? and status='ACTIVE';`;
       db.query(query, [storeId, productId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data[0]);
@@ -14,7 +14,7 @@ class ProductStorage {
   }
   static getProductByStoreId(storeId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT id as productId,name,imageUrl as image,info,price,detailImageUrl FROM Product WHERE storeId=? and status='ACTIVE';`;
+      const query = `SELECT id as productId, name, imageUrl as image,info,price,detailImageUrl FROM Product WHERE storeId=? and status='ACTIVE';`;
       db.query(query, [storeId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
