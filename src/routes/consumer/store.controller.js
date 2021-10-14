@@ -25,19 +25,16 @@ const output = {
   },
   storeList: async (req, res) => {
     try {
+      const province = await StoreStorage.getProvinceList();
       if (!req.body.cityId && !req.body.provinceId) {
-        const storeListByDefault = await StoreStorage.getStoreByCategoryId(req.params.categoryId);
-        res.render('consumer/storeList', { storeListByDefault });
+        const storeList = await StoreStorage.getStoreByCategoryId(req.params.categoryId);
+        res.render('consumer/storeList', { storeList, province });
       } else if (req.body.provinceId && !req.body.cityId) {
-        const storeListByProvinceId = await StoreStorage.getStoreByCategoryIdWithProvinceId(req.params.categoryId, req.body.ProvinceId);
-        res.render('consumer/storeList', { storeListByProvinceId });
+        const storeList = await StoreStorage.getStoreByCategoryIdWithProvinceId(req.params.categoryId, req.body.ProvinceId);
+        res.render('consumer/storeList', { storeList, province });
       } else {
-        const storeListByCityId = await StoreStorage.getStoreByCategoryIdWithCityId(
-          req.params.categoryId,
-          req.body.ProvinceId,
-          req.body.cityId,
-        );
-        res.render('consumer/storeList', { storeListByCityId });
+        const storeList = await StoreStorage.getStoreByCategoryIdWithCityId(req.params.categoryId, req.body.ProvinceId, req.body.cityId);
+        res.render('consumer/storeList', { storeList, province });
       }
     } catch (err) {
       res.render('common/500error', { err, layout: false });

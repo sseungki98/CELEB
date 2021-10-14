@@ -33,7 +33,7 @@ class StoreStorage {
 
   static getStoreByCategoryId(categoryId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, s.openTime as operatingHour, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
                    left JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by s.id) tt ON s.id=tt.sid
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
@@ -126,6 +126,15 @@ order by orderCount desc;`;
       SET storeName=?, imageUrl=?, info=?, phoneNum=?, categoryId=?, provinceId=?, cityId=?, roadAddress=?, detailAddress=?, type=?, openTime=?, closeTime=?, limit=?
       WHERE id=?;`;
       db.query(query, [params], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static getProvinceList() {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT id as provinceId, name as provinceName FROM Province`;
+      db.query(query, [], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
