@@ -22,7 +22,6 @@ router.get('/mypage', userController.output.myPage); //마이페이지 조회
 //Store Info Router
 router.get('/store/:storeId', storeController.output.storeDetail); //각 스토어별 페이지 조회
 router.get('/category/:categoryId', storeController.output.storeList); //카테고리별 스토어 리스트 조회
-router.get('/store/:storeId/:productId', productController.output.productDetail); //상품 상세 조회
 router.get('/store/reservation/:storeId', storeController.output.storeReservationDate); //스토어 예약 불가능일 조회
 router.get('/store', storeController.output.searchStore); //스토어 통합 검색
 //Inquiry Info Router
@@ -36,10 +35,10 @@ router.post('/order', orderController.process.order); //주문하기
 router.get('/order/:orderId', orderController.output.order); //주문 확인 조회 → 주문 완료 직후
 //Product Info Router
 router.get('/store/:storeId/product/:productId', productController.output.productDetail); // 상품 디테일 조회
-
 //Review Info Router
-router.post('/review/store/:storeId', reviewController.process.review); //스토어 리뷰 작성하기
+router.get('/mypage/order/:orderId/review', reviewController.output.review); // 리뷰 조회 페이지
+router.post('/mypage/order/:orderId/review', reviewController.process.review); //스토어 리뷰 작성하기
 router.patch('/review/:reviewId', reviewController.process.patchReview); //스토어 리뷰 삭제하기
-router.get('/review/store/:storeId', reviewController.output.review); //스토어 리뷰 조회
+router.get('/store/:storeId/review', reviewController.output.storeReview); //스토어 리뷰 조회
 
 module.exports = router;

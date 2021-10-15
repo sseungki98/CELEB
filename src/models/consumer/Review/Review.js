@@ -5,18 +5,18 @@ class Review {
   constructor(body) {
     this.body = body;
   }
-  async review(id, storeId, ordersId, imageUrl, contents, score) {
+  async review(userId, storeId, orderId, imageUrl, contents, score) {
     try {
-      await ReviewStorage.postReview(id, storeId, ordersId, imageUrl, contents, score);
+      await ReviewStorage.postReview(userId, storeId, orderId, imageUrl, contents, score);
       return { success: true, message: '리뷰 게시가 완료되었습니다. ' };
     } catch (err) {
       console.log(err);
       return { success: false, message: '리뷰 게시에 실패하였습니다. ' };
     }
   }
-  async patchReview(id, reviewId) {
+  async patchReview(userId, reviewId) {
     try {
-      await ReviewStorage.patchReview(id, reviewId);
+      await ReviewStorage.patchReview(userId, reviewId);
       return { success: true, message: '리뷰가 삭제되었습니다. ' };
     } catch (err) {
       console.log(err);

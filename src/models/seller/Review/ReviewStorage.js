@@ -20,7 +20,7 @@ left join ( select id, name
           on a.userId = b.id
 left join ( select id, productId
           from Orders) as c
-          on a.ordersId = c.id
+          on a.orderId = c.id
 left join ( select id, name
           from Product) as d
           on c.productId = d.id
