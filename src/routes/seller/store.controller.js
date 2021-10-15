@@ -7,10 +7,31 @@ const emt = require('elementTree');
 
 const output = {
   register: (req, res) => {
-    res.render('seller/register');
+    res.render('/s/register/');
   },
   licenseNum: (req, res) => {
-    res.render('seller/licenseNum');
+    res.render('/s/register/licenseNum');
+  },
+  storePage: async (req, res) => {
+    if (req.session.host) {
+      try {
+        const storeId = req.body.id;
+        const storeCheck = await StoreStorage.getStoreInfoByStoreId(storeId);
+        if (storeCheck) {
+          const storeInfo = new Store(req.body);
+          const myStorePageInfo = await storeInfo.getStorePage(storeId);
+          console.log(getStoreInfo);
+          res.render('/s/storePage', { myStorePage: myStorePageInfo });
+        } else {
+          res.render('common/500error', { success: false, message: '잘못된 접근입니다. ' });
+        }
+      } catch (err) {
+        console.log(err);
+        res.render('common/500error', { success: false, message: err });
+      }
+    } else {
+      res.render('/s/login', { success: false, message: '로그인이 되어있지 않습니다' });
+    }
   },
 };
 
