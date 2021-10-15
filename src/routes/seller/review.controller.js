@@ -27,7 +27,21 @@ const output = {
     }
   },
 };
-const process = {};
+const process = {
+  reviewReply: async (req, res) => {
+    if (req.session.host) {
+      const { reviewId, contents } = req.body;
+      const storeId = req.session.host.id;
+      if (!reviewId) return res.json({ success: false, message: '리뷰 id를 입력해주세요. ' });
+      if (!contents) return res.json({ success: false, message: '리뷰 답변 내용을 입력해주세요. ' });
+      const review = new Review(req.body);
+      const response = await review.createReviewReply(storeId, reviewId, contents);
+      return res.json(response);
+    } else {
+      return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+    }
+  },
+};
 
 module.exports = {
   output,

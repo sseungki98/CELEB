@@ -27,4 +27,5 @@ router.get('/order/:orderId', orderController.output.orderDetail); //주문 상�
 //Review Info Router
 router.get('/review', reviewController.output.review); //스토어 리뷰 조회
 router.get('/review/reply', reviewController.output.reviewReply); //스토어 리뷰 답변 조회
+router.post('/review/reply', reviewController.process.reviewReply); //스토어 리뷰 답글 작성
 module.exports = router;

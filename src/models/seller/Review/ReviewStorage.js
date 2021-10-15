@@ -52,6 +52,15 @@ order by a.createdAt asc;`;
       });
     });
   }
+  static createReviewReply(storeId, reviewId, contents) {
+    return new Promise((resolve, reject) => {
+      const query = 'INSERT INTO ReviewReply(storeId, reviewId, contents) VALUES(?,?,?);';
+      db.query(query, [storeId, reviewId, contents], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true });
+      });
+    });
+  }
 }
 
 module.exports = ReviewStorage;
