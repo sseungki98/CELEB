@@ -4,13 +4,31 @@ const Review = require('../../models/consumer/Review/Review');
 const ReviewStorage = require('../../models/consumer/Review/ReviewStorage');
 
 const output = {
-  review: async (req, res) => {
+  storeReview: async (req, res) => {
     const storeId = req.params.storeId;
     try {
       const review = await ReviewStorage.getReview(storeId);
-      res.render('consumer/review', { review });
+      res.render('consumer/storeReview', { review });
     } catch (err) {
       res.render('common/500error', { err, layout: false });
+    }
+  },
+  review: async (req, res) => {
+    if (req.session.user) {
+      const orderId = req.params.orderId;
+      const userId = req.session.user.id;
+      try {
+        const checkOrder = await ReviewStorage.checkReviewPosibility(orderId, userId);
+        if (checkOrder) {
+          res.render('consumer/review');
+        } else {
+          res.send("<script>alert('접근 권한이 없거나 이미 작성한 리뷰입니다.'); location.href='/mypage';</script>");
+        }
+      } catch (err) {
+        res.render('common/500error', { err, layout: false });
+      }
+    } else {
+      res.render('consumer/login');
     }
   },
 };
@@ -18,15 +36,15 @@ const output = {
 const process = {
   review: async (req, res) => {
     if (req.session.user) {
-      const id = req.session.user.id;
-      const storeId = req.params.storeId;
-      const { ordersId, imageUrl, contents, score } = req.body;
+      const userId = req.session.user.id;
+      const orderId = req.params.orderId;
+      const { storeId, imageUrl, contents, score } = req.body;
       if (!storeId) return res.json({ success: false, message: '스토어 id를 입력해주세요. ' });
-      if (!ordersId) return res.json({ success: false, message: '주문 id를 입력해주세요. ' });
+      if (!orderId) return res.json({ success: false, message: '주문 id를 입력해주세요. ' });
       if (!contents) return res.json({ success: false, message: '리뷰 내용을 입력해주세요. ' });
       if (!score) return res.json({ success: false, message: '리뷰 점수를 입력해주세요. (0.5~5.0)' });
       const review = new Review(req.body);
-      const response = await review.review(id, storeId, ordersId, imageUrl, contents, score);
+      const response = await review.review(userId, storeId, orderId, imageUrl, contents, score);
       return res.json(response);
     } else {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
