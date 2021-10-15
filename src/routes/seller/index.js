@@ -31,4 +31,5 @@ router.get('/review/reply', reviewController.output.reviewReply); //스토어 �
 //Product Info Router
 router.get('/store/product', productController.output.productList); //내가 등록한 상품 리스트 조회
 router.get('/store/product/productDetail', productController.output.productDetail); //등록 상품 자세히 조회
+router.post('/review/reply', reviewController.process.reviewReply); //스토어 리뷰 답글 작성
 module.exports = router;
