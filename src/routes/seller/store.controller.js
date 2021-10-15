@@ -18,10 +18,10 @@ const output = {
         const storeId = req.body.id;
         const storeCheck = await StoreStorage.getStoreInfoByStoreId(storeId);
         if (storeCheck) {
-          const storeInfo = new Store(req.body);
-          const myStorePageInfo = await storeInfo.getStorePage(storeId);
+          const storePage = new Store(req.body);
+          const myStorePageDetail = await storePage.getStorePage(storeId);
           console.log(getStoreInfo);
-          res.render('/s/storePage', { myStorePage: myStorePageInfo });
+          res.render('/s/storePage', { myStorePage: myStorePageDetail });
         } else {
           res.render('common/500error', { success: false, message: '잘못된 접근입니다. ' });
         }
