@@ -23,15 +23,15 @@ class ReviewStorage {
   }
   static getReview(storeId) {
     return new Promise((resolve, reject) => {
-      const query = `select a.id as ReviewId
-          , b.id as UserId
-          , b.name as UserName
-          , d.id as ProductId
-          , d.name as ProductName
-          , a.imageUrl as ReviewImage
-          , a.score as ReviewScore
-          , a.contents as ReviewContents
-          , date_format(a.createdAt, "%Y-%m-%d %H:%i") as CreatedAt
+      const query = `select a.id as reviewId
+          , b.id as userId
+          , b.name as userName
+          , d.id as productId
+          , d.name as productName
+          , a.imageUrl as reviewImage
+          , a.score as reviewScore
+          , a.contents as reviewContents
+          , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
   from Review a
   left join ( select id, name
               from User) as b
