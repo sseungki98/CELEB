@@ -30,7 +30,7 @@ const output = {
         res.render('common/500error', { success: false, message: err });
       }
     } else {
-      res.render('/s/login', { success: false, message: '로그인이 되어있지 않습니다' });
+      res.render('/s/login', { success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
     }
   },
 };
