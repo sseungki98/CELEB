@@ -37,7 +37,7 @@ class InquiryStorage {
   }
   static getInquiryListByUserId(userId) {
     return new Promise((resolve, reject) => {
-      const query = `select a.storeId as StoreId
+      const query = `select a.storeId as storeId
       , a.storeName as storeName
       , a.imageUrl as storeImage
       , a.userId as userId

@@ -9,6 +9,7 @@ const hostController = require('./host.controller');
 const orderController = require('./order.controller');
 const reviewController = require('./review.controller');
 const productController = require('./product.controller');
+const inquiryController = require('./inquiry.controller');
 
 //Page Info Router
 router.get('/register', storeController.output.register); //스토어 회원가입 페이지
@@ -28,8 +29,10 @@ router.get('/order/:orderId', orderController.output.orderDetail); //주문 상�
 //Review Info Router
 router.get('/review', reviewController.output.review); //스토어 리뷰 조회
 router.get('/review/reply', reviewController.output.reviewReply); //스토어 리뷰 답변 조회
+router.post('/review/reply', reviewController.process.reviewReply); //스토어 리뷰 답글 작성
 //Product Info Router
 router.get('/store/product', productController.output.productList); //내가 등록한 상품 리스트 조회
 router.get('/store/product/productDetail', productController.output.productDetail); //등록 상품 자세히 조회
-router.post('/review/reply', reviewController.process.reviewReply); //스토어 리뷰 답글 작성
+//Inquiry Info Router
+router.get('/inquiry', inquiryController.output.inquiry); //스토어 문의 목록 조회
 module.exports = router;
