@@ -34,3 +34,11 @@ ul {
 .col-7 div {
   margin: 1vw 0;
 }
+
+.offcanvas-backdrop {
+  background-color: transparent !important;
+}
+
+.product-image {
+  width: 100%;
+}

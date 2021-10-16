@@ -1,4 +1,3 @@
-<%= myPageInfo.name %>
 <link rel="stylesheet" href="/css/mypage.css" />
 <div class="container user-info">
   <div class="row">
@@ -6,10 +5,12 @@
       <img class="user-info-image" src="/img/avataaars.svg" />
     </div>
     <div class="col-7">
-      <div id="mynickname">닉네임 : 이승현</div>
-      <div id="myemail">이메일 : appp_le@naver.com</div>
-      <div id="myaddress">기본주소 : 경기도 성남시 분당구 중앙공원로 17 308-1202</div>
-      <div id="myphonenum">휴대폰번호 : 010-4800-1335</div>
+      <div id="mynickname">
+        <h5><b>안녕하세요, <%= myPageInfo.name %>님!</b></h5>
+      </div>
+      <div id="myemail">이메일 : <%= myPageInfo.email %></div>
+      <div id="myaddress">기본주소 : <%= myPageInfo.address %></div>
+      <div id="myphonenum">휴대폰번호 : <%= myPageInfo.phoneNum %></div>
       <button id="infochange" type="button" class="btn btn-outline-secondary btn-sm">개인정보 변경하기</button>
     </div>
   </div>
@@ -19,42 +20,68 @@
     <thead>
       <tr>
         <th scope="col">주문번호</th>
-        <th scope="col">상품명</th>
         <th scope="col">스토어명</th>
-        <th scope="col">금액</th>
-        <th scope="col">현황</th>
-        <th scope="col">옵션</th>
-        <th scope="col">날짜</th>
+        <th scope="col">상품명</th>
+        <th scope="col">주문금액</th>
+        <th scope="col">주문현황</th>
+        <th scope="col">옵션상세</th>
+        <th scope="col">주문일시</th>
       </tr>
     </thead>
     <tbody>
+      <% for (let i=0; i < orderList.length; i++) { %>
       <tr>
-        <th scope="row">3215</th>
-        <td>3단 레이어 케이크</td>
-        <td>레몬트리케이크</td>
-        <td>20000원</td>
-        <td>작업완료</td>
-        <td><button type="button" class="btn btn-outline-secondary btn-sm">옵션보기</button></td>
-        <td>픽업날짜1</td>
+        <th scope="row"><%= orderList[i].orderId %></th>
+        <td onclick="location.href='/store/<%= orderList[i].storeId %>'">
+          <%= orderList[i].storeName %> <i class="fas fa-chevron-right"></i>
+        </td>
+        <td onclick="location.href='/store/<%= orderList[i].storeId %>/product/<%= orderList[i].productId %>'">
+          <%= orderList[i].productName %> <i class="fas fa-chevron-right"></i>
+        </td>
+        <td><%= orderList[i].totalPrice %></td>
+        <td><%= orderList[i].orderStatus %></td>
+        <td>
+          <a
+            class="btn btn-outline-secondary btn-sm"
+            data-bs-toggle="offcanvas"
+            href="#offcanvas<%= orderList[i].orderId %>"
+            role="button"
+            aria-controls="offcanvasExample"
+          >
+            상세 보기
+          </a>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvas<%= orderList[i].orderId %>"
+            aria-labelledby="offcanvasExampleLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasExampleLabel">주문 상세</h5>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <h4><b><%= orderList[i].storeName %> </b></h4>
+              <img class="product-image" src="<%= orderList[i].productImage %>" />
+              <hr />
+              <h5>픽업/배달 예정일: <%= orderList[i].selectedDate %></h5>
+              <hr />
+              <% if (orderList[i].location) { %>
+              <h5>배송지: <%= orderList[i].location %></h5>
+              <hr />
+              <% } %>
+              <h5><b>< 선택 옵션 ></b></h5>
+              <% for (let option of orderList[i].options.split(',')) { %>
+              <div><%= option %></div>
+              <% } %>
+              <hr />
+              <h5>결제 금액 합계: <%= orderList[i].totalPrice %></h5>
+            </div>
+          </div>
+        </td>
+        <td><%= orderList[i].createdAt %></td>
       </tr>
-      <tr>
-        <th scope="row">2241</th>
-        <td>웨딩케이크</td>
-        <td>스토어2</td>
-        <td>100000원</td>
-        <td>작업중</td>
-        <td><button type="button" class="btn btn-outline-secondary btn-sm">옵션보기</button></td>
-        <td>픽업날짜2</td>
-      </tr>
-      <tr>
-        <th scope="row">3552</th>
-        <td>도시락 케이크</td>
-        <td>스토어3</td>
-        <td>15000원</td>
-        <td>주문확인중</td>
-        <td><button type="button" class="btn btn-outline-secondary btn-sm">옵션보기</button></td>
-        <td>픽업날짜3</td>
-      </tr>
+      <% } %>
     </tbody>
   </table>
   <nav aria-label="Page navigation example">

@@ -48,9 +48,10 @@ const process = {
     }
   },
   order: async (req, res) => {
+    //TODO: fix here (no cart)
     if (req.session.user) {
       const id = req.session.user.id;
-      var { cartId, productId, option, location, totalPrice } = req.body;
+      let { cartId, productId, option, location, totalPrice } = req.body;
       const order = new Order(req.body);
       if (cartId) {
         const getCart = await order.getCartDetailByCartId(cartId);
