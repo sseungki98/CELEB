@@ -52,8 +52,8 @@ class ReviewStorage {
   }
   static checkReviewPosibility(orderId, userId) {
     return new Promise((resolve, reject) => {
-      const query = `select o.id from Orders o where o.id=? and o.userId=? and o.id not in 
-      ( select r.orderId from Review r where r.orderId=? r.userId=? ) `;
+      const query = `select o.id from Orders o where o.id=? and o.userId=? and o.orderStatusId='COMPLETE' and o.id not in 
+      ( select r.orderId from Review r where r.orderId=? and r.userId=? ) `;
       db.query(query, [orderId, userId, orderId, userId], (err, data) => {
         if (err) reject(`${err}`);
         resolve({ success: true });

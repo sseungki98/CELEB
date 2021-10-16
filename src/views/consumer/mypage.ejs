@@ -39,7 +39,12 @@
           <%= orderList[i].productName %> <i class="fas fa-chevron-right"></i>
         </td>
         <td><%= orderList[i].totalPrice %></td>
-        <td><%= orderList[i].orderStatus %></td>
+        <td>
+          <div><%= orderList[i].orderStatus %></div>
+          <% if (orderList[i].orderStatusId === 'COMPLETE') { %>
+          <a class="btn btn-outline-secondary btn-sm" href="/mypage/order/<%= orderList[i].orderId %>/review" role="button">리뷰작성 </a> <%
+          } %>
+        </td>
         <td>
           <a
             class="btn btn-outline-secondary btn-sm"
