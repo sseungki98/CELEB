@@ -19,7 +19,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% for (var i = 0; i < province.length; i++) { %>
+        <% for (let i = 0; i < province.length; i++) { %>
         <li class="nav-item">
           <a class="nav-link" href="#"><%= province[i].provinceName %></a>
         </li>
@@ -36,7 +36,7 @@
 </nav>
 <div class="container">
   <div class="row gx-4 gx-lg-5">
-    <% for (var i = 0; i < storeList.length; i++) { %>
+    <% for (let i = 0; i < storeList.length; i++) { %>
     <div class="col-md-4 mb-5">
       <div class="card h-100">
         <div class="card-body">
