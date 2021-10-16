@@ -5,22 +5,22 @@ const db = require('../../../config/database');
 class ReviewStorage {
   static getReview(id, start, pageSize) {
     return new Promise((resolve, reject) => {
-      const query = `select a.id as ReviewId
-      , b.id as UserId
-      , b.name as UserName
-      , d.id as ProductId
-      , d.name as ProductName
-      , a.imageUrl as ReviewImage
-      , a.score as ReviewScore
-      , a.contents as ReviewContents
-      , date_format(a.createdAt, "%Y-%m-%d %H:%i") as CreatedAt
+      const query = `select a.id as reviewId
+      , b.id as userId
+      , b.name as userName
+      , d.id as productId
+      , d.name as productName
+      , a.imageUrl as reviewImage
+      , a.score as reviewScore
+      , a.contents as reviewContents
+      , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
 from Review a
 left join ( select id, name
           from User) as b
           on a.userId = b.id
 left join ( select id, productId
           from Orders) as c
-          on a.ordersId = c.id
+          on a.orderId = c.id
 left join ( select id, name
           from Product) as d
           on c.productId = d.id
@@ -49,6 +49,15 @@ order by a.createdAt asc;`;
       db.query(query, [reviewId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
+      });
+    });
+  }
+  static createReviewReply(storeId, reviewId, contents) {
+    return new Promise((resolve, reject) => {
+      const query = 'INSERT INTO ReviewReply(storeId, reviewId, contents) VALUES(?,?,?);';
+      db.query(query, [storeId, reviewId, contents], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true });
       });
     });
   }

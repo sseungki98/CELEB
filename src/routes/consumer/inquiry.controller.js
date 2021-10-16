@@ -22,7 +22,7 @@ const output = {
     if (req.session.user) {
       try {
         const userId = req.session.user.id;
-        const inquiryList = await InquiryStorage.getInquiryDetailByStoreId(userId, storeId);
+        const inquiryList = await InquiryStorage.getInquiryListByUserId(userId);
         res.render('consumer/inquiryList', { inquiryList });
       } catch (err) {
         res.render('common/500error', { err, layout: false });

@@ -4,26 +4,25 @@
   <div class="container px-4 px-lg-5 my-5 rounded" style="background-color: white">
     <div class="row gx-4 gx-lg-5 align-items-top">
       <h2 id="productName">
-        <a href="/store/1"><i class="far fa-arrow-alt-circle-left"></i></a><b>빈티지 케이크</b>
+        <a href="/store/1"><i class="far fa-arrow-alt-circle-left"></i></a><b><%= product.productName %></b>
       </h2>
       <div class="col-md-8">
         <!--이미지-->
         <div class="card mb-3">
-          <img src="/img/ex-cake4.jpg" class="card-img-top" alt="..." />
+          <img src="<%= product.imageUrl %>" class="card-img-top" alt="..." />
         </div>
         <div class="card mx-auto">
           <div class="card-header">주문시 유의사항</div>
           <div class="card-body">
-            <p class="card-text">판매자의 유의사항</p>
+            <p class="card-text"><%= product.info %></p>
           </div>
         </div>
         <div class="card mx-auto mt-4 mb-4">
           <div class="card-header">상품 상세보기</div>
           <div class="card-body slide-image gx-2">
-            <div><img class="example-image" src="/img/ex-cake1.png" /></div>
-            <div><img class="example-image" src="/img/ex-cake2.png" /></div>
-            <div><img class="example-image" src="/img/ex-cake3.png" /></div>
-            <div><img class="example-image" src="/img/product2.png" /></div>
+            <% for ( let image of product.detailImageUrl.split(',')) { %>
+            <div><img class="example-image" src="<%= image %>" /></div>
+            <% } %>
           </div>
           <script type="text/javascript">
             $('.slide-image').slick({
@@ -35,74 +34,39 @@
         </div>
       </div>
       <div class="col-md-4">
+        <% for (let key in productOption) { %>
         <div class="option-section">
-          <h3>사이즈 선택</h3>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-            <label class="form-check-label" for="flexRadioDefault1"> 1호 </label>
-            <span class="text-end">+3000원</span>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-            <label class="form-check-label" for="flexRadioDefault2"> 2호 </label>
-            <span class="text-end">+0원</span>
-          </div>
-        </div>
-        <div class="option-section">
-          <h3>디자인</h3>
-          <div class="input-group">
-            <span class="input-group-text">배경색</span>
-            <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color" />
-            <span class="text-end">+3000원</span>
-          </div>
-          <div class="input-group mb-2">
-            <span class="input-group-text">글씨색</span>
-            <input class="form-control" aria-label="With textarea" />
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox1" />
-            <label class="form-check-label" for="checkbox1"> 상단 꽃장식 추가 </label>
-            <span class="text-end">+1000원</span>
-          </div>
+          <h3><%= productOption[key][0].categoryName %></h3>
+          <% for ( let value of productOption[key] ) { %> <% if (value.type === 'CHECKBOX') { %>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox2" />
-            <label class="form-check-label" for="checkbox2"> 하단 꽃장식 추가 </label>
-            <span class="text-end">+1000원</span>
+            <label class="form-check-label" for="checkbox2"> <%= value.optionName %> </label>
+            <span class="text-end">+<%= value.price %>원</span>
           </div>
+          <% } else if (value.type === 'RADIO') { %>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox3" />
-            <label class="form-check-label" for="checkbox3"> 초콜릿 토핑 추가 </label>
-            <span class="text-end">+500원</span>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+            <label class="form-check-label" for="flexRadioDefault1"> <%= value.optionName %> </label>
+            <span class="text-end">+<%= value.price %>원</span>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox4" />
-            <label class="form-check-label" for="checkbox4"> 체리 추가 </label>
-            <span class="text-end">+3000원</span>
+          <% } else if (value.type === 'TEXT') { %>
+          <div class="input-group">
+            <span class="input-group-text"><%= value.optionName %></span>
+            <input class="form-control" aria-label="With textarea" />
+            <span class="text-end">+<%= value.price %>원</span>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox8" />
-            <label class="form-check-label" for="checkbox8"> 딸기 추가 </label>
-            <span class="text-end">+3000원</span>
+          <% } else if (value.type === 'COLOR') { %>
+          <div class="input-group">
+            <span class="input-group-text"><%= value.optionName %></span>
+            <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color" />
+            <span class="text-end">+<%= value.price %>원</span>
           </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox5" />
-            <label class="form-check-label" for="checkbox5"> 문구 추가 </label>
-            <span class="text-end">+100원</span>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox6" />
-            <label class="form-check-label" for="checkbox6"> 리본 추가 </label>
-            <span class="text-end">+500원</span>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox7" />
-            <label class="form-check-label" for="checkbox7"> 꽃가루 추가 </label>
-            <span class="text-end">+500원</span>
-          </div>
+          <% } } %>
         </div>
+        <% } %>
+
         <div class="option-section">
-          <h3>추가 요청사항 (선택)</h3>
+          <h3>요청사항 및 도안 (선택)</h3>
           <div class="input-group">
             <span class="input-group-text">요청사항</span>
             <textarea class="form-control" aria-label="With textarea"></textarea>

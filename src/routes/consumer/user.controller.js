@@ -1,5 +1,6 @@
 'use strict';
 
+const OrderStorage = require('../../models/consumer/Order/OrderStorage');
 const User = require('../../models/consumer/User/User');
 const UserStorage = require('../../models/consumer/User/UserStorage');
 
@@ -13,9 +14,10 @@ const output = {
   myPage: async (req, res) => {
     if (req.session.user) {
       try {
-        const email = req.session.user.email;
-        const myPageInfo = await UserStorage.getMyPageInfo(email);
-        res.render('consumer/mypage', { myPageInfo });
+        const userId = req.session.user.id;
+        const myPageInfo = await UserStorage.getMyPageInfo(userId);
+        const orderList = await OrderStorage.getMyOrder(userId);
+        res.render('consumer/mypage', { myPageInfo, orderList });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
       }

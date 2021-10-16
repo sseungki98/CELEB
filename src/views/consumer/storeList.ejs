@@ -19,55 +19,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            >서울</a
-          >
-          <ul class="dropdown-menu" aria-labelledby="regionDropDown">
-            <li><a class="dropdown-item" href="#">강남</a></li>
-            <li><a class="dropdown-item" href="#">강북</a></li>
-            <li><a class="dropdown-item" href="#">서초</a></li>
-          </ul>
-        </li>
+        <% for (let i = 0; i < province.length; i++) { %>
         <li class="nav-item">
-          <a class="nav-link" href="#">경기</a>
+          <a class="nav-link" href="#"><%= province[i].provinceName %></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">인천</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">부산</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">대구</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">제주</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">대전</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">광주</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">울산</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">강원</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">세종</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">전남</a>
-        </li>
+        <% } %>
       </ul>
       <div>
         <label class="rate-order" for="rate-order">평점순</label>
@@ -80,181 +36,27 @@
 </nav>
 <div class="container">
   <div class="row gx-4 gx-lg-5">
+    <% for (let i = 0; i < storeList.length; i++) { %>
     <div class="col-md-4 mb-5">
       <div class="card h-100">
         <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake2-250250.png" />
+          <h3 class="card-title text-center"><%= storeList[i].storeName %></h3>
+          <img class="card-img" src="<%= storeList[i].image %>" />
         </div>
         <div class="card-footer">
           <div class="card-text">
             <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
+              <li><i class="xi-star" style="color: #fcba03"></i> 평점 : <%= storeList[i].star %> / 5</li>
+              <li><i class="xi-maker" style="color: red"></i> 위치 : <%= storeList[i].location %></li>
+              <li><i class="xi-time-o"></i> 영업시간 : <%= storeList[i].operatingHour %></li>
+              <li><i class="xi-info"></i> 픽업/배달 : <%= storeList[i].type %></li>
             </ul>
           </div>
-          <a class="btn d-grid mx-auto text-center btn-primary btn-sm" href="#!">주문하기</a>
+          <a class="btn d-grid mx-auto text-center btn-primary btn-sm" href="/store/<%= storeList[i].storeId %>">상품 보기</a>
         </div>
       </div>
     </div>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake1.png" />
-        </div>
-        <div class="card-footer">
-          <div class="card-text">
-            <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
-            </ul>
-          </div>
-          <a class="btn d-grid mx-auto btn-primary btn-sm" href="#!">주문하기</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake1.png" />
-        </div>
-        <div class="card-footer">
-          <div class="card-text">
-            <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
-            </ul>
-          </div>
-          <a class="btn d-grid mx-auto btn-primary btn-sm" href="#!">주문하기</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row gx-4 gx-lg-5">
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake2.png" />
-        </div>
-        <div class="card-footer">
-          <div class="card-text">
-            <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
-            </ul>
-          </div>
-          <a class="btn d-grid mx-auto text-center btn-primary btn-sm" href="#!">주문하기</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake1.png" />
-        </div>
-        <div class="card-footer">
-          <div class="card-text">
-            <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
-            </ul>
-          </div>
-          <a class="btn d-grid mx-auto btn-primary btn-sm" href="#!">주문하기</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake1.png" />
-        </div>
-        <div class="card-footer">
-          <div class="card-text">
-            <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
-            </ul>
-          </div>
-          <a class="btn d-grid mx-auto btn-primary btn-sm" href="#!">주문하기</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row gx-4 gx-lg-5">
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake2.png" />
-        </div>
-        <div class="card-footer">
-          <div class="card-text">
-            <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
-            </ul>
-          </div>
-          <a class="btn d-grid mx-auto text-center btn-primary btn-sm" href="#!">주문하기</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake1.png" />
-        </div>
-        <div class="card-footer">
-          <div class="card-text">
-            <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
-            </ul>
-          </div>
-          <a class="btn d-grid mx-auto btn-primary btn-sm" href="#!">주문하기</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3 class="card-title text-center">Store Name</h3>
-          <img class="card-img" src="/img/ex-cake1.png" />
-        </div>
-        <div class="card-footer">
-          <div class="card-text">
-            <ul>
-              <li><i class="xi-star" style="color: #fcba03"></i>평점 : /5</li>
-              <li><i class="xi-maker" style="color: red"></i>위치 :</li>
-              <li><i class="xi-time-o"></i>영업시간 : 11:00~17:00</li>
-              <li><i class="xi-call"></i>전화번호 : 010-4800-1335</li>
-            </ul>
-          </div>
-          <a class="btn d-grid mx-auto btn-primary btn-sm" href="#!">주문하기</a>
-        </div>
-      </div>
-    </div>
+    <% } %>
   </div>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
