@@ -15,5 +15,16 @@ class StoreStorage {
       });
     });
   }
+  static getMyStorePageByStoreId(storeId) {
+    return new Promise((resolve, reject) => {
+      const query = ` SELECT id as storeId,storeName,imageUrl as image,info,phoneNum,openTime,provinceId,cityId,roadAddress,detailAddress, Store.limit
+      FROM Store
+      WHERE status='ACTIVE' and id=?;`;
+      db.query(query, [storeId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
 }
 module.exports = StoreStorage;

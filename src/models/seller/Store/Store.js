@@ -31,6 +31,10 @@ class Store {
       return { success: false, message: '스토어 검색에 실패하였습니다. ' };
     }
   }
+  async getStorePage(storeId) {
+    const storePage = await StoreStorage.getMyStorePageByStoreId(storeId);
+    return storePage;
+  }
 }
 
 module.exports = Store;
