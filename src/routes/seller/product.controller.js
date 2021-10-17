@@ -5,8 +5,8 @@ const ProductStorage = require('../../models/seller/Product/ProductStorage');
 
 const output = {
   productList: async (req, res) => {
-    if (req.session.host) {
-      const id = req.session.host.id;
+    if (req.session.user) {
+      const id = req.session.user.id;
       const productList = await ProductStorage.getProductListByStoreId(id);
       console.log(productList);
       res.render('/s/store/product', { productList: productList });
@@ -15,8 +15,8 @@ const output = {
     }
   },
   productDetail: async (req, res) => {
-    if (req.session.host) {
-      const storeId = req.session.host.id;
+    if (req.session.user) {
+      const storeId = req.session.user.id;
       const productId = req.body;
       const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
       console.log(productDetail);

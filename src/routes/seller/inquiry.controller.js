@@ -5,7 +5,7 @@ const InquiryStorage = require('../../models/seller/Inquiry/InquiryStorage');
 
 const output = {
   inquiry: async (req, res) => {
-    if (req.session.host) {
+    if (req.session.user) {
       const storeId = req.session.host.id;
       const response = await InquiryStorage.getInquiryListByStoreId(storeId);
       return res.json(response);

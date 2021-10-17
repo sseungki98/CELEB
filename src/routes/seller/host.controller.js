@@ -11,14 +11,14 @@ const process = {
     const response = await host.login();
 
     if (response.success) {
-      req.session.host = {
+      req.session.user = {
         id: response.id,
         storeId: req.body.storeId,
         storeName: response.storeName,
         authorized: true,
       };
     }
-    console.log(req.session.host);
+    console.log(req.session.user);
     return res.json(response);
   },
   logout: async (req, res) => {

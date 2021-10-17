@@ -13,7 +13,7 @@ const output = {
     res.render('/s/register/licenseNum');
   },
   storePage: async (req, res) => {
-    if (req.session.host) {
+    if (req.session.user) {
       try {
         const storeId = req.body.id;
         const storeCheck = await StoreStorage.getStoreInfoByStoreId(storeId);
@@ -62,9 +62,9 @@ const process = {
     }
   },
   storePage: async (req, res) => {
-    if (req.session.host) {
+    if (req.session.user) {
       try {
-        const storeId = req.session.host.id;
+        const storeId = req.session.user.id;
         const storeCheck = await StoreStorage.getStoreInfoByStoreId(storeId);
         if (storeCheck) {
           const storeInfo = new Store(req.body);
