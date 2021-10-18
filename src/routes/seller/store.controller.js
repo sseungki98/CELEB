@@ -16,10 +16,8 @@ const output = {
     if (req.session.user) {
       try {
         const storeId = req.body.id;
-        const storeCheck = await StoreStorage.getStoreInfoByStoreId(storeId);
-        if (storeCheck) {
-          const storePage = new Store(req.body);
-          const myStorePageDetail = await storePage.getStorePage(storeId);
+        const myStorePageDetail = await StoreStorage.getStoreDetailByStoreId(storeId);
+        if (myStorePageDetail) {
           console.log(getStoreInfo);
           res.render('/s/storePage', { myStorePage: myStorePageDetail });
         } else {
@@ -52,10 +50,11 @@ const process = {
       });
       const etree = emt.XML(response.data);
       const ms = etree.findtext('smpcBmanTrtCntn');
-      if (ms == '등록되어 있지 않은 사업자등록번호 입니다. ') {
+      if (ms == '등록되어 있지 않은 사업자등록번호 입니다. ')
         return res.json({ success: false, message: '국세청에 등록되지 않은 사업자등록번호입니다.' });
-      }
-      return res.json({ licenseNum: rgno, message: ms });
+      const rgnoResult = await StoreStorage.getLicenseNumberDuplication(rgno);
+      if (rgnoResult.exist) return res.json({ success: false, message: '이미 등록된 사업자등록번호입니다.' });
+      return res.json({ licenseNum: rgno, message: '사용 가능한 사업자등록번호입니다.' });
     } catch (err) {
       console.log(err);
       return res.json({ success: false, message: err });
