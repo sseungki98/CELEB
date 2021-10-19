@@ -13,6 +13,7 @@ const output = {
     res.render('/s/register/licenseNum');
   },
   storePage: async (req, res) => {
+    //TODO: code review
     if (req.session.user) {
       try {
         const storeId = req.body.id;
@@ -20,13 +21,11 @@ const output = {
         if (storeCheck) {
           const storePage = new Store(req.body);
           const myStorePageDetail = await storePage.getStorePage(storeId);
-          console.log(getStoreInfo);
           res.render('/s/storePage', { myStorePage: myStorePageDetail });
         } else {
           res.render('common/500error', { success: false, message: '잘못된 접근입니다. ' });
         }
       } catch (err) {
-        console.log(err);
         res.render('common/500error', { success: false, message: err });
       }
     } else {
@@ -57,7 +56,6 @@ const process = {
       }
       return res.json({ licenseNum: rgno, message: ms });
     } catch (err) {
-      console.log(err);
       return res.json({ success: false, message: err });
     }
   },
@@ -74,7 +72,6 @@ const process = {
           return res.json({ success: false, message: '잘못된 접근입니다. ' });
         }
       } catch (err) {
-        console.log(err);
         return res.json({ success: false, message: err });
       }
     } else {

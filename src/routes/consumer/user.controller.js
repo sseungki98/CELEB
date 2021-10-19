@@ -39,8 +39,8 @@ const process = {
         name: response.name,
         authorized: true,
       };
+      req.session.save();
     }
-    console.log(req.session.user);
     return res.json(response);
   },
   logout: async (req, res) => {

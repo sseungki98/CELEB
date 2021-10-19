@@ -18,7 +18,6 @@ const process = {
         authorized: true,
       };
     }
-    console.log(req.session.user);
     return res.json(response);
   },
   logout: async (req, res) => {
