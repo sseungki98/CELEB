@@ -129,13 +129,12 @@
         color: transparent;
       }
 
-      #searchIcon {
+      #searchButton {
         background-color: #ffd5d5;
         color: grey;
       }
     </style>
   </head>
-
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container-fluid">
@@ -152,9 +151,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="스토어를 검색하세요" aria-label="Search" />
-            <button class="btn" id="searchIcon" type="submit"><i class="xi-search"></i></button>
+          <form class="d-flex" action="/search" method="GET">
+            <input class="form-control me-2" name="keyword" type="search" placeholder="스토어를 검색하세요" aria-label="Search" />
+            <button class="btn" id="searchButton" type="submit"><i class="xi-search"></i></button>
           </form>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -178,11 +177,11 @@
                 카테고리
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="/1">🎂 레터링 케이크</a></li>
-                <li><a class="dropdown-item" href="/2">💐 꽃다발</a></li>
-                <li><a class="dropdown-item" href="/3">🚩 현수막/배너</a></li>
-                <li><a class="dropdown-item" href="/4">📱 폰케이스</a></li>
-                <li><a class="dropdown-item" href="/5">🎁 선물</a></li>
+                <li><a class="dropdown-item" href="/category/1">🎂 레터링 케이크</a></li>
+                <li><a class="dropdown-item" href="/category/2">💐 꽃다발</a></li>
+                <li><a class="dropdown-item" href="/category/3">🚩 현수막/배너</a></li>
+                <li><a class="dropdown-item" href="/category/4">📱 폰케이스</a></li>
+                <li><a class="dropdown-item" href="/category/5">🎁 선물</a></li>
               </ul>
             </li>
             <li class="nav-item">

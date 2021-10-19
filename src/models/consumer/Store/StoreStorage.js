@@ -83,14 +83,14 @@ class StoreStorage {
   }
   static searchStore(params) {
     return new Promise((resolve, reject) => {
-      const query = `select a.id as StoreId
-      , a.storeName as StoreName
-      , a.imageUrl as StoreImage
-      , a.info as StoreInfo
-      , starGrade as StarGrade
-      , reviewCount as ReviewCount
-      , concat(d.name,' ',e.name) as Location
-      , a.type as StoreType
+      const query = `select a.id as storeId
+      , a.storeName as storeName
+      , a.imageUrl as storeImage
+      , a.info as storeInfo
+      , starGrade as starGrade
+      , reviewCount as reviewCount
+      , concat(d.name,' ',e.name) as location
+      , a.type as storeType0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 from Store a
 left join ( select id, name
           from Category ) as b
