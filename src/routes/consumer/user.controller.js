@@ -15,9 +15,22 @@ const output = {
     if (req.session.user) {
       try {
         const userId = req.session.user.id;
-        const myPageInfo = await UserStorage.getMyPageInfo(userId);
+        const myPageDetail = await UserStorage.getMyPageInfo(userId);
         const orderList = await OrderStorage.getMyOrder(userId);
-        res.render('consumer/mypage', { myPageInfo, orderList });
+        res.render('consumer/mypage', { myPageDetail, orderList });
+      } catch (err) {
+        res.render('common/500error', { err, layout: false });
+      }
+    } else {
+      res.render('consumer/login');
+    }
+  },
+  personalInformation: async (req, res) => {
+    if (req.session.user) {
+      try {
+        const userId = req.session.user.id;
+        const myPageDetail = await UserStorage.getMyPageInfo(userId);
+        res.render('consumer/mypage/personal-information', { myPageDetail });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
       }
@@ -74,6 +87,26 @@ const process = {
       const user = new User(req.body);
       const response = await user.inquiry(id, storeId, productId, type, contents);
       return res.json(response);
+    } else {
+      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
+    }
+  },
+  personalInformation: async (req, res) => {
+    if (req.session.user) {
+      try {
+        const userId = req.session.user.id;
+        const user = new User(req.body);
+        const myPageInfo = await user.getMyPageDetail(userId);
+        const name = req.body.name ? req.body.name : myPageInfo.name;
+        const phoneNum = req.body.phoneNum ? req.body.phoneNum : myPageInfo.phoneNum;
+        const address = req.body.address ? req.body.address : myPageInfo.address;
+        const params = [name, phoneNum, address, userId];
+        const response = await UserStorage.updateMyPageDetail(params);
+        return res.json(response);
+      } catch (err) {
+        console.log(err);
+        return res.json({ success: false, message: '개인정보 변경에 실패하였습니다.' });
+      }
     } else {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
     }

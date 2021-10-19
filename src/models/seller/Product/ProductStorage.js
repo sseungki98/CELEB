@@ -24,5 +24,55 @@ class ProductStorage {
       });
     });
   }
+  static createProductByStoreId(params) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      INSERT INTO Product(storeId,name,ImageUrl,info,price,detailImageUrl) VALUES (?,?,?,?,?,?);`;
+      db.query(query, params, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static createProductOption(params) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      INSERT INTO ProductOption(productId,optionCategoryId,name,price,type) VALUES (?,?,?,?,?);`;
+      db.query(query, params, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static createCategory(categoryName) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      INSERT INTO ProductOptionCategory(name) VALUES (?);`;
+      db.query(query, categoryName, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static getCategoryName(categoryName) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      SELECT id,exists (SELECT id as pid FROM ProductOptionCategory WHERE name='?') as exist FROM ProductOptionCategory WHERE name='?';`;
+      db.query(query, categoryName, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data[0]);
+      });
+    });
+  }
+  static deleteProductByProductId(storeId, productId) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      UPDATE Product as p, ProductOption as po SET p.status="DELETE", po.status="DELETE" WHERE p.storeId=? and p.id=? and po.productId=?`;
+      db.query(query, [storeId, productId, productId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true });
+      });
+    });
+  }
 }
 module.exports = ProductStorage;

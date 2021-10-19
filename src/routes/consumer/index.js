@@ -19,6 +19,8 @@ router.post('/login', userController.process.login); //로그인
 router.post('/logout', userController.process.logout); //로그아웃
 router.post('/register', userController.process.register); //회원가입
 router.get('/mypage', userController.output.myPage); //마이페이지 조회
+router.get('/mypage/personal-information', userController.output.personalInformation); //개인정보 변경 페이지 조회
+router.post('/mypage/personal-information', userController.process.personalInformation); //개인정보 수정
 //Store Info Router
 router.get('/store/:storeId', storeController.output.storeDetail); //각 스토어별 페이지 조회
 router.get('/category/:categoryId', storeController.output.storeList); //카테고리별 스토어 리스트 조회
