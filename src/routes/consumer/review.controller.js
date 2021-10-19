@@ -7,7 +7,7 @@ const output = {
   storeReview: async (req, res) => {
     const storeId = req.params.storeId;
     try {
-      const review = await ReviewStorage.getReview(storeId);
+      const review = await ReviewStorage.getReviewByStoreId(storeId);
       res.render('consumer/storeReview', { review });
     } catch (err) {
       res.render('common/500error', { err, layout: false });

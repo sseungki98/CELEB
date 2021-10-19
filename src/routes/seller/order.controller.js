@@ -5,7 +5,7 @@ const OrderStorage = require('../../models/seller/Order/OrderStorage');
 
 const output = {
   order: async (req, res) => {
-    if (req.session.host) {
+    if (req.session.user) {
       const id = req.session.host.id;
       const { page } = req.query;
       const pageSize = 10;
@@ -17,7 +17,7 @@ const output = {
     }
   },
   orderDetail: async (req, res) => {
-    if (req.session.host) {
+    if (req.session.user) {
       const orderId = req.params.orderId;
       const order = new Order(req.body);
       const response = await order.getOrderDetail(orderId);
@@ -29,7 +29,7 @@ const output = {
 };
 const process = {
   orderStatus: async (req, res) => {
-    if (req.session.host) {
+    if (req.session.user) {
       const { orderId, status } = req.body;
       if (!orderId) return res.json({ success: false, message: '주문 id를 입력해주세요. ' });
       if (!status) return res.json({ success: false, message: '상태를 입력해주세요. ' });

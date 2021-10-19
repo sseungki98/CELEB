@@ -1,8 +1,8 @@
 'use strict';
 
-const email = document.querySelector('#email'),
-  password = document.querySelector('#password'),
-  loginButton = document.querySelector('#loginButton');
+const email = document.getElementById('email'),
+  password = document.getElementById('password'),
+  loginButton = document.getElementById('loginButton');
 loginButton.addEventListener('click', login);
 
 function login() {
@@ -17,8 +17,8 @@ function login() {
     },
     body: JSON.stringify(req),
   })
-    .then(res => res.json())
-    .then(res => {
+    .then((res) => res.json())
+    .then((res) => {
       if (res.success) {
         location.href = '/';
       } else {

@@ -14,9 +14,10 @@ class HostStorage {
   }
   static postStoreInfo(params) {
     return new Promise((resolve, reject) => {
-      const query =
-        'INSERT INTO Store(storeId,password,storeName,imageUrl,info,phoneNum,categoryId,provinceId,cityId,roadAddress,detailAddress,type,licenseNum,openTime,closeTime,limit) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
-      db.query(query, [params], (err, data) => {
+      const query = `
+        INSERT INTO Store(storeId,Store.password,storeName,imageUrl,info,phoneNum,categoryId,provinceId,cityId,roadAddress,detailAddress,Store.type,licenseNum,openTime,Store.limit)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`;
+      db.query(query, params, (err, data) => {
         if (err) reject(`${err}`);
         resolve({ success: true });
       });

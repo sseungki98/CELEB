@@ -52,16 +52,19 @@ const output = {
   },
   searchStore: async (req, res) => {
     const { keyword } = req.query;
+    if (!keyword) return res.json({ success: false, message: '검색어를 입력해주세요. ' });
     const categoryName = '%' + keyword + '%';
     const storeName = '%' + keyword + '%';
     const productName = '%' + keyword + '%';
     const provinceName = '%' + keyword + '%';
     const cityName = '%' + keyword + '%';
-    if (!keyword) return res.json({ success: false, message: '검색어를 입력해주세요. ' });
     const params = [categoryName, storeName, productName, provinceName, cityName];
-    const store = new Store(req.body);
-    const response = await store.searchStore(params);
-    return res.json(response);
+    try {
+      const result = await StoreStorage.searchStore(params);
+      res.render('consumer/search', { result, keyword });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
+    }
   },
 };
 

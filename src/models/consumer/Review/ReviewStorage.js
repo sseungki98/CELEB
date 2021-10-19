@@ -21,7 +21,7 @@ class ReviewStorage {
       });
     });
   }
-  static getReview(storeId) {
+  static getReviewByStoreId(storeId) {
     return new Promise((resolve, reject) => {
       const query = `select a.id as reviewId
           , b.id as userId
@@ -56,7 +56,7 @@ class ReviewStorage {
       ( select r.orderId from Review r where r.orderId=? and r.userId=? ) `;
       db.query(query, [orderId, userId, orderId, userId], (err, data) => {
         if (err) reject(`${err}`);
-        resolve({ success: true });
+        resolve(data[0]);
       });
     });
   }

@@ -5,8 +5,8 @@ const ReviewStorage = require('../../models/seller/Review/ReviewStorage');
 
 const output = {
   review: async (req, res) => {
-    if (req.session.host) {
-      const id = req.session.host.id;
+    if (req.session.user) {
+      const id = req.session.user.id;
       const { page } = req.query;
       const pageSize = 10;
       const review = new Review(req.body);
@@ -17,7 +17,7 @@ const output = {
     }
   },
   reviewReply: async (req, res) => {
-    if (req.session.host) {
+    if (req.session.user) {
       const { reviewId } = req.query;
       const review = new Review(req.body);
       const response = await review.getReviewReply(reviewId);
@@ -29,9 +29,9 @@ const output = {
 };
 const process = {
   reviewReply: async (req, res) => {
-    if (req.session.host) {
+    if (req.session.user) {
       const { reviewId, contents } = req.body;
-      const storeId = req.session.host.id;
+      const storeId = req.session.user.id;
       if (!reviewId) return res.json({ success: false, message: '리뷰 id를 입력해주세요. ' });
       if (!contents) return res.json({ success: false, message: '리뷰 답변 내용을 입력해주세요. ' });
       const review = new Review(req.body);
