@@ -27,6 +27,7 @@
     "mysql2": "^0.15.8",
     "mysql2-promise": "^0.1.4",
     "notenv": "^2.0.3",
+    "session-file-store": "^1.5.0",
     "xml": "^1.0.1"
   },
   "devDependencies": {
