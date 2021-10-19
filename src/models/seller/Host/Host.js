@@ -22,18 +22,17 @@ class Host {
       return { success: false, message: `${err}` };
     }
   }
-  async register() {
+  async register(imageUrl) {
     const host = this.body;
     try {
       const storeIdcheck = await HostStorage.getHostInfo(host.storeId);
       if (storeIdcheck) return { success: false, message: '중복된 ID입니다.' };
-      if (host.password != host.checkpassowrd) return { success: false, message: '비밀번호 확인에 실패하였습니다.' };
       const hashedPassword = await crypto.createHash('sha512').update(host.password).digest('hex'); //비밀번호 암호화
       const params = [
         host.storeId,
         hashedPassword,
         host.storeName,
-        host.imageUrl,
+        imageUrl,
         host.info,
         host.phoneNum,
         host.categoryId,
@@ -44,7 +43,6 @@ class Host {
         host.type,
         host.licenseNum,
         host.openTime,
-        host.closeTime,
         host.limit,
       ];
       await HostStorage.postStoreInfo(params);
@@ -52,15 +50,6 @@ class Host {
     } catch (err) {
       console.log(err);
       return { success: false, message: '스토어 회원가입에 실패하였습니다.' };
-    }
-  }
-  async registerS3() {
-    const host = this.body;
-    try {
-      const Img = host.file;
-      console.log('s3 이미지 경로 :', Img.location);
-    } catch (err) {
-      return { success: false, message: `${err}` };
     }
   }
 }
