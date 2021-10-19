@@ -70,7 +70,7 @@ class ProductStorage {
       UPDATE Product as p, ProductOption as po SET p.status="DELETE", po.status="DELETE" WHERE p.storeId=? and p.id=? and po.productId=?`;
       db.query(query, [storeId, productId, productId], (err, data) => {
         if (err) reject(`${err}`);
-        resolve({ success: true });
+        resolve({ success: true, message: '상품이 삭제되었습니다. ' });
       });
     });
   }
