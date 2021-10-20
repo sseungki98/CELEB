@@ -8,17 +8,16 @@ class Product {
   async createProduct(storeId, mainUrl, detailUrl) {
     try {
       const product = this.body;
-
-      const mainParams = [storeId, product.name, mainUrl, product.info, product.price, detailUrl];
+      const mainParams = [storeId, product.productName, mainUrl, product.info, product.productPrice, detailUrl];
       const createProduct = await ProductStorage.createProductByStoreId(mainParams);
-      const productId = createProduct[0].insertId;
+      const productId = createProduct.insertId;
       for (let i = 0; i < product.optionCategory.length; i++) {
         const categoryResult = await ProductStorage.getCategoryName(product.optionCategory[i].categoryName);
-        if (categoryResult.exist == 1) {
+        if (categoryResult[0]) {
           for (let j = 0; j < product.optionCategory[i].optionArray.length; j++) {
             const params = [
               productId,
-              categoryResult.id,
+              categoryResult[0].id,
               product.optionCategory[i].optionArray[j].name,
               product.optionCategory[i].optionArray[j].price,
               product.optionCategory[i].optionArray[j].type,
@@ -30,7 +29,7 @@ class Product {
           for (let j = 0; j < product.optionCategory[i].optionArray.length; j++) {
             const params = [
               productId,
-              createCategoryResult[0].insertId,
+              createCategoryResult.insertId,
               product.optionCategory[i].optionArray[j].name,
               product.optionCategory[i].optionArray[j].price,
               product.optionCategory[i].optionArray[j].type,
@@ -39,7 +38,7 @@ class Product {
           }
         }
       }
-      return { success: true };
+      return { success: true, message: '상품 등록이 완료되었습니다. ' };
     } catch (err) {
       console.log(err);
       return { success: false, message: '상품 등록에 실패하였습니다. ' };

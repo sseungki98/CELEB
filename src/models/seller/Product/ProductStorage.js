@@ -57,10 +57,10 @@ class ProductStorage {
   static getCategoryName(categoryName) {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT id,exists (SELECT id as pid FROM ProductOptionCategory WHERE name='?') as exist FROM ProductOptionCategory WHERE name='?';`;
+      SELECT id FROM ProductOptionCategory WHERE name=?;`;
       db.query(query, categoryName, (err, data) => {
         if (err) reject(`${err}`);
-        resolve(data[0]);
+        resolve(data);
       });
     });
   }

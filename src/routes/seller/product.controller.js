@@ -1,5 +1,6 @@
 'use strict';
 
+const { array } = require('../../config/multer');
 const Product = require('../../models/seller/Product/Product');
 const ProductStorage = require('../../models/seller/Product/ProductStorage');
 
@@ -31,10 +32,10 @@ const process = {
       const mainImage = req.files['productMain'][0].location;
       let detailImage = req.files['productDetail'];
       detailImage = detailImage.map(img => img.location);
-
+      detailImage = JSON.stringify(detailImage);
+      detailImage = detailImage.replace(/[\"\[\]]/g, '');
       const product = new Product(req.body);
-      const response = product.createProduct(storeId, mainImage, detailImage);
-
+      const response = await product.createProduct(storeId, mainImage, detailImage);
       return res.json(response);
     } else {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
