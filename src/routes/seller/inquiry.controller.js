@@ -24,7 +24,19 @@ const output = {
     }
   },
 };
-const process = {};
+const process = {
+  inquiry: async (req, res) => {
+    if (req.session.user) {
+      const storeId = req.session.user.id;
+      const { userId, contents } = req.body;
+      const inquiry = new Inquiry(req.body);
+      const response = await inquiry.postInquiry(storeId, userId, contents);
+      return res.json(response);
+    } else {
+      return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+    }
+  },
+};
 module.exports = {
   output,
   process,

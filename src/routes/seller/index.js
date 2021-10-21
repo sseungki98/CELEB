@@ -44,4 +44,5 @@ router.post('/store/product/productDetail', productController.process.deleteProd
 //Inquiry Info Router
 router.get('/inquiry', inquiryController.output.inquiry); //스토어 문의 목록 조회
 router.get('/inquiry/:userId', inquiryController.output.inquiryDetail); //사용자 문의 내용
+router.post('/inquiry', inquiryController.process.inquiry); //문의 답변 작성
 module.exports = router;

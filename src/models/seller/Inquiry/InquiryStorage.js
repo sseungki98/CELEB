@@ -43,5 +43,14 @@ where rowNum = 1;`;
       });
     });
   }
+  static postInquiry(storeId, userId, contents) {
+    return new Promise((resolve, reject) => {
+      const query = 'INSERT INTO Inquiry(storeId, userId, contents, type) VALUES(?,?,?,"OUTGOING");';
+      db.query(query, [storeId, userId, contents], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true });
+      });
+    });
+  }
 }
 module.exports = InquiryStorage;
