@@ -86,11 +86,10 @@ class StoreStorage {
       const query = `select a.id as storeId
       , a.storeName as storeName
       , a.imageUrl as storeImage
-      , a.info as storeInfo
-      , starGrade as starGrade
-      , reviewCount as reviewCount
-      , concat(d.name,' ',e.name) as location
-      , a.type as storeType0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+      , starGrade as starRate
+      , concat(d.name,' ',e.name) as location    
+      , a.openTime as hours                  
+      , a.type as storeType                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 from Store a
 left join ( select id, name
           from Category ) as b
@@ -104,7 +103,7 @@ left join ( select id, name
 left join ( select id, name
           from City ) as e
           on a.cityId = e.id
-left join ( select id, storeId, score, round(sum(score)/count(storeId), 1) as 'starGrade', count(storeId) as 'reviewCount'
+left join ( select id, storeId, score, round(sum(score)/count(storeId), 1) as 'starGrade'
           from Review
           group by storeId) as f
           on a.id = f.storeId
