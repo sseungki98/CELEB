@@ -3,7 +3,7 @@
 const db = require('../../../config/database');
 
 class UserStorage {
-  static getUserInfo(email) {
+  static getUserDetail(email) {
     return new Promise((resolve, reject) => {
       const query = 'SELECT * FROM User WHERE email = ?;';
       db.query(query, [email], (err, data) => {
@@ -21,9 +21,9 @@ class UserStorage {
       });
     });
   }
-  static getMyPageInfo(userId) {
+  static getMyPageDetail(userId) {
     return new Promise((resolve, reject) => {
-      const query = 'SELECT email,name,phoneNum,address FROM User WHERE id=?;';
+      const query = 'SELECT email,name,phoneNum,address FROM User WHERE id=? and status="ACTIVE";';
       db.query(query, [userId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data[0]);
@@ -36,6 +36,15 @@ class UserStorage {
       db.query(query, [id], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data[0]);
+      });
+    });
+  }
+  static updateMyPageDetail(params) {
+    return new Promise((resolve, reject) => {
+      const query = 'UPDATE User SET name=?,phoneNum=?,address=? WHERE id=? and status="ACTIVE";';
+      db.query(query, params, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true, message: '개인정보 변경에 성공하였습니다.' });
       });
     });
   }

@@ -32,6 +32,15 @@ router.post('/review/reply', reviewController.process.reviewReply); //스토어 
 //Product Info Router
 router.get('/store/product', productController.output.productList); //내가 등록한 상품 리스트 조회
 router.get('/store/product/productDetail', productController.output.productDetail); //등록 상품 자세히 조회
+router.post(
+  '/store/product',
+  upload.fields([
+    { name: 'productMain', maxCount: 1 },
+    { name: 'productDetail', maxCount: 5 },
+  ]),
+  productController.process.product,
+); //상품 등록하기 -> from 구조
+router.post('/store/product/productDetail', productController.process.deleteProduct); //상품 삭제하기
 //Inquiry Info Router
 router.get('/inquiry', inquiryController.output.inquiry); //스토어 문의 목록 조회
 module.exports = router;
