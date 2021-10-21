@@ -119,10 +119,30 @@ order by orderCount desc;`;
       });
     });
   }
+
+  static getCategoryDetailByCateoryId(categoryId) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT id as categoryId, name as categoryName, imageUrl as categoryImage FROM Category WHERE id=?`;
+      db.query(query, [categoryId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data[0]);
+      });
+    });
+  }
+
   static getProvinceList() {
     return new Promise((resolve, reject) => {
       const query = `SELECT id as provinceId, name as provinceName FROM Province`;
       db.query(query, [], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static getCityByProvinceId(provinceId) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT id as cityId, provinceId, name as cityName FROM City WHERE provinceId=?`;
+      db.query(query, [provinceId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });

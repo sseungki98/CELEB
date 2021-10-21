@@ -20,18 +20,30 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% for (let i = 0; i < province.length; i++) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><%= province[i].provinceName %></a>
+        <li>
+          <a class="nav-link" href="/category/<%= category.categoryId %>?provinceId=<%= province[i].provinceId %>"
+            ><%= province[i].provinceName %></a
+          >
         </li>
         <% } %>
       </ul>
       <div>
         <label class="rate-order" for="rate-order">평점순</label>
-        <input type="radio" name="order" id="rate-order" />
+        <input type="radio" name="order" id="rate-order" checked />
         <label class="sell-order" for="sell-order">판매순</label>
         <input type="radio" name="order" id="sell-order" />
       </div>
     </div>
+    <div class="collapse navbar-collapse" id="navbarContent"></div>
+    <ul class="navbar-nav">
+      <% for (let i = 0; i < city.length; i++) { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/category/<%= category.categoryId %>?provinceId=<%= city[i].provinceId %>&cityId=<%= city[i].cityId %>"
+          ><%= city[i].cityName %></a
+        >
+      </li>
+      <% } %>
+    </ul>
   </div>
 </nav>
 <div class="container">
