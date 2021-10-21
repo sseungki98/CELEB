@@ -86,11 +86,10 @@ class StoreStorage {
       const query = `select a.id as storeId
       , a.storeName as storeName
       , a.imageUrl as storeImage
-      , a.info as storeInfo
-      , starGrade as starGrade
-      , reviewCount as reviewCount
-      , concat(d.name,' ',e.name) as location
-      , a.type as storeType0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+      , starGrade as starRate
+      , concat(d.name,' ',e.name) as location    
+      , a.openTime as hours                  
+      , a.type as storeType                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 from Store a
 left join ( select id, name
           from Category ) as b
