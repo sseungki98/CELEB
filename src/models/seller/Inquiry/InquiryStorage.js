@@ -24,8 +24,8 @@ where rowNum = 1;`;
     return new Promise((resolve, reject) => {
       const query = `select a.id as id
           , a.type as type
-          , case when a.type='INCOMING' then b.id else c.id end as senderId
-          , case when a.type='INCOMING' then b.storeName else c.name end as senderName
+          , case when a.type='OUTGOING' then b.id else c.id end as senderId
+          , case when a.type='OUTGOING' then b.storeName else c.name end as senderName
           , a.contents as contents
           , date_format(a.createdAt, '%Y-%m-%d %H:%i') as createdAt
      from Inquiry a
