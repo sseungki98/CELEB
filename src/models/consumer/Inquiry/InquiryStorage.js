@@ -14,12 +14,12 @@ class InquiryStorage {
   }
   static getInquiryDetailByStoreId(id, storeId) {
     return new Promise((resolve, reject) => {
-      const query = `select a.id as Id
-      , a.type as Type
-      , case when a.type='OUTGOING' then b.id else c.id end as SenderId
-      , case when a.type='OUTGOING' then b.storeName else c.name end as SenderName
-      , a.contents as Contents
-      , date_format(a.createdAt, '%Y-%m-%d %H:%i') as CreatedAt
+      const query = `select a.id as id
+      , a.type as type
+      , case when a.type='OUTGOING' then b.id else c.id end as senderId
+      , case when a.type='OUTGOING' then b.storeName else c.name end as senderName
+      , a.contents as contents
+      , date_format(a.createdAt, '%Y-%m-%d %H:%i') as createdAt
  from Inquiry a
  left join ( select id,storeName
              from Store ) as b
@@ -27,7 +27,7 @@ class InquiryStorage {
  left join ( select id, name
              from User ) as c
              on a.userId = c.id
- where a.userId = ? and a.storeId = ?
+ where a.userId = ? and a.storeId = ? and a.status = 'ACITVE'
  order by a.createdAt desc;`;
       db.query(query, [id, storeId], (err, data) => {
         if (err) reject(`${err}`);
