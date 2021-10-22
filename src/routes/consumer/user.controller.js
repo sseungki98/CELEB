@@ -96,10 +96,10 @@ const process = {
       try {
         const userId = req.session.user.id;
         const user = new User(req.body);
-        const myPageInfo = await user.getMyPageDetail(userId);
-        const name = req.body.name ? req.body.name : myPageInfo.name;
-        const phoneNum = req.body.phoneNum ? req.body.phoneNum : myPageInfo.phoneNum;
-        const address = req.body.address ? req.body.address : myPageInfo.address;
+        const myPageDetail = await user.getMyPageDetail(userId);
+        const name = req.body.name ? req.body.name : myPageDetail.name;
+        const phoneNum = req.body.phoneNum ? req.body.phoneNum : myPageDetail.phoneNum;
+        const address = req.body.address ? req.body.address : myPageDetail.address;
         const params = [name, phoneNum, address, userId];
         const response = await UserStorage.updateMyPageDetail(params);
         return res.json(response);

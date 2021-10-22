@@ -20,7 +20,7 @@ router.post('/register', upload.single('uploadImage'), hostController.process.re
 router.post('/login', hostController.process.login); //스토어 로그인
 router.post('/logout', hostController.process.logout); //스토어 로그아웃
 router.post('/register/licenseNum', storeController.process.licenseNum); //사업자 등록번호 조회
-router.post('/store/storePage', storeController.process.storePage); //스토어 상세정보 수정
+router.post('/store/storePage', upload.single('uploadImage'), storeController.process.storePage); //스토어 상세정보 수정
 //Order Info Router
 router.patch('/order-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)
 router.get('/total-order', orderController.output.order); //주문 내역 리스트 조회 → pagenation
@@ -40,6 +40,14 @@ router.post(
   ]),
   productController.process.product,
 ); //상품 등록하기 -> from 구조
+router.patch(
+  '/store/product',
+  upload.fields([
+    { name: 'productMain', maxCount: 1 },
+    { name: 'productDetail', maxCount: 5 },
+  ]),
+  productController.process.updateProduct,
+); //상품 수정하기
 router.post('/store/product/productDetail', productController.process.deleteProduct); //상품 삭제하기
 //Inquiry Info Router
 router.get('/inquiry', inquiryController.output.inquiry); //스토어 문의 목록 조회

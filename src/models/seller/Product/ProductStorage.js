@@ -17,7 +17,7 @@ class ProductStorage {
     return new Promise((resolve, reject) => {
       const query = `SELECT pd.id as productId,pd.name,pd.imageUrl as image,pd.info,pd.price,pd.detailImageUrl,date_format(pd.createdAt,'%Y-%m-%d') as createdAt,pdoc.name as categoryName,pdo.name as optionName,pdo.price as plusPrice,pdo.type
         FROM Product pd left join ProductOption pdo on pd.id=pdo.productId left join ProductOptionCategory pdoc on pdo.optionCategoryId=pdoc.id
-        WHERE pd.storeId=? and pd.id=?;`;
+        WHERE pd.storeId=? and pd.id=? and pd.status='ACTIVE' and pdo.status='ACTIVE';`;
       db.query(query, [storeId, productId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
@@ -28,6 +28,16 @@ class ProductStorage {
     return new Promise((resolve, reject) => {
       const query = `
       INSERT INTO Product(storeId,name,ImageUrl,info,price,detailImageUrl) VALUES (?,?,?,?,?,?);`;
+      db.query(query, params, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static updateProductByProductId(params) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      UPDATE Product SET Product.name=?,imageUrl=?,info=?,price=?,detailImageUrl=? WHERE storeId=? and id=?;`;
       db.query(query, params, (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
@@ -67,10 +77,20 @@ class ProductStorage {
   static deleteProductByProductId(storeId, productId) {
     return new Promise((resolve, reject) => {
       const query = `
-      UPDATE Product as p, ProductOption as po SET p.status="DELETE", po.status="DELETE" WHERE p.storeId=? and p.id=? and po.productId=?`;
+      UPDATE Product as p, ProductOption as po SET p.status="DELETE", po.status="DELETE" WHERE p.storeId=? and p.id=? and po.productId=?;`;
       db.query(query, [storeId, productId, productId], (err, data) => {
         if (err) reject(`${err}`);
         resolve({ success: true, message: '상품이 삭제되었습니다. ' });
+      });
+    });
+  }
+  static setDefaulProductOptionByProductId(productId) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      UPDATE ProductOption SET status='DELETE' WHERE productId=?;`;
+      db.query(query, productId, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true });
       });
     });
   }
