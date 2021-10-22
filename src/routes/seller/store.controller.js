@@ -63,7 +63,7 @@ const process = {
     if (req.session.user) {
       try {
         const storeId = req.session.user.id;
-        const storeCheck = await StoreStorage.getStoreInfoByStoreId(storeId);
+        const storeCheck = await StoreStorage.getStoreDetailByStoreId(storeId);
         if (storeCheck) {
           const storeInfo = new Store(req.body);
           const updateStoreInfo = await storeInfo.updateStorePage(storeId);
