@@ -86,11 +86,10 @@ class StoreStorage {
       const query = `select a.id as storeId
       , a.storeName as storeName
       , a.imageUrl as storeImage
-      , a.info as storeInfo
-      , starGrade as starGrade
-      , reviewCount as reviewCount
-      , concat(d.name,' ',e.name) as location
-      , a.type as storeType0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+      , starGrade as starRate
+      , concat(d.name,' ',e.name) as location    
+      , a.openTime as hours                  
+      , a.type as storeType                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 from Store a
 left join ( select id, name
           from Category ) as b
@@ -104,7 +103,7 @@ left join ( select id, name
 left join ( select id, name
           from City ) as e
           on a.cityId = e.id
-left join ( select id, storeId, score, round(sum(score)/count(storeId), 1) as 'starGrade', count(storeId) as 'reviewCount'
+left join ( select id, storeId, score, round(sum(score)/count(storeId), 1) as 'starGrade'
           from Review
           group by storeId) as f
           on a.id = f.storeId
@@ -120,10 +119,30 @@ order by orderCount desc;`;
       });
     });
   }
+
+  static getCategoryDetailByCateoryId(categoryId) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT id as categoryId, name as categoryName, imageUrl as categoryImage FROM Category WHERE id=?`;
+      db.query(query, [categoryId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data[0]);
+      });
+    });
+  }
+
   static getProvinceList() {
     return new Promise((resolve, reject) => {
       const query = `SELECT id as provinceId, name as provinceName FROM Province`;
       db.query(query, [], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static getCityByProvinceId(provinceId) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT id as cityId, provinceId, name as cityName FROM City WHERE provinceId=?`;
+      db.query(query, [provinceId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
