@@ -20,7 +20,7 @@ class StoreStorage {
   }
   static getStoreDetailByStoreId(storeId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT st.id as storeId, st.storeName as 'name',st.ImageUrl as image, st.openTime as 'operatingHour', rtt.avgstar as star, st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location, st.notice
+      const query = `SELECT st.id as storeId, st.storeName as 'name',st.imageUrl as image, st.openTime as 'operatingHour', rtt.avgstar as star, st.info as info, st.phoneNum as phoneNum,concat(pv.name,' ',ct.name,' ',st.roadAddress,' ',st.detailAddress) as location, st.notice
           FROM Store st left join (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=st.id
                         left join Province pv on pv.id=st.provinceId join City ct on ct.id=st.cityId
           WHERE st.status='ACTIVE' and st.id=?;`;
@@ -47,7 +47,7 @@ class StoreStorage {
   }
   static getStoreByCategoryIdWithProvinceId(categoryId, provinceId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
                    left JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by s.id) tt ON s.id=tt.sid
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
@@ -61,7 +61,7 @@ class StoreStorage {
   }
   static getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
+      const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id 
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
