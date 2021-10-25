@@ -34,9 +34,7 @@
       crossorigin="anonymous"
     />
     <!--BootStrap ?-->
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <!--달력 CDN-->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <style>
       @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
       * {
@@ -193,37 +191,77 @@
     </nav>
 
     <!--sidebar-->
-    <div class="wrapper d-flex align-items-stretch">
-      <nav id="sidebar">
-        <div class="custom-menu">
-          <button type="button" id="sidebarCollapse" class="btn btn-primary"></button>
-        </div>
-        <div class="img bg-wrap text-center py-4" style="background-image: url(/img/ex-cake4.jpg)">
-          <div class="user-logo">
-            <div class="img" style="background-color: white"></div>
-            <h3>승현이네 케이크 님</h3>
-          </div>
-        </div>
-        <ul class="list-unstyled components mb-5">
-          <li class="active">
-            <a href="#"><span class="fa fa-home mr-3"></span> 스토어 관리</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-gift mr-3"></span> 상품 관리</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-trophy mr-3"></span> 주문 관리</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-cog mr-3"></span>정산 관리</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-support mr-3"></span> 문의 관리</a>
-          </li>
-        </ul>
-      </nav>
+    <div class="sidebar">
+      <div class="logo-details">
+        <div class="logo_name">승현이네 케이크가게</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <a href="#">
+            <i class="bx bx-home"></i>
+            <span class="links_name">스토어관리</span>
+          </a>
+          <span class="tooltip">스토어관리</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-gift"></i>
+            <span class="links_name">상품관리</span>
+          </a>
+          <span class="tooltip">상품관리</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-receipt"></i>
+            <span class="links_name">주문관리</span>
+          </a>
+          <span class="tooltip">주문관리</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-won"></i>
+            <span class="links_name">정산관리</span>
+          </a>
+          <span class="tooltip">정산관리</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-question-mark"></i>
+            <span class="links_name">문의관리</span>
+          </a>
+          <span class="tooltip">문의관리</span>
+        </li>
+        <li></li>
+      </ul>
+    </div>
 
-     
+    <script>
+      let sidebar = document.querySelector('.sidebar');
+      let closeBtn = document.querySelector('#btn');
+      let searchBtn = document.querySelector('.bx-search');
+
+      closeBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        menuBtnChange(); //calling the function(optional)
+      });
+
+      searchBtn.addEventListener('click', () => {
+        // Sidebar open when you click on the search iocn
+        sidebar.classList.toggle('open');
+        menuBtnChange(); //calling the function(optional)
+      });
+
+      // following are the code to change sidebar button(optional)
+      function menuBtnChange() {
+        if (sidebar.classList.contains('open')) {
+          closeBtn.classList.replace('bx-menu', 'bx-menu-alt-right'); //replacing the iocns class
+        } else {
+          closeBtn.classList.replace('bx-menu-alt-right', 'bx-menu'); //replacing the iocns class
+        }
+      }
+    </script>
+
     <%- body %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
