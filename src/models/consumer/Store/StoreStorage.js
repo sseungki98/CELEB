@@ -65,7 +65,7 @@ class StoreStorage {
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id 
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
-      ORDER BY s.createdAt DESC;`;
+      ORDER BY s.createdAt DESC;`; // 성준: 정렬 무슨일
       db.query(query, [categoryId, provinceId, cityId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
