@@ -21,6 +21,23 @@ class ReviewStorage {
       });
     });
   }
+  static getStoreReviewCountByStoreId(storeId) {
+    return new Promise((resolve, reject) => {
+      const query = `select round(sum(score)/count(storeId), 1) as averageScore
+      , count(id) as reviewCount
+      , count(case when score=5 then 1 end) as count5
+      , count(case when (score>=4 and score<5) then 1 end) as count4
+      , count(case when (score>=3 and score<4) then 1 end) as count3
+      , count(case when (score=2 and score<3) then 1 end) as count2
+      , count(case when (score=1 and score<2) then 1 end) as count1
+from Review
+where storeId = ? and status = 'ACTIVE';`;
+      db.query(query, [storeId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
   static getReviewByStoreId(storeId) {
     return new Promise((resolve, reject) => {
       const query = `select a.id as reviewId
@@ -31,7 +48,13 @@ class ReviewStorage {
           , a.imageUrl as reviewImage
           , a.score as reviewScore
           , a.contents as reviewContents
-          , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
+          , date_format(a.createdAt, "%Y-%m-%d %H:%i") as 'createdAt(review)'
+          , e.id as replyId
+      , e.storeId as storeId
+      , f.storeName as storeName
+      , f.imageUrl as storeImage
+      , e.contents as replyContents
+      , date_format(e.createdAt, "%Y-%m-%d %H:%i") as 'createdAt(reply)'
   from Review a
   left join ( select id, name
               from User) as b
@@ -42,6 +65,12 @@ class ReviewStorage {
   left join ( select id, name
               from Product) as d
               on c.productId = d.id
+  left join ( select id, storeId, reviewId, contents, createdAt
+              from ReviewReply ) as e
+              on a.id = e.reviewId
+  left join ( select id, storeName, imageUrl
+              from Store ) as f
+              on e.storeId = f.id
   where a.storeId = ? and a.status = 'ACTIVE'
   order by a.createdAt desc;`;
       db.query(query, [storeId], (err, data) => {
