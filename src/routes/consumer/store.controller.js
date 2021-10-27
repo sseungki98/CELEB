@@ -37,10 +37,10 @@ const output = {
         const storeList = await store.getStoreByCategoryId(categoryId, page, pagesize);
         res.render('consumer/storeList', { category, storeList, province, city });
       } else if (provinceId && !cityId) {
-        const storeList = await store.getStoreByCategoryIdWithProvinceId(categoryId, provinceId);
+        const storeList = await store.getStoreByCategoryIdWithProvinceId(categoryId, provinceId, page, pagesize);
         res.render('consumer/storeList', { category, storeList, province, city });
       } else {
-        const storeList = await store.getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId);
+        const storeList = await store.getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId, page, pagesize);
         res.render('consumer/storeList', { category, storeList, province, city });
       }
     } catch (err) {
