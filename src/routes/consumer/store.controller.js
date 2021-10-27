@@ -53,16 +53,6 @@ const output = {
       res.render('common/500error', { err, layout: false });
     }
   },
-
-  storeReservationDate: async (req, res) => {
-    try {
-      if (!req.params.storeId) return res.render('common/500error', { storeId: false });
-      const productReservationDateInfo = await StoreStorage.getProductReservationDateByProductId(req.params.storeId);
-      res.render('consumer/reservationDate', { productReservationDateInfo });
-    } catch (err) {
-      res.render('common/500error', { err, layout: false });
-    }
-  },
   searchStore: async (req, res) => {
     const { keyword } = req.query;
     if (!keyword) return res.json({ success: false, message: '검색어를 입력해주세요. ' });
