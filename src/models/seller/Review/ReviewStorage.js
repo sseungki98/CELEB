@@ -3,7 +3,8 @@
 const db = require('../../../config/database');
 
 class ReviewStorage {
-  static getReview(id, start, pageSize) {
+  static getReviewByStoreId(storeId, start, pageSize) {
+    // 승환: reply랑 칼럼으로 합치기
     return new Promise((resolve, reject) => {
       const query = `select a.id as reviewId
       , b.id as userId
@@ -26,13 +27,14 @@ left join ( select id, name
           on c.productId = d.id
 where a.storeId = ? and a.status = 'ACTIVE'
 order by a.createdAt desc limit ?, ?;`;
-      db.query(query, [id, start, pageSize], (err, data) => {
+      db.query(query, [storeId, start, pageSize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
     });
   }
   static getReviewReply(reviewId) {
+    // 승환: 삭제
     return new Promise((resolve, reject) => {
       const query = `select a.id as replyId
       , a.storeId as storeId

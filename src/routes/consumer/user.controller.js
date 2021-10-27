@@ -15,7 +15,7 @@ const output = {
     if (req.session.user) {
       try {
         const userId = req.session.user.id;
-        const myPageDetail = await UserStorage.getMyPageInfo(userId);
+        const myPageDetail = await UserStorage.getMyPageDetail(userId);
         const orderList = await OrderStorage.getMyOrder(userId);
         res.render('consumer/mypage', { myPageDetail, orderList });
       } catch (err) {
@@ -26,10 +26,11 @@ const output = {
     }
   },
   personalInformation: async (req, res) => {
+    // 성준: 이게 뭐지
     if (req.session.user) {
       try {
         const userId = req.session.user.id;
-        const myPageDetail = await UserStorage.getMyPageInfo(userId);
+        const myPageDetail = await UserStorage.getMyPageDetial(userId);
         res.render('consumer/mypage/personal-information', { myPageDetail });
       } catch (err) {
         res.render('common/500error', { err, layout: false });

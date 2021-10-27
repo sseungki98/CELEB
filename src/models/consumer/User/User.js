@@ -9,11 +9,11 @@ class User {
   async login() {
     const client = this.body;
     try {
-      const userInfo = await UserStorage.getUserInfo(client.email);
+      const user = await UserStorage.getUserInfo(client.email);
       const hashedPassword = await crypto.createHash('sha512').update(client.password).digest('hex');
-      if (userInfo) {
-        if (userInfo.email === client.email && userInfo.password === hashedPassword) {
-          return { success: true, id: userInfo.id, name: userInfo.name };
+      if (user) {
+        if (user.email === client.email && user.password === hashedPassword) {
+          return { success: true, id: user.id, name: user.name };
         }
         return { success: false, message: '비밀번호가 틀렸습니다.' };
       }
