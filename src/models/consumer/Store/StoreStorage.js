@@ -31,42 +31,45 @@ class StoreStorage {
     });
   }
 
-  static getStoreByCategoryId(categoryId) {
+  static getStoreByCategoryId(categoryId, page, pagesize) {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, s.openTime as operatingHour, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
                    left JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by s.id) tt ON s.id=tt.sid
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.status='ACTIVE'
-      ORDER BY tt.cnt DESC;`;
-      db.query(query, [categoryId], (err, data) => {
+      ORDER BY tt.cnt DESC
+      limit ?,?;`;
+      db.query(query, [categoryId, page, pagesize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
     });
   }
-  static getStoreByCategoryIdWithProvinceId(categoryId, provinceId) {
+  static getStoreByCategoryIdWithProvinceId(categoryId, provinceId, page, pagesize) {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
                    left JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by s.id) tt ON s.id=tt.sid
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.status='ACTIVE'
-      ORDER BY tt.cnt DESC;`;
-      db.query(query, [categoryId, provinceId], (err, data) => {
+      ORDER BY tt.cnt DESC
+      limit ?,?;`;
+      db.query(query, [categoryId, provinceId, page, pagesize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
     });
   }
-  static getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId) {
+  static getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId, page, pagesize) {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id 
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
-      ORDER BY s.createdAt DESC;`;
-      db.query(query, [categoryId, provinceId, cityId], (err, data) => {
+      ORDER BY s.createdAt DESC
+      limit ?,?;`;
+      db.query(query, [categoryId, provinceId, cityId, page, pagesize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
@@ -123,7 +126,7 @@ order by orderCount desc;`;
   static getCategoryDetailByCateoryId(categoryId) {
     return new Promise((resolve, reject) => {
       const query = `SELECT id as categoryId, name as categoryName, imageUrl as categoryImage FROM Category WHERE id=?`;
-      db.query(query, [categoryId], (err, data) => {
+      db.query(query, categoryId, (err, data) => {
         if (err) reject(`${err}`);
         resolve(data[0]);
       });
