@@ -27,9 +27,9 @@ router.get('/category/:categoryId', storeController.output.storeList); //카테�
 router.get('/store/reservation/:storeId', storeController.output.storeReservationDate); //스토어 예약 불가능일 조회
 router.get('/search', storeController.output.searchStore); //스토어 통합 검색
 //Inquiry Info Router
-router.post('/inquiry/:storeId/:productId', inquiryController.process.inquiry); //문의 생성
-router.get('/inquiry/:storeId', inquiryController.output.inquiryDetail); //스토어별 문의 내용 조회 → 수신/발신 체크
-router.get('/my-inquiry', inquiryController.output.inquiryList); //나의 문의 내역 조회 → 문의한 스토어 리스트
+router.post('/store/:storeId/inquiry', inquiryController.process.inquiry); //문의 생성
+router.get('/store/:storeId/inquiry', inquiryController.output.inquiryDetail); //스토어별 문의 내용 조회 → 수신/발신 체크
+router.get('/inquiry', inquiryController.output.inquiryList); //나의 문의 내역 조회 → 문의한 스토어 리스트
 //Order Info Router
 router.post('/cart', orderController.process.cart); //장바구니 담기
 router.get('/cart', orderController.output.cart); //장바구니 조회
