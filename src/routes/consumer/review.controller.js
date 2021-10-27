@@ -4,6 +4,7 @@ const Review = require('../../models/consumer/Review/Review');
 const ReviewStorage = require('../../models/consumer/Review/ReviewStorage');
 
 const output = {
+  //점수 별 리뷰 count
   storeReview: async (req, res) => {
     const storeId = req.params.storeId;
     try {
