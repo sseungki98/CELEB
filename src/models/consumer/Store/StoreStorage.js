@@ -31,7 +31,7 @@ class StoreStorage {
     });
   }
 
-  static getStoreByCategoryId(categoryId, page, pagesize) {
+  static getStoreByCategoryId(categoryId, start, pagesize) {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, s.openTime as operatingHour, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
@@ -40,13 +40,13 @@ class StoreStorage {
       WHERE s.categoryId = ? and s.status='ACTIVE'
       ORDER BY tt.cnt DESC
       limit ?,?;`;
-      db.query(query, [categoryId, page, pagesize], (err, data) => {
+      db.query(query, [categoryId, start, pagesize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
     });
   }
-  static getStoreByCategoryIdWithProvinceId(categoryId, provinceId, page, pagesize) {
+  static getStoreByCategoryIdWithProvinceId(categoryId, provinceId, start, pagesize) {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
@@ -55,13 +55,13 @@ class StoreStorage {
       WHERE s.categoryId = ? and s.provinceId = ? and s.status='ACTIVE'
       ORDER BY tt.cnt DESC
       limit ?,?;`;
-      db.query(query, [categoryId, provinceId, page, pagesize], (err, data) => {
+      db.query(query, [categoryId, provinceId, start, pagesize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
     });
   }
-  static getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId, page, pagesize) {
+  static getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId, start, pagesize) {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id 
@@ -69,7 +69,7 @@ class StoreStorage {
       WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
       ORDER BY s.createdAt DESC
       limit ?,?;`;
-      db.query(query, [categoryId, provinceId, cityId, page, pagesize], (err, data) => {
+      db.query(query, [categoryId, provinceId, cityId, start, pagesize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });

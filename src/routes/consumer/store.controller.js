@@ -26,21 +26,27 @@ const output = {
   storeList: async (req, res) => {
     // 리팩토링 필요
     try {
-      const { provinceId, cityId, page } = req.query;
-      const pagesize = 10;
-      const store = new Store(req.body);
+      const { provinceId, cityId } = req.query;
+      const page = req.query.page ? req.query.page : 1;
+      const pageSize = 10;
+      let start = 0;
+      if (page <= 0) {
+        page = 1;
+      } else {
+        start = (page - 1) * pageSize;
+      }
       const categoryId = req.params.categoryId;
       const category = await StoreStorage.getCategoryDetailByCateoryId(categoryId);
       const province = await StoreStorage.getProvinceList();
       const city = provinceId ? await StoreStorage.getCityByProvinceId(provinceId) : [];
       if (!cityId && !provinceId) {
-        const storeList = await store.getStoreByCategoryId(categoryId, page, pagesize);
+        const storeList = await StoreStorage.getStoreByCategoryId(categoryId, start, pageSize);
         res.render('consumer/storeList', { category, storeList, province, city });
       } else if (provinceId && !cityId) {
-        const storeList = await store.getStoreByCategoryIdWithProvinceId(categoryId, provinceId, page, pagesize);
+        const storeList = await StoreStorage.getStoreByCategoryIdWithProvinceId(categoryId, provinceId, start, pageSize);
         res.render('consumer/storeList', { category, storeList, province, city });
       } else {
-        const storeList = await store.getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId, page, pagesize);
+        const storeList = await StoreStorage.getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId, start, pageSize);
         res.render('consumer/storeList', { category, storeList, province, city });
       }
     } catch (err) {
