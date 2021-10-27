@@ -14,7 +14,13 @@ class ReviewStorage {
       , a.imageUrl as reviewImage
       , a.score as reviewScore
       , a.contents as reviewContents
-      , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
+      , date_format(a.createdAt, "%Y-%m-%d %H:%i") as 'createdAt(review)'
+      , e.id as replyId
+      , e.storeId as storeId
+      , f.storeName as storeName
+      , f.imageUrl as storeImage
+      , e.contents as replyContents
+      , date_format(e.createdAt, "%Y-%m-%d %H:%i") as 'createdAt(reply)'
 from Review a
 left join ( select id, name
           from User) as b
@@ -25,30 +31,15 @@ left join ( select id, productId
 left join ( select id, name
           from Product) as d
           on c.productId = d.id
+left join ( select id, storeId, reviewId, contents, createdAt
+          from ReviewReply ) as e
+          on a.id = e.reviewId
+left join ( select id, storeName, imageUrl
+          from Store ) as f
+          on e.storeId = f.id
 where a.storeId = ? and a.status = 'ACTIVE'
 order by a.createdAt desc limit ?, ?;`;
       db.query(query, [storeId, start, pageSize], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data);
-      });
-    });
-  }
-  static getReviewReply(reviewId) {
-    // 승환: 삭제
-    return new Promise((resolve, reject) => {
-      const query = `select a.id as replyId
-      , a.storeId as storeId
-      , b.storeName as storeName
-      , b.imageUrl as storeImage
-      , a.contents as replyContents
-      , date_format(a.createdAt, "%Y-%m-%d %H:%i") as createdAt
-from ReviewReply a
-left join ( select id, storeName, imageUrl
-          from Store ) as b
-          on a.storeId = b.id
-where a.reviewId = ? and a.status = 'ACTIVE'
-order by a.createdAt asc;`;
-      db.query(query, [reviewId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });

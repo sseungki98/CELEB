@@ -32,6 +32,15 @@ class ProductStorage {
       });
     });
   }
+  static getProductReservationDateByProductId(storeId) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT oc.id,oc.orderDate FROM OrderCalendar oc JOIN Store s ON s.id=oc.storeId WHERE s.limit=oc.orderCount and s.id=?;`;
+      db.query(query, [storeId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
 }
 
 module.exports = ProductStorage;

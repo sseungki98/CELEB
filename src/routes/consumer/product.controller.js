@@ -19,6 +19,15 @@ const output = {
       res.render('common/500error', { err, layout: false });
     }
   },
+  storeReservationDate: async (req, res) => {
+    try {
+      if (!req.params.storeId) return res.render('common/500error', { storeId: false });
+      const productReservationDateInfo = await ProductStorage.getProductReservationDateByProductId(req.params.storeId);
+      res.render('consumer/reservationDate', { productReservationDateInfo });
+    } catch (err) {
+      res.render('common/500error', { err, layout: false });
+    }
+  },
 };
 
 const process = {};
