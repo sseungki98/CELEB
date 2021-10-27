@@ -4,6 +4,8 @@ const db = require('../../../config/database');
 
 class InquiryStorage {
   static getInquiryListByStoreId(storeId) {
+    // 승환: 유저 네임
+    //TODO: 이미지 보류
     return new Promise((resolve, reject) => {
       const query = `select a.storeId as storeId
       , a.storeName as storeName
@@ -20,9 +22,9 @@ where rowNum = 1;`;
       });
     });
   }
-  static getInquiryByUserId(userId, storeId) {
+  static getInquiryDetailByUserId(userId, storeId) {
     return new Promise((resolve, reject) => {
-      const query = `select a.id as id
+      const query = `select a.id as inquiryContentId
           , a.type as type
           , case when a.type='OUTGOING' then b.id else c.id end as senderId
           , case when a.type='OUTGOING' then b.storeName else c.name end as senderName
@@ -44,6 +46,7 @@ where rowNum = 1;`;
     });
   }
   static postInquiry(storeId, userId, contents) {
+    // TODO: success 반환 통일
     return new Promise((resolve, reject) => {
       const query = 'INSERT INTO Inquiry(storeId, userId, contents, type) VALUES(?,?,?,"OUTGOING");';
       db.query(query, [storeId, userId, contents], (err, data) => {

@@ -22,13 +22,11 @@ router.post('/logout', hostController.process.logout); //스토어 로그아웃
 router.post('/register/licenseNum', storeController.process.licenseNum); //사업자 등록번호 조회
 router.post('/store/storePage', upload.single('uploadImage'), storeController.process.storePage); //스토어 상세정보 수정
 //Order Info Router
-router.patch('/order-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)
-router.get('/total-order', orderController.output.order); //주문 내역 리스트 조회 → pagenation
-router.get('/order/:orderId', orderController.output.orderDetail); //주문 상세 확인 (옵션, 도안, 요구사항)
+router.patch('/order/:orderId/update-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)
+router.get('/order-list', orderController.output.order); //주문 내역 리스트 조회 → pagenation
 //Review Info Router
 router.get('/review', reviewController.output.review); //스토어 리뷰 조회
-router.get('/review/reply', reviewController.output.reviewReply); //스토어 리뷰 답변 조회
-router.post('/review/reply', reviewController.process.reviewReply); //스토어 리뷰 답글 작성
+router.post('/review/:reviewId/reply', reviewController.process.reviewReply); //스토어 리뷰 답글 작성
 //Product Info Router
 router.get('/store/product', productController.output.productList); //내가 등록한 상품 리스트 조회
 router.get('/store/product/productDetail', productController.output.productDetail); //등록 상품 자세히 조회
@@ -51,6 +49,6 @@ router.patch(
 router.post('/store/product/productDetail', productController.process.deleteProduct); //상품 삭제하기
 //Inquiry Info Router
 router.get('/inquiry', inquiryController.output.inquiry); //스토어 문의 목록 조회
-router.get('/inquiry/:userId', inquiryController.output.inquiryDetail); //사용자 문의 내용
-router.post('/inquiry', inquiryController.process.inquiry); //문의 답변 작성
+router.get('/inquiry/user/:userId', inquiryController.output.inquiryDetail); //사용자 문의 내용
+router.post('/inquiry/user/:userId', inquiryController.process.inquiry); //문의 답변 작성
 module.exports = router;

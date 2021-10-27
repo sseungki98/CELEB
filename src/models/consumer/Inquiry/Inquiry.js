@@ -5,9 +5,9 @@ class Inquiry {
   constructor(body) {
     this.body = body;
   }
-  async inquiry(id, storeId, productId, type, contents) {
+  async inquiry(id, storeId, type, contents) {
     try {
-      await InquiryStorage.createInquiry(id, storeId, productId, type, contents);
+      await InquiryStorage.createInquiry(id, storeId, type, contents);
       return { success: true, message: '문의 게시가 완료되었습니다. ' };
     } catch (err) {
       console.log(err);
