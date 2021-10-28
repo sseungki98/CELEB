@@ -11,7 +11,7 @@ const output = {
       const storeReviewInfo = await ReviewStorage.getStoreReviewCountByStoreId(storeId);
       const review = await ReviewStorage.getReviewByStoreId(storeId);
       storeReviewInfo.push(review);
-      res.render('consumer/storesReview', { storeReviewInfo });
+      res.render('consumer/storeReview', { storeReviewInfo });
     } catch (err) {
       res.render('common/500error', { err, layout: false });
     }

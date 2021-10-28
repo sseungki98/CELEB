@@ -1,0 +1,92 @@
+<div class="container" style="margin-left: 10%; margin-top: 5%">
+  <div class="row mb-3 gx-5" style="flex-wrap: nowrap">
+    <div class="col-md-6 mr-3 pt-3 rounded" style="background: white">
+      <h3>제품순위</h3>
+      <ul class="pl-3">
+        <li>1위 :</li>
+        <li>2위 :</li>
+        <li>3위 :</li>
+      </ul>
+    </div>
+    <div class="col-md-6 pt-3 rounded" style="background: white">
+      <h3>최근 주문건</h3>
+      <ul class="pl-3">
+        <li>주문1 <a class="fas fa-arrow-right text-right" href="#"></a></li>
+        <li>주문2 <a class="fas fa-arrow-right text-right" href="#"></a></li>
+        <li>주문3 <a class="fas fa-arrow-right text-right" href="#"></a></li>
+        <li>주문4 <a class="fas fa-arrow-right text-right" href="#"></a></li>
+        <li>주문5 <a class="fas fa-arrow-right text-right" href="#"></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row" style="flex-wrap: nowrap">
+    <div class="col-md-6 mr-3 pt-3 rounded" style="background: white">
+      <h3>최근 6일 주문 수</h3>
+      <canvas id="barChart"></canvas>
+      <script>
+        //bar
+        var ctxB = document.getElementById('barChart').getContext('2d');
+        let today = new Date();
+
+        let year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        let date = today.getDate();
+        var myBarChart = new Chart(ctxB, {
+          type: 'bar',
+          data: {
+            labels: [
+              year + '/' + month + '/' + parseInt(date - 5),
+              year + '/' + month + '/' + parseInt(date - 4),
+              year + '/' + month + '/' + parseInt(date - 3),
+              year + '/' + month + '/' + parseInt(date - 2),
+              year + '/' + month + '/' + parseInt(date - 1),
+              year + '/' + month + '/' + date,
+            ],
+            datasets: [
+              {
+                label: '판매수',
+                data: [5, 3, 3, 5, 2, 1],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                },
+              ],
+            },
+          },
+        });
+      </script>
+    </div>
+    <div class="col-md-6 pt-3 rounded" style="background: white">
+      <h3>통계</h3>
+      <ul class="pl-3">
+        <li>이번달 주문 수 :</li>
+        <li>이번달 정산량 :</li>
+        <li>이번달 문의 수 :</li>
+      </ul>
+    </div>
+  </div>
+</div>
