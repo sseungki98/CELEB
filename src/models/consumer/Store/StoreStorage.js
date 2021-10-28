@@ -68,17 +68,8 @@ class StoreStorage {
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
       ORDER BY s.createdAt DESC
-      limit ?,?;`;
+      limit ?,?;`; // 성준: 정렬
       db.query(query, [categoryId, provinceId, cityId, start, pagesize], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data);
-      });
-    });
-  }
-  static getProductReservationDateByProductId(storeId) {
-    return new Promise((resolve, reject) => {
-      const query = `SELECT oc.id,oc.orderDate FROM OrderCalendar oc JOIN Store s ON s.id=oc.storeId WHERE s.limit=oc.orderCount and s.id=?;`;
-      db.query(query, [storeId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });

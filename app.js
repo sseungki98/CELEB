@@ -30,7 +30,7 @@ app.use(
   expressSession({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: new FileStore({ logFn: function () {} }),
   }),
 );

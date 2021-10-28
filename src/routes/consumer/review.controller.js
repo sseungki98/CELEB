@@ -4,11 +4,14 @@ const Review = require('../../models/consumer/Review/Review');
 const ReviewStorage = require('../../models/consumer/Review/ReviewStorage');
 
 const output = {
+  //승환: 점수 별 리뷰 count done
   storeReview: async (req, res) => {
     const storeId = req.params.storeId;
     try {
+      const storeReviewInfo = await ReviewStorage.getStoreReviewCountByStoreId(storeId);
       const review = await ReviewStorage.getReviewByStoreId(storeId);
-      res.render('consumer/storeReview', { review });
+      storeReviewInfo.push(review);
+      res.render('consumer/storesReview', { storeReviewInfo });
     } catch (err) {
       res.render('common/500error', { err, layout: false });
     }

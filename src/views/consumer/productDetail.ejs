@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="/css/productDetail.css" />
-
+<script src="/js/consumer/order.js" defer></script>
 <section class="py-5">
   <div class="container px-4 px-lg-5 my-5 rounded" style="background-color: white">
     <div class="row gx-4 gx-lg-5 align-items-top">
       <h2 id="productName">
         <a href="/store/1"><i class="far fa-arrow-alt-circle-left"></i></a><b><%= product.productName %></b>
+        <span id="productPrice">기본 <%= product.price %>원</span>
       </h2>
       <div class="col-md-8">
         <!--이미지-->
@@ -25,6 +26,7 @@
             <% } %>
           </div>
           <script type="text/javascript">
+            // 승현: 이거 뭐임?
             $('.slide-image').slick({
               infinite: true,
               slidesToShow: 3,
@@ -36,36 +38,36 @@
       <div class="col-md-4">
         <% for (let key in productOption) { %>
         <div class="option-section">
-          <h3><%= productOption[key][0].categoryName %></h3>
+          <h3 class="categoryName"><%= productOption[key][0].categoryName %></h3>
           <% for ( let value of productOption[key] ) { %> <% if (value.type === 'CHECKBOX') { %>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="checkbox2" />
-            <label class="form-check-label" for="checkbox2"> <%= value.optionName %> </label>
-            <span class="text-end">+<%= value.price %>원</span>
+            <input class="form-check-input checkbox" type="checkbox" name="<%= value.optionId %>" id="checkbox<%= value.optionId %>" />
+            <label class="form-check-label" id="label" for="checkbox<%= value.optionId %>"> <%= value.optionName %> </label>
+            <span class="text-end" id="price">+<%= value.price %>원</span>
           </div>
           <% } else if (value.type === 'RADIO') { %>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-            <label class="form-check-label" for="flexRadioDefault1"> <%= value.optionName %> </label>
-            <span class="text-end">+<%= value.price %>원</span>
+            <input class="form-check-input radio" type="radio" name="radio<%= value.categoryId %>" id="radio<%= value.optionId %>" />
+            <label class="form-check-label" id="label" for="radio<%= value.optionId %>"> <%= value.optionName %> </label>
+            <span class="text-end" id="price">+<%= value.price %>원</span>
           </div>
           <% } else if (value.type === 'TEXT') { %>
           <div class="input-group">
-            <span class="input-group-text"><%= value.optionName %></span>
-            <input class="form-control" aria-label="With textarea" />
-            <span class="text-end">+<%= value.price %>원</span>
+            <span class="input-group-text" id="label"><%= value.optionName %></span>
+            <input type="text" class="form-control text" aria-label="With textarea" />
+            <span class="text-end" id="price">+<%= value.price %>원</span>
           </div>
           <% } else if (value.type === 'COLOR') { %>
           <div class="input-group">
-            <span class="input-group-text"><%= value.optionName %></span>
-            <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color" />
-            <span class="text-end">+<%= value.price %>원</span>
+            <span class="input-group-text" id="label"><%= value.optionName %></span>
+            <input type="color" class="form-control form-control-color text" id="exampleColorInput" title="Choose your color" />
+            <span class="text-end" id="price">+<%= value.price %>원</span>
           </div>
           <% } } %>
         </div>
         <% } %>
 
-        <div class="option-section">
+        <div class="addition-section">
           <h3>요청사항 및 도안 (선택)</h3>
           <div class="input-group">
             <span class="input-group-text">요청사항</span>
@@ -79,15 +81,19 @@
         <div>
           <h2>픽업 날짜 설정</h2>
           <input id="datepicker" class="d-grid mx-auto" />
-          <script>
+          <script type="text/javascript">
+            let disableDates = ['2021-10-29', '2021-10-30']; //TODO: 픽업 불가일 mapping
             $('#datepicker').datepicker({
               uiLibrary: 'bootstrap4',
-              disabled: ['2021-10-10'],
+              format: 'yyyy-mm-dd',
+              minDate: new Date(),
+              disableDates: disableDates,
             });
           </script>
+          <span>* 선택되지 않는 날짜는 주문 마감을 의미합니다.</span>
         </div>
         <div class="d-grid mx-auto" style="margin-top: 74%; margin-bottom: 5%">
-          <button class="btn btn-outline-success" type="submit" value="Submit">주문하기</button>
+          <button class="btn btn-outline-success" id="orderButton" type="submit" value="Submit">주문하기</button>
         </div>
       </div>
     </div>
