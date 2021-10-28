@@ -9,11 +9,11 @@ nav:last-child {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .container {
-  width: 1000px;
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  max-width:1230px;
 }
 .store {
   width: 300px;
@@ -67,4 +67,8 @@ ul {
 label.rate-order,
 .sell-order {
   cursor: pointer;
+}
+
+.navbar-nav {
+  flex-wrap:wrap;
 }
