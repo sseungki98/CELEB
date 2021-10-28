@@ -1,0 +1,25 @@
+<div class="row gx-4 gx-lg-5">
+    <% for (let i = 0; i < product.length; i++) { %>
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title text-center"><%= product[i].name %></h2>
+          <img class="card-img" src="<%= product[i].image %>" />
+        </div>
+        <div class="card-footer">
+          <div class="card-text">
+            <ul>
+              <li>가격 : <%= product[i].price %>~</li>
+              <li>소개 : <%= product[i].info %></li>
+            </ul>
+          </div>
+          <a
+            class="btn d-grid mx-auto text-center btn-primary btn-sm"
+            href="/store/<%= storeDetail.storeId %>/product/<%= product[i].productId %>"
+            >수정하기</a
+          >
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>

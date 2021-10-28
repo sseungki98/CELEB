@@ -1,1 +1,84 @@
 <link rel="stylesheet" href="/css/registProduct.css">
+
+<div class="container">
+    <div class="row">
+      <div class="col md-5">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">상품명</span>
+          <input type="text" class="form-control" placeholder="상품명을 입력해주세요." aria-label="Username" aria-describedby="basic-addon1">
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">대표사진</label>
+            <input type="file" class="form-control" id="inputGroupFile01">
+          </div>
+          <div class="input-group">
+            <span class="input-group-text">주문시 유의사항</span>
+            <textarea class="form-control" aria-label="With textarea" placeholder="주문시 유의사항을 입력해주세요."></textarea>
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">기본가격</span>
+            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-text">원</span>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">상세이미지1</label>
+            <input type="file" class="form-control" id="inputGroupFile01">
+          </div><div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">상세이미지2</label>
+            <input type="file" class="form-control" id="inputGroupFile01">
+          </div><div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">상세이미지3</label>
+            <input type="file" class="form-control" id="inputGroupFile01">
+          </div>
+        </div>
+      </div>
+      <div class="col md-7">
+        <h1>카테고리 설정</h1>
+        <hr>
+          <button class="btn btn-info" onclick="add_category()">카테고리 생성</button>
+          <button class="btn btn-warning" onclick="add_textform()">텍스트폼 추가</button>
+          <button class="btn btn-primary">체크박스 추가</button>
+          <br>
+          <button class="btn btn-success">라디오(택1) 추가</button>
+          <button class="btn btn-danger">색상선택폼 추가</button>
+        <hr>
+
+        <div id="makecategory" style="display:none">
+          <div class="input-group mb-3">
+            <i class="fas fa-circle" style="color:#0266b3"></i>
+
+            <span class="input-group-text" id="basic-addon1">카테고리 이름 입력</span>
+            <input type="text" class="form-control" placeholder="카테고리 이름을 입력하세요" aria-label="Username" aria-describedby="basic-addon1">
+            <button class="btn btn-secondary" onclick="remove_item(this)">제거하기</button>
+          </div>
+        </div>
+        <div  id="addtextform" style="display:none">
+          <div class="input-group mb-3">
+            <i class="fas fa-circle" style="color:yellow"></i>
+            <span class="input-group-text" id="basic-addon1">폼 이름</span>
+            <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1">
+            <span class="input-group-text" id="basic-addon2">추가금액</span>
+            <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2">
+            <button class="btn btn-secondary" onclick="remove_item(this)">제거하기</button>
+
+          </div>
+        </div>
+
+        <form id="field"></form>
+        <script>
+          function add_category(){
+            var div = document.createElement('div');
+            div.innerHTML = document.getElementById('makecategory').innerHTML;
+            document.getElementById('field').appendChild(div);
+          }
+
+          function add_textform() {
+            var div=document.createElement('div');
+            div.innerHTML = document.getElementById('addtextform').innerHTML;
+            document.getElementById('field').appendChild(div);
+          }
+
+          function remove_item(obj){
+            document.getElementById('field').removeChild(obj.parentNode);
+          }
+          </script>
