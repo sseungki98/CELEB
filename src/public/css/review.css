@@ -5,7 +5,7 @@
   z-index: 10;
   width: 60px;
   height: 60px;
-  background-image: url('/img/category/starrate.png');
+  background-image: url('/img/starrate.png');
   background-repeat: no-repeat;
   background-size: 60px 60px;
   cursor: pointer;
@@ -40,22 +40,6 @@
   vertical-align: top;
   display: none;
 }
-.rating .rate_radio + label {
-  position: relative;
-  display: inline-block;
-  margin-left: -4px;
-  z-index: 10;
-  width: 60px;
-  height: 60px;
-  background-image: url('./img/starrate.png');
-  background-repeat: no-repeat;
-  background-size: 60px 60px;
-  cursor: pointer;
-  background-color: #f0f0f0;
-}
-.rating .rate_radio:checked + label {
-  background-color: #ff8;
-}
 
 .warning_msg {
   display: none;
@@ -68,4 +52,8 @@
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid #e0e0e0;
+}
+
+.rating1 {
+  height:60px;
 }
