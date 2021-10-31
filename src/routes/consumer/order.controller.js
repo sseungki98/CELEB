@@ -51,7 +51,7 @@ const process = {
     //TODO: fix here (no cart)
     if (req.session.user) {
       const id = req.session.user.id;
-      let { cartId, productId, option, location, totalPrice } = req.body;
+      let { cartId, productId, option, location, totalPrice, requirements, designUrl, selectedDate } = req.body;
       const order = new Order(req.body);
       if (cartId) {
         const getCart = await order.getCartDetailByCartId(cartId);
@@ -61,8 +61,9 @@ const process = {
       } else {
         if (!productId) return res.json({ success: false, message: '상품 id를 입력해주세요. ' });
         if (!totalPrice) return res.json({ success: false, message: '금액을 입력해주세요.' });
+        if (!selectedDate) return res.json({ success: false, message: '수령 날짜를 입력해주세요. ' });
       }
-      const response = await order.order(id, productId, option, location, totalPrice);
+      const response = await order.order(id, productId, option, location, totalPrice, requirements, designUrl, selectedDate);
       return res.json(response);
     } else {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });

@@ -34,7 +34,8 @@ class OrderStorage {
   }
   static postOrder(id, productId, option, location, totalPrice) {
     return new Promise((resolve, reject) => {
-      const query = 'insert into Orders(userId, productId, options, location, totalPrice) values(?,?,?,?,?);';
+      const query =
+        'insert into Orders(userId, productId, options, location, totalPrice, requirements, designUrl, selectedDate) values(?,?,?,?,?,?,?,?);';
       db.query(query, [id, productId, option, location, totalPrice], (err, data) => {
         if (err) reject(`${err}`);
         resolve({ success: true });
