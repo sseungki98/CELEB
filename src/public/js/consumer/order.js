@@ -2,7 +2,10 @@
 
 const optionSection = document.getElementsByClassName('option-section'),
   orderButton = document.getElementById('orderButton'),
-  productPrice = document.getElementById('productPrice').innerHTML;
+  productPrice = document.getElementById('productPrice').innerHTML,
+  requirements = document.getElementById('requirements'),
+  designUrl = document.getElementById('designUrl'),
+  selectedDate = document.getElementById('datepicker');
 
 orderButton.addEventListener('click', order);
 let options = '';
@@ -42,4 +45,26 @@ function order() {
       }
     }
   });
+  const req = {
+    option: options,
+    totalPrice: total,
+    requirements: requirements.value,
+    designUrl: designUrl.value,
+    selectedDate: selectedDate.value,
+  };
+  fetch(window.location.href + '/order', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(req),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.success) {
+        location.href = '/order/' + res.orderId;
+      } else {
+        alert(res.message);
+      }
+    });
 }

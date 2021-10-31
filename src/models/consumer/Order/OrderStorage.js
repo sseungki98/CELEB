@@ -36,9 +36,10 @@ class OrderStorage {
     return new Promise((resolve, reject) => {
       const query =
         'insert into Orders(userId, productId, options, totalPrice, requirements, designUrl, selectedDate) values(?,?,?,?,?,?,?);';
-      db.query(query, [id, productId, option, totalPrice, requirements, designUrl, selectedDate], (err, data) => {
+      db.query(query, [userId, productId, option, totalPrice, requirements, designUrl, selectedDate], (err, data) => {
         if (err) reject(`${err}`);
-        resolve({ success: true });
+        console.log(data);
+        resolve(data);
       });
     });
   }

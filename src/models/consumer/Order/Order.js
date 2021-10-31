@@ -26,7 +26,7 @@ class Order {
   async order(userId, productId, option, totalPrice, requirements, designUrl, selectedDate) {
     try {
       const postOrder = await OrderStorage.postOrder(userId, productId, option, totalPrice, requirements, designUrl, selectedDate);
-      return { success: true, message: '주문이 완료되었습니다. ' };
+      return { success: true, orderId: postOrder.insertId };
     } catch (err) {
       console.log(err);
       return { success: false, message: '주문에 실패하였습니다.' };
