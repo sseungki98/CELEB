@@ -23,9 +23,9 @@ class Order {
       return { success: false, message: '장바구니 정보 조회에 실패하였습니다.' };
     }
   }
-  async order(id, productId, option, location, totalPrice, requirements, designUrl, selectedDate) {
+  async order(userId, productId, option, totalPrice, requirements, designUrl, selectedDate) {
     try {
-      const postOrder = await OrderStorage.postOrder(id, productId, option, location, totalPrice, requirements, designUrl, selectedDate);
+      const postOrder = await OrderStorage.postOrder(userId, productId, option, totalPrice, requirements, designUrl, selectedDate);
       return { success: true, message: '주문이 완료되었습니다. ' };
     } catch (err) {
       console.log(err);
