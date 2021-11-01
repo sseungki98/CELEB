@@ -12,9 +12,9 @@ const productController = require('./product.controller');
 
 //Page Info Router
 router.get('/', storeController.output.popularStore); //메인화면 페이지 요청
+//User Info Router
 router.get('/login', userController.output.login); //로그인 페이지 요청
 router.get('/register', userController.output.register); //회원가입 페이지 요청
-//User Info Router
 router.post('/login', userController.process.login); //로그인
 router.post('/logout', userController.process.logout); //로그아웃
 router.post('/register', userController.process.register); //회원가입
@@ -32,11 +32,10 @@ router.get('/inquiry', inquiryController.output.inquiryList); //나의 문의 �
 //Order Info Router
 router.post('/cart', orderController.process.cart); //장바구니 담기
 router.get('/cart', orderController.output.cart); //장바구니 조회
-router.post('/order', orderController.process.order); //주문하기
+router.post('/store/:storeId/product/:productId/order', orderController.process.order); //주문하기
 router.get('/order/:orderId', orderController.output.order); //주문 확인 조회 → 주문 완료 직후
 //Product Info Router
 router.get('/store/:storeId/product/:productId', productController.output.productDetail); // 상품 디테일 조회
-router.get('/store/:storeId/product/reservation', productController.output.storeReservationDate); //스토어 예약 불가능일 조회
 //Review Info Router
 router.get('/mypage/order/:orderId/review', reviewController.output.review); // 리뷰 작성 페이지 가져오기
 router.post('/mypage/order/:orderId/review', reviewController.process.review); //스토어 리뷰 작성하기

@@ -6,7 +6,11 @@ const UserStorage = require('../../models/consumer/User/UserStorage');
 
 const output = {
   login: (req, res) => {
-    res.render('consumer/login');
+    if (req.session.user) {
+      res.send("<script>alert('이미 로그인되었습니다.'); location.href='/';</script>");
+    } else {
+      res.render('consumer/login');
+    }
   },
   register: (req, res) => {
     res.render('consumer/register');
@@ -26,7 +30,7 @@ const output = {
     }
   },
   personalInformation: async (req, res) => {
-    // 성준: 이게 뭐지
+    // TODO: 개인정보 변경
     if (req.session.user) {
       try {
         const userId = req.session.user.id;
@@ -53,7 +57,6 @@ const process = {
         name: response.name,
         authorized: true,
       };
-      req.session.save();
     }
     return res.json(response);
   },
@@ -68,11 +71,11 @@ const process = {
     }
   },
   register: async (req, res) => {
-    if (!req.body.email) return res.json({ success: false, message: '이메일을 입력해주세요.' });
-    if (!req.body.password) return res.json({ success: false, message: '비밀번호를 입력해주세요.' });
-    if (!req.body.name) return res.json({ success: false, message: '이름을 입력해주세요.' });
-    if (!req.body.phoneNum) return res.json({ success: false, message: '핸드폰 번호를 입력해주세요.' });
-    if (!req.body.address) return res.json({ success: false, message: '주소를 입력해주세요.' });
+    // if (!req.body.email) return res.json({ success: false, message: '이메일을 입력해주세요.' });
+    // if (!req.body.password) return res.json({ success: false, message: '비밀번호를 입력해주세요.' });
+    // if (!req.body.name) return res.json({ success: false, message: '이름을 입력해주세요.' });
+    // if (!req.body.phoneNum) return res.json({ success: false, message: '핸드폰 번호를 입력해주세요.' });
+    // if (!req.body.address) return res.json({ success: false, message: '주소를 입력해주세요.' });
     const user = new User(req.body);
     const response = await user.register();
     return res.json(response);

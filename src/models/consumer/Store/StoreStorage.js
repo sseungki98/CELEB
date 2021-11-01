@@ -68,7 +68,7 @@ class StoreStorage {
                    left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
       WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
       ORDER BY star DESC
-      limit ?,?;`; // 성준: 정렬
+      limit ?,?;`; // TODO: 판매순
       db.query(query, [categoryId, provinceId, cityId, start, pagesize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
