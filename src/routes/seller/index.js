@@ -12,14 +12,15 @@ const productController = require('./product.controller');
 const inquiryController = require('./inquiry.controller');
 
 //Page Info Router
-router.get('/register', storeController.output.register); //스토어 회원가입 페이지
-router.get('/register/licenseNum', storeController.output.licenseNum); //사업자 등록번호 조회 페이지
+router.get('/', storeController.output.main); //스토어 메인화면 페이지 요청
+router.get('/register', hostController.output.register); //스토어 회원가입 페이지
+router.get('/register/licenseNum', hostController.output.licenseNum); //사업자 등록번호 조회 페이지
 router.get('/store/storePage', storeController.output.storePage); //내 스토어 정보 조회 페이지
 //Store Host Info Router
 router.post('/register', upload.single('uploadImage'), hostController.process.register); //회원가입
 router.post('/login', hostController.process.login); //스토어 로그인
 router.post('/logout', hostController.process.logout); //스토어 로그아웃
-router.post('/register/licenseNum', storeController.process.licenseNum); //사업자 등록번호 조회
+router.post('/register/licenseNum', hostController.process.licenseNum); //사업자 등록번호 조회
 router.post('/store/storePage', upload.single('uploadImage'), storeController.process.storePage); //스토어 상세정보 수정
 //Order Info Router
 router.patch('/order/:orderId/update-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)

@@ -94,5 +94,21 @@ class ProductStorage {
       });
     });
   }
+  static getProductRankByStoreId(storeId) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      SELECT pd.id as productId, pd.name as productName, count(pd.id) as orderCnt
+      FROM Product pd join Orders od on od.productId = pd.id
+      WHERE pd.storeId = ?
+      GROUP BY pd.id
+      ORDER BY orderCnt DESC
+      limit 5;
+      `;
+      db.query(query, storeId, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
 }
 module.exports = ProductStorage;

@@ -23,6 +23,35 @@ class OrderStorage {
       });
     });
   }
+  static getRecentOrderProductByStoreId(id) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      SELECT od.id as orderId,pd.name as productName,od.selectedDate,od.orderStatusId
+      FROM Orders od join Product pd on pd.id = od.productId
+      WHERE pd.storeId = ?
+      ORDER BY od.createdAt DESC
+      limit 5;
+      `;
+      db.query(query, id, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static getRecentOrderCountByStoreId(id) {
+    return new Promise((resolve, reject) => {
+      const query = `
+      SELECT date_format(od.createdAt,'%Y-%m-%d') as 'date', count('date') as 'orderCnt'
+      FROM Orders od JOIN Product pd ON od.productId=pd.id
+      WHERE od.createdAt BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK) AND NOW() AND pd.storeId=?
+      GROUP BY date_format(od.createdAt,'%Y-%m-%d');
+      `;
+      db.query(query, id, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
 }
 
 module.exports = OrderStorage;
