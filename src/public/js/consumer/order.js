@@ -49,7 +49,7 @@ function order() {
     option: options,
     totalPrice: total,
     requirements: requirements.value,
-    designUrl: designUrl.value,
+    designUrl: designUrl.files[0],
     selectedDate: selectedDate.value,
   };
   fetch(window.location.href + '/order', {
