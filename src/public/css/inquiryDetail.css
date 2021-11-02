@@ -59,7 +59,9 @@
   color: gray;
   cursor: pointer;
 }
-
+.chat-ul {
+  padding-left: 0;
+}
 .chat-ul li {
   list-style-type: none;
 }
@@ -96,7 +98,7 @@
   color: #e9724c;
 }
 .you {
-  color:#a8aab1;
+  color: #a8aab1;
 }
 
 h1,
@@ -106,4 +108,11 @@ h4,
 h5,
 h6 {
   color: #003366;
+}
+#textarea-field {
+  background-color: white;
+}
+#button-addon2 {
+  background-color: #ffd5d5;
+  color: grey;
 }
