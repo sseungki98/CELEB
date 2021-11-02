@@ -12,9 +12,9 @@ const productController = require('./product.controller');
 const inquiryController = require('./inquiry.controller');
 
 //Page Info Router
-router.get('/', storeController.output.main);
+router.get('/', storeController.output.main); //판매자 페이지 메인화면
 //Host Info Router
-router.get('/login', hostController.output.login);
+router.get('/login', hostController.output.login); //로그인 페이지
 router.get('/register', storeController.output.register); //스토어 회원가입 페이지
 router.get('/register/licenseNum', storeController.output.licenseNum); //사업자 등록번호 조회 페이지
 router.post('/register', upload.single('uploadImage'), hostController.process.register); //회원가입

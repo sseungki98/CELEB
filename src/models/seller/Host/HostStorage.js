@@ -12,6 +12,15 @@ class HostStorage {
       });
     });
   }
+  static getLicenseNumberDuplication(rgno) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT exists (SELECT id FROM Store WHERE licenseNum=? and status='ACTIVE') as exist;`;
+      db.query(query, [rgno], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
   static postStoreInfo(params) {
     return new Promise((resolve, reject) => {
       const query = `
