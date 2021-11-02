@@ -15,12 +15,11 @@ const inquiryController = require('./inquiry.controller');
 router.get('/', storeController.output.main); //판매자 페이지 메인화면
 //Host Info Router
 router.get('/login', hostController.output.login); //로그인 페이지
-router.get('/register', storeController.output.register); //스토어 회원가입 페이지
-router.get('/register/licenseNum', storeController.output.licenseNum); //사업자 등록번호 조회 페이지
+router.get('/register', hostController.output.register); //스토어 회원가입 페이지
 router.post('/register', upload.single('uploadImage'), hostController.process.register); //회원가입
 router.post('/login', hostController.process.login); //스토어 로그인
 router.post('/logout', hostController.process.logout); //스토어 로그아웃
-router.post('/register/licenseNum', storeController.process.licenseNum); //사업자 등록번호 조회
+router.post('/register/licenseNum', hostController.process.licenseNum); //사업자 등록번호 조회
 //Order Info Router
 router.patch('/order/:orderId/update-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)
 router.get('/order-list', orderController.output.order); //주문 내역 리스트 조회 → pagenation
