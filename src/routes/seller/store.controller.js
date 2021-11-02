@@ -15,7 +15,7 @@ const output = {
         const myStorePageDetail = await StoreStorage.getStoreDetailByStoreId(storeId);
         if (myStorePageDetail) {
           console.log(getStoreInfo);
-          res.render('/s/storePage', { myStorePage: myStorePageDetail });
+          res.render('seller/editStoreDetail', { myStorePage: myStorePageDetail });
         } else {
           res.render('common/500error', { success: false, message: '잘못된 접근입니다. ' });
         }
@@ -23,7 +23,7 @@ const output = {
         res.render('common/500error', { err });
       }
     } else {
-      res.render('/s/login', { success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+      res.render('seller/login', { success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
     }
   },
   main: async (req, res) => {
@@ -38,7 +38,7 @@ const output = {
         console.log(recentOrderProduct);
         console.log(recentOrderCount);
         console.log(monthStatistics);
-        res.render('seller/sellerMain', { productRank, recentOrderProduct, recentOrderCount, monthStatistics });
+        res.render('seller/storeMain', { productRank, recentOrderProduct, recentOrderCount, monthStatistics });
       } catch (err) {
         res.render('common/500error', { err });
       }
