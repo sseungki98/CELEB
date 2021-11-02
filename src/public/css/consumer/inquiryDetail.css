@@ -4,9 +4,12 @@
 *:after {
   box-sizing: border-box;
 }
+
 .chat .chat-history {
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;
+  height:80vh;
+  overflow:auto;
 }
 .chat .chat-history .message-data {
   margin-bottom: 15px;

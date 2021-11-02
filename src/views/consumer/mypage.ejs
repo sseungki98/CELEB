@@ -32,10 +32,10 @@
       <% for (let i=0; i < orderList.length; i++) { %>
       <tr>
         <th scope="row"><%= orderList[i].orderId %></th>
-        <td onclick="location.href='/store/<%= orderList[i].storeId %>'">
+        <td class="click" onclick="location.href='/store/<%= orderList[i].storeId %>'">
           <%= orderList[i].storeName %> <i class="fas fa-chevron-right"></i>
         </td>
-        <td onclick="location.href='/store/<%= orderList[i].storeId %>/product/<%= orderList[i].productId %>'">
+        <td class="click" onclick="location.href='/store/<%= orderList[i].storeId %>/product/<%= orderList[i].productId %>'">
           <%= orderList[i].productName %> <i class="fas fa-chevron-right"></i>
         </td>
         <td><%= orderList[i].totalPrice %></td>

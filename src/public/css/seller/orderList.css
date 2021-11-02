@@ -1,0 +1,11 @@
+.pagination {
+    padding-bottom: 2%;
+  }
+
+  .click {
+    padding:0;
+  }
+  .click:hover {
+    cursor:pointer;
+    color:gray;
+  }
