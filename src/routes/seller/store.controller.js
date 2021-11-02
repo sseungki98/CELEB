@@ -38,12 +38,12 @@ const output = {
         console.log(recentOrderProduct);
         console.log(recentOrderCount);
         console.log(monthStatistics);
-        res.render('/s/main', { productRank, recentOrderProduct, recentOrderCount, monthStatistics });
+        res.render('seller/sellerMain', { productRank, recentOrderProduct, recentOrderCount, monthStatistics });
       } catch (err) {
         res.render('common/500error', { err });
       }
     } else {
-      res.render('/s/login', { success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+      res.render('seller/login', { success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
     }
   },
 };
