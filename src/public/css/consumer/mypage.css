@@ -42,3 +42,11 @@ ul {
 .product-image {
   width: 100%;
 }
+
+.click {
+  padding:0;
+}
+.click:hover {
+  cursor:pointer;
+  color:gray;
+}
