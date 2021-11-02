@@ -63,6 +63,7 @@ const process = {
     return res.json(response);
   },
   licenseNum: async (req, res) => {
+    // 성준: validation 수정
     try {
       const reg_no = req.body.licenseNum;
       const rgno = reg_no.replace(/-/g, '');
@@ -81,6 +82,7 @@ const process = {
       if (ms == '등록되어 있지 않은 사업자등록번호 입니다. ')
         return res.json({ success: false, message: '국세청에 등록되지 않은 사업자등록번호입니다.' });
       const rgnoResult = await HostStorage.getLicenseNumberDuplication(rgno);
+
       if (rgnoResult.exist) return res.json({ success: false, message: '이미 등록된 사업자등록번호입니다.' });
       return res.json({ licenseNum: rgno, message: '사용 가능한 사업자등록번호입니다.' });
     } catch (err) {
