@@ -38,6 +38,7 @@ const output = {
 
 const process = {
   review: async (req, res) => {
+    // 승환:  validation 수정
     if (req.session.user) {
       const userId = req.session.user.id;
       const orderId = req.params.orderId;
