@@ -38,7 +38,7 @@ router.post(
     { name: 'productMain', maxCount: 1 },
     { name: 'productDetail', maxCount: 5 },
   ]),
-  productController.process.product,
+  productController.process.createProduct,
 ); //상품 등록하기 -> from 구조
 router.patch(
   '/store/product',
