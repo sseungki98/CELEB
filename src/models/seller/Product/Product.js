@@ -47,9 +47,9 @@ class Product {
   async updateProduct(storeId, mainUrl, detailUrl, productDetail) {
     try {
       const product = this.body;
-      const productName = product.productName ? product.productName : productDetail[0].name;
-      const info = product.info ? product.info : productDetail[0].info;
-      const price = product.productPrice ? product.productPrice : productDetail[0].price;
+      const productName = product.productName;
+      const info = product.info;
+      const price = product.productPrice;
       const mainParams = [productName, mainUrl, info, price, detailUrl, storeId, productDetail[0].productId];
       const updateProduct = await ProductStorage.updateProductByProductId(mainParams);
       console.log(updateProduct);
@@ -92,6 +92,16 @@ class Product {
     } catch (err) {
       console.log(err);
       return { success: false, message: '상품 수정에 실패하였습니다. ' };
+    }
+  }
+
+  async deleteProduct(storeId, productId) {
+    try {
+      const response = await ProductStorage.deleteProductByProductId(storeId, productId);
+      return res.json(response);
+    } catch (err) {
+      console.log(err);
+      return res.json({ success: false, message: '상품 삭제에 실패하였습니다.' });
     }
   }
 }

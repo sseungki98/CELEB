@@ -7,39 +7,44 @@ const ProductStorage = require('../../models/seller/Product/ProductStorage');
 const output = {
   productList: async (req, res) => {
     if (req.session.user) {
-      const id = req.session.user.id;
-      const productList = await ProductStorage.getProductListByStoreId(id);
-      res.render('/s/store/product', { productList: productList });
+      try {
+        const storeId = req.session.user.id;
+        const productList = await ProductStorage.getProductListByStoreId(storeId);
+        res.render('seller/productList', { productList });
+      } catch (err) {
+        res.render('common/500error', { err });
+      }
     } else {
-      res.render('/s/login', { success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+      res.render('seller/login');
     }
   },
   productDetail: async (req, res) => {
     if (req.session.user) {
-      const storeId = req.session.user.id;
-      const productId = req.body.productId;
-      const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
-      res.render('/s/store/product/productDetail', { productDetail: productDetail });
+      try {
+        const storeId = req.session.user.id;
+        const productId = req.params.productId;
+        const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
+        res.render('seller/editProduct', { productDetail });
+      } catch (err) {
+        res.render('common/500error', { err });
+      }
     } else {
-      res.render('/s/login', { success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+      res.render('seller/login');
     }
   },
 };
 const process = {
-  product: async (req, res) => {
-    if (req.session.user) {
-      const storeId = req.session.user.id;
-      const mainImage = req.files['productMain'][0].location;
-      let detailImage = req.files['productDetail'];
-      detailImage = detailImage.map(img => img.location);
-      detailImage = JSON.stringify(detailImage);
-      detailImage = detailImage.replace(/[\"\[\]]/g, '');
-      const product = new Product(req.body);
-      const response = await product.createProduct(storeId, mainImage, detailImage);
-      return res.json(response);
-    } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
-    }
+  createProduct: async (req, res) => {
+    // 성준
+    const storeId = req.session.user.id;
+    const mainImage = req.files['productMain'][0].location;
+    let detailImage = req.files['productDetail'];
+    detailImage = detailImage.map((img) => img.location);
+    detailImage = JSON.stringify(detailImage);
+    detailImage = detailImage.replace(/[\"\[\]]/g, '');
+    const product = new Product(req.body);
+    const response = await product.createProduct(storeId, mainImage, detailImage);
+    return res.json(response);
   },
   updateProduct: async (req, res) => {
     try {
@@ -54,7 +59,7 @@ const process = {
         if (req.files) {
           detailImage = req.files['productDetail'] ? req.files['productDetail'] : detailImage;
           if (detailImage != productDetail[0].detailImageUrl) {
-            detailImage = detailImage.map(img => img.location);
+            detailImage = detailImage.map((img) => img.location);
             detailImage = JSON.stringify(detailImage);
             detailImage = detailImage.replace(/[\"\[\]]/g, '');
           }
@@ -76,20 +81,11 @@ const process = {
     }
   },
   deleteProduct: async (req, res) => {
-    if (req.session.user) {
-      try {
-        const storeId = req.session.user.id;
-        const productId = req.body;
-        const response = await ProductStorage.deleteProductByProductId(storeId, productId);
-
-        return res.json(response);
-      } catch (err) {
-        console.log(err);
-        return res.json({ success: false, message: '상품 삭제에 실패하였습니다.' });
-      }
-    } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
-    }
+    const storeId = req.session.user.id;
+    const productId = req.params.productId;
+    const product = new Product();
+    const response = await product.deleteProduct(storeId, productId);
+    return res.json(response);
   },
 };
 
