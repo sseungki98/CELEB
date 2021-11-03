@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/consumer/storeReview.css" />
 <div class="container-fluid rate-status">
-  <span class="heading"><%= storeReview.storeName %></span>
+  <span class="heading"><b><%= storeReview.storeName %></b></span>
   <% for (let i = 1; i <= storeReview.averageScore; i++) { %>
   <span class="fa fa-star checked"></span>
   <% } for (let i = 0; i < 5 - storeReview.averageScore; i++) { %>
