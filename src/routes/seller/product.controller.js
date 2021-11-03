@@ -35,49 +35,45 @@ const output = {
 };
 const process = {
   createProduct: async (req, res) => {
-    // 성준
     const storeId = req.session.user.id;
     const mainImage = req.files['productMain'][0].location;
     let detailImage = req.files['productDetail'];
-    detailImage = detailImage.map((img) => img.location);
-    detailImage = JSON.stringify(detailImage);
-    detailImage = detailImage.replace(/[\"\[\]]/g, '');
+    if (detailImage) {
+      detailImage = detailImage.map(img => img.location);
+      detailImage = JSON.stringify(detailImage);
+      detailImage = detailImage.replace(/[\"\[\]]/g, '');
+    }
     const product = new Product(req.body);
     const response = await product.createProduct(storeId, mainImage, detailImage);
     return res.json(response);
   },
   updateProduct: async (req, res) => {
+    const storeId = req.session.user.id;
+    const productId = req.params.productId;
     try {
-      if (req.session.user) {
-        const storeId = req.session.user.id;
-        const productId = req.body.productId;
-        const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
-        console.log(req.files);
-        const main = productDetail[0].image;
-        let detailImage = productDetail[0].detailImageUrl;
-        const mainImage = req.files ? (req.files['productMain'] ? req.files['productMain'][0].location : main) : main;
-        if (req.files) {
-          detailImage = req.files['productDetail'] ? req.files['productDetail'] : detailImage;
-          if (detailImage != productDetail[0].detailImageUrl) {
-            detailImage = detailImage.map((img) => img.location);
-            detailImage = JSON.stringify(detailImage);
-            detailImage = detailImage.replace(/[\"\[\]]/g, '');
-          }
+      const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
+
+      const main = productDetail[0].image;
+      let detailImage = productDetail[0].detailImageUrl;
+      const mainImage = req.files ? (req.files['productMain'] ? req.files['productMain'][0].location : main) : main;
+      if (req.files) {
+        detailImage = req.files['productDetail'] ? req.files['productDetail'] : detailImage;
+        if (detailImage != productDetail[0].detailImageUrl) {
+          detailImage = detailImage.map(img => img.location);
+          detailImage = JSON.stringify(detailImage);
+          detailImage = detailImage.replace(/[\"\[\]]/g, '');
         }
-        const detailUrl = req.files
-          ? req.files['productDetail']
-            ? detailImage
-            : productDetail[0].detailImageUrl
-          : productDetail[0].detailImageUrl;
-        const product = new Product(req.body);
-        const response = await product.updateProduct(storeId, mainImage, detailUrl, productDetail);
-        return res.json(response);
-      } else {
-        return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
       }
+      const detailUrl = req.files
+        ? req.files['productDetail']
+          ? detailImage
+          : productDetail[0].detailImageUrl
+        : productDetail[0].detailImageUrl;
+      const product = new Product(req.body);
+      const response = await product.updateProduct(storeId, mainImage, detailUrl, productDetail);
+      return res.json(response);
     } catch (err) {
-      console.log(err);
-      return { success: false, message: 'DB Error ' };
+      return res.json({ success: false, message: err });
     }
   },
   deleteProduct: async (req, res) => {

@@ -41,14 +41,10 @@ const output = {
 
 const process = {
   storePage: async (req, res) => {
-    if (req.session.user) {
-      const storeId = req.session.user.id;
-      const store = new Store(req.body);
-      const response = await store.updateStoreDatail(storeId);
-      return res.json(response);
-    } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
-    }
+    const storeId = req.session.user.id;
+    const store = new Store(req.body);
+    const response = await store.updateStoreDetail(storeId);
+    return res.json(response);
   },
 };
 
