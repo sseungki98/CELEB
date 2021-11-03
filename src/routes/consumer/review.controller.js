@@ -8,10 +8,10 @@ const output = {
   storeReview: async (req, res) => {
     const storeId = req.params.storeId;
     try {
-      const storeReviewInfo = await ReviewStorage.getStoreReviewCountByStoreId(storeId);
-      const review = await ReviewStorage.getReviewByStoreId(storeId);
-      storeReviewInfo.push(review);
-      res.render('consumer/storeReview', { storeReviewInfo });
+      const storeReview = await ReviewStorage.getStoreReviewCountByStoreId(storeId);
+      const reviews = await ReviewStorage.getReviewByStoreId(storeId);
+      console.log(storeReview);
+      res.render('consumer/storeReview', { storeReview, reviews });
     } catch (err) {
       res.render('common/500error', { err, layout: false });
     }
