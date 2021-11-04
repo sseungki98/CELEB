@@ -5,10 +5,13 @@ class Inquiry {
   constructor(body) {
     this.body = body;
   }
-  async inquiry(id, storeId, contents) {
+  async inquiry(id, storeId) {
+    const contents = this.body.contents;
+    console.log(contents);
+    if (!contents) return res.json({ success: false, message: '문의 내용을 입력해주세요. ' });
     try {
       await InquiryStorage.createInquiry(id, storeId, contents);
-      return { success: true, message: '문의 게시가 완료되었습니다. ' };
+      return { success: true };
     } catch (err) {
       console.log(err);
       return { success: false, message: '문의 게시에 실패하였습니다. ' };

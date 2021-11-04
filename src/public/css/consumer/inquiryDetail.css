@@ -7,9 +7,8 @@
 
 .chat .chat-history {
   padding: 30px 30px 20px;
-  border-bottom: 2px solid white;
-  height:70vh;
-  overflow:auto;
+  height: 70vh;
+  overflow: auto;
 }
 .chat .chat-history .message-data {
   margin-bottom: 15px;
@@ -25,7 +24,6 @@
   font-size: 16px;
   border-radius: 5px;
   margin-bottom: 30px;
-  width: 90%;
   position: relative;
 }
 .chat .chat-history .message:after {
@@ -77,10 +75,6 @@
   text-align: right;
 }
 
-.float-right {
-  float: right;
-}
-
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -90,20 +84,11 @@
   height: 0;
 }
 .you {
-  color: #ccdbdc;
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  margin-right: 5px;
+  color: #a8aab1;
 }
-
 .me {
   color: #e9724c;
 }
-.you {
-  color: #a8aab1;
-}
-
 h1,
 h2,
 h3,
@@ -121,7 +106,7 @@ h6 {
 }
 
 .chat-history {
-  background-color: #ffe3eb;
+  background-color: whitesmoke;
 }
 
 .btn:hover {
