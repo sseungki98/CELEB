@@ -14,6 +14,7 @@ class ProductStorage {
     });
   }
   static getProductDetailByProductId(storeId, productId) {
+    // 쿼리 합치기 완료
     return new Promise((resolve, reject) => {
       const query = `SELECT pd.id as productId,pd.name,pd.imageUrl as image,pd.info,format(pd.price,0) as price,pd.detailImageUrl,date_format(pd.createdAt,'%Y-%m-%d') as createdAt,pdoc.name as categoryName,pdo.name as optionName,pdo.price as plusPrice,pdo.type
         FROM Product pd left join ProductOption pdo on pd.id=pdo.productId left join ProductOptionCategory pdoc on pdo.optionCategoryId=pdoc.id
@@ -90,7 +91,7 @@ class ProductStorage {
       UPDATE ProductOption SET status='DELETE' WHERE productId=?;`;
       db.query(query, productId, (err, data) => {
         if (err) reject(`${err}`);
-        resolve({ success: true });
+        resolve();
       });
     });
   }

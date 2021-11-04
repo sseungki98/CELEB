@@ -23,18 +23,19 @@ class ReviewStorage {
   }
   static getStoreReviewCountByStoreId(storeId) {
     return new Promise((resolve, reject) => {
-      const query = `select round(sum(score)/count(storeId), 1) as averageScore
-      , count(id) as reviewCount
-      , count(case when score=5 then 1 end) as count5
-      , count(case when (score>=4 and score<5) then 1 end) as count4
-      , count(case when (score>=3 and score<4) then 1 end) as count3
-      , count(case when (score=2 and score<3) then 1 end) as count2
-      , count(case when (score=1 and score<2) then 1 end) as count1
-from Review
-where storeId = ? and status = 'ACTIVE';`;
+      const query = `select s.storeName as storeName
+      , format(sum(r.score)/count(r.storeId), 1) as averageScore
+      , count(r.id) as reviewCount
+      , count(case when r.score=5 then 1 end) as count5
+      , count(case when r.score=4 then 1 end) as count4
+      , count(case when r.score=3 then 1 end) as count3
+      , count(case when r.score=2 then 1 end) as count2
+      , count(case when r.score=1 then 1 end) as count1
+from Review r join Store s on r.storeId=s.id
+where r.storeId = ? and r.status = 'ACTIVE';`;
       db.query(query, [storeId], (err, data) => {
         if (err) reject(`${err}`);
-        resolve(data);
+        resolve(data[0]);
       });
     });
   }
@@ -48,13 +49,12 @@ where storeId = ? and status = 'ACTIVE';`;
           , a.imageUrl as reviewImage
           , a.score as reviewScore
           , a.contents as reviewContents
-          , date_format(a.createdAt, "%Y-%m-%d %H:%i") as 'createdAt(review)'
+          , date_format(a.createdAt, "%Y-%m-%d") as reviewAt
           , e.id as replyId
       , e.storeId as storeId
       , f.storeName as storeName
-      , f.imageUrl as storeImage
       , e.contents as replyContents
-      , date_format(e.createdAt, "%Y-%m-%d %H:%i") as 'createdAt(reply)'
+      , date_format(e.createdAt, "%Y-%m-%d") as replyAt
   from Review a
   left join ( select id, name
               from User) as b

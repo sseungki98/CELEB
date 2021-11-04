@@ -15,13 +15,13 @@ class StoreStorage {
       });
     });
   }
-  static updateStorePageDetail(params) {
+  static updateStoreDetail(params) {
     return new Promise((resolve, reject) => {
       const query = `
       UPDATE Store SET storeName=?,phoneNum=?,info=?,openTime=?,provinceId=?,cityId=?,roadAddress=?,detailAddress=?,Store.limit=?,type=?,imageUrl=?,notice=? WHERE id=?;`;
       db.query(query, params, (err, data) => {
         if (err) reject(`${err}`);
-        resolve({ success: true, message: '스토어 수정이 완료되었습니다. ' });
+        resolve();
       });
     });
   }

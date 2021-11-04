@@ -31,24 +31,24 @@ router.get('/store/storePage', storeController.output.storePage); //내 스토�
 router.post('/store/storePage', upload.single('uploadImage'), storeController.process.storePage); //스토어 상세정보 수정
 //Product Info Router
 router.get('/store/product', productController.output.productList); //내가 등록한 상품 리스트 조회
-router.get('/store/product/productDetail', productController.output.productDetail); //등록 상품 자세히 조회
+router.get('/store/product/:productId/productDetail', productController.output.productDetail); //등록 상품 자세히 조회
 router.post(
   '/store/product',
   upload.fields([
     { name: 'productMain', maxCount: 1 },
     { name: 'productDetail', maxCount: 5 },
   ]),
-  productController.process.product,
+  productController.process.createProduct,
 ); //상품 등록하기 -> from 구조
 router.patch(
-  '/store/product',
+  '/store/product/:productId/productDetail',
   upload.fields([
     { name: 'productMain', maxCount: 1 },
     { name: 'productDetail', maxCount: 5 },
   ]),
   productController.process.updateProduct,
 ); //상품 수정하기
-router.post('/store/product/productDetail', productController.process.deleteProduct); //상품 삭제하기
+router.post('/store/product/:productId/productDetail', productController.process.deleteProduct); //상품 삭제하기
 //Inquiry Info Router
 router.get('/inquiry', inquiryController.output.inquiry); //스토어 문의 목록 조회
 router.get('/inquiry/user/:userId', inquiryController.output.inquiryDetail); //사용자 문의 내용
