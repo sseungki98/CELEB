@@ -36,15 +36,11 @@ const output = {
 
 const process = {
   inquiry: async (req, res) => {
-    if (req.session.user) {
-      const userId = req.session.user.id;
-      const storeId = req.params.storeId;
-      const inquiry = new Inquiry(req.body);
-      const response = await inquiry.inquiry(userId, storeId);
-      return res.json(response);
-    } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
-    }
+    const userId = req.session.user.id;
+    const storeId = req.params.storeId;
+    const inquiry = new Inquiry(req.body);
+    const response = await inquiry.inquiry(userId, storeId);
+    return res.json(response);
   },
 };
 
