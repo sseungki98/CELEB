@@ -10,6 +10,7 @@ const output = {
         const userId = req.session.user.id;
         const storeId = req.params.storeId;
         const inquiryDetail = await InquiryStorage.getInquiryDetailByStoreId(userId, storeId);
+        console.log(inquiryDetail);
         res.render('consumer/inquiryDetail', { inquiryDetail });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
@@ -36,13 +37,10 @@ const output = {
 const process = {
   inquiry: async (req, res) => {
     if (req.session.user) {
-      const id = req.session.user.id;
+      const userId = req.session.user.id;
       const storeId = req.params.storeId;
-      const { contents } = req.body;
-      if (!storeId) return res.json({ success: false, message: '스토어 id를 입력해주세요. ' });
-      if (!contents) return res.json({ success: false, message: '문의 내용을 입력해주세요. ' });
       const inquiry = new Inquiry(req.body);
-      const response = await inquiry.inquiry(id, storeId, contents);
+      const response = await inquiry.inquiry(userId, storeId);
       return res.json(response);
     } else {
       return res.json({ success: false, message: '로그인이 되어있지 않습니다.' });
