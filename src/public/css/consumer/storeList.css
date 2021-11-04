@@ -72,3 +72,8 @@ label.rate-order,
 .navbar-nav {
   flex-wrap:wrap;
 }
+.card-img {
+  width:100%;
+  height:80%;
+  object-fit:cover;
+}

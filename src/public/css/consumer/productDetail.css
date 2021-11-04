@@ -131,23 +131,6 @@ a:hover {
   color: #fcdeff;
 }
 
-/* .example-image {
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -ms-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
+.card-image-top {
+  height:100vw;
 }
-
-.example-image:hover {
-  -webkit-transform: scale(1.7);
-  -moz-transform: scale(1.7);
-  -ms-transform: scale(1.7);
-  -o-transform: scale(1.7);
-  transform: scale(1.7);
-} */

@@ -3,8 +3,8 @@ a {
 }
 
 .user-info-image {
-  width: 15vw;
-  height: 15vw;
+  width: 50%;
+  height:100%;
 }
 
 ul {
@@ -49,4 +49,8 @@ ul {
 .click:hover {
   cursor:pointer;
   color:gray;
+}
+
+#GoInquiryList {
+  margin-left: 3%;
 }

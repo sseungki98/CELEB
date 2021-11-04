@@ -12,7 +12,7 @@
   background-color: #f0f0f0;
 }
 .rating .rate_radio:checked + label {
-  background-color: #fffdb8;
+  background-color: #fff93c;
 }
 
 .wrap {

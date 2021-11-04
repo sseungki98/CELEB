@@ -126,3 +126,9 @@ span i {
 i .checked {
   color: #ffc02b;
 }
+
+.reviewImage {
+  width:5vw;
+  height:5vw;
+  display:inline-block;
+}

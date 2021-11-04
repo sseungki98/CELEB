@@ -8,7 +8,7 @@
 .chat .chat-history {
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;
-  height:80vh;
+  height:70vh;
   overflow:auto;
 }
 .chat .chat-history .message-data {
@@ -118,4 +118,12 @@ h6 {
 #button-addon2 {
   background-color: #ffd5d5;
   color: grey;
+}
+
+.chat-history {
+  background-color: #ffe3eb;
+}
+
+.btn:hover {
+  opacity: 0.8;
 }

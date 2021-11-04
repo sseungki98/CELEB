@@ -12,3 +12,13 @@ ul {
   padding: 30px;
   line-height: 3vw;
 }
+
+.card-img {
+  width:100%;
+  height:80%;
+  object-fit:cover;
+}
+
+.img-fluid {
+  height:100%;
+}
