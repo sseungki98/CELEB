@@ -128,7 +128,11 @@ i .checked {
 }
 
 .reviewImage {
-  width:5vw;
-  height:5vw;
-  display:inline-block;
+  width: 6vw;
+  height: 6vw;
+  display: inline-block;
+}
+
+.replydate {
+  font-size: 13px;
 }
