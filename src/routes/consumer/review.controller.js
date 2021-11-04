@@ -38,21 +38,12 @@ const output = {
 
 const process = {
   review: async (req, res) => {
-    // 승환:  validation 수정
-    if (req.session.user) {
-      const userId = req.session.user.id;
-      const orderId = req.params.orderId;
-      const { storeId, imageUrl, contents, score } = req.body;
-      if (!storeId) return res.json({ success: false, message: '스토어 id를 입력해주세요. ' });
-      if (!orderId) return res.json({ success: false, message: '주문 id를 입력해주세요. ' });
-      if (!contents) return res.json({ success: false, message: '리뷰 내용을 입력해주세요. ' });
-      if (!score) return res.json({ success: false, message: '리뷰 점수를 입력해주세요. (0.5~5.0)' });
-      const review = new Review(req.body);
-      const response = await review.review(userId, storeId, orderId, imageUrl, contents, score);
-      return res.json(response);
-    } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
-    }
+    const userId = req.session.user.id;
+    const storeId = req.params.storeId;
+    const orderId = req.params.orderId;
+    const review = new Review(req.body);
+    const response = await review.createReview(userId, storeId, orderId);
+    return res.json(response);
   },
   patchReview: async (req, res) => {
     if (req.session.user) {

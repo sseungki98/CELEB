@@ -3,10 +3,10 @@
 const db = require('../../../config/database');
 
 class ReviewStorage {
-  static postReview(userId, storeId, orderId, imageUrl, contents, score) {
+  static createReview(params) {
     return new Promise((resolve, reject) => {
       const query = `insert into Review(userId, storeId, orderId, imageUrl, contents, score) values(?,?,?,?,?,?);`;
-      db.query(query, [userId, storeId, orderId, imageUrl, contents, score], (err, data) => {
+      db.query(query, params, (err, data) => {
         if (err) reject(`${err}`);
         resolve({ success: true });
       });

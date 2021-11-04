@@ -30,15 +30,13 @@ router.post('/store/:storeId/inquiry', inquiryController.process.inquiry); //문
 router.get('/store/:storeId/inquiry', inquiryController.output.inquiryDetail); //스토어별 문의 내용 조회 → 수신/발신 체크
 router.get('/inquiry', inquiryController.output.inquiryList); //나의 문의 내역 조회 → 문의한 스토어 리스트
 //Order Info Router
-router.post('/cart', orderController.process.cart); //장바구니 담기
-router.get('/cart', orderController.output.cart); //장바구니 조회
 router.post('/store/:storeId/product/:productId/order', orderController.process.order); //주문하기
 router.get('/order/:orderId', orderController.output.order); //주문 확인 조회 → 주문 완료 직후
 //Product Info Router
 router.get('/store/:storeId/product/:productId', productController.output.productDetail); // 상품 디테일 조회
 //Review Info Router
 router.get('/mypage/order/:orderId/review', reviewController.output.review); // 리뷰 작성 페이지 가져오기
-router.post('/mypage/order/:orderId/review', reviewController.process.review); //스토어 리뷰 작성하기
+router.post('store/:storeId/order/:orderId/review', reviewController.process.review); //스토어 리뷰 작성하기
 router.patch('/review/:reviewId', reviewController.process.patchReview); //스토어 리뷰 삭제하기
 router.get('/store/:storeId/review', reviewController.output.storeReview); //스토어 리뷰 조회
 
