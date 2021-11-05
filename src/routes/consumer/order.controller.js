@@ -33,33 +33,12 @@ const output = {
   },
 };
 const process = {
-  cart: async (req, res) => {
-    if (req.session.user) {
-      const id = req.session.user.id;
-      const { productId, option, totalPrice } = req.body;
-      if (!productId) return res.json({ success: false, message: '상품 id를 입력해주세요. ' });
-      if (!option) return res.json({ success: false, message: '상품 옵션을 입력해주세요. ' });
-      if (!totalPrice) return res.json({ success: false, message: '전체 금액을 입력해주세요. ' });
-      const order = new Order(req.body);
-      const response = await order.cart(id, productId, option, totalPrice);
-      return res.json(response);
-    } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
-    }
-  },
   order: async (req, res) => {
-    //TODO: fix here (no cart)
-    if (req.session.user) {
-      const userId = req.session.user.id;
-      const productId = req.params.productId;
-      let { option, totalPrice, requirements, designUrl, selectedDate } = req.body;
-      if (!selectedDate) return res.json({ success: false, message: '픽업날짜를 선택해 주세요.' });
-      const order = new Order(req.body);
-      const response = await order.order(userId, productId, option, totalPrice, requirements, designUrl, selectedDate);
-      return res.json(response);
-    } else {
-      return res.json({ success: false, message: '로그인이 되어있지 않습니다. ' });
-    }
+    const userId = req.session.user.id;
+    const productId = req.params.productId;
+    const order = new Order(req.body);
+    const response = await order.createOrder(userId, productId);
+    return res.json(response);
   },
 };
 

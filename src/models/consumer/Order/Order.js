@@ -5,27 +5,12 @@ class Order {
   constructor(body) {
     this.body = body;
   }
-  async cart(id, productId, option, totalPrice) {
+  async createOrder(userId, productId) {
     try {
-      await OrderStorage.postCart(id, productId, option, totalPrice);
-      return { success: true, message: '상품이 장바구니에 추가되었습니다. ' };
-    } catch (err) {
-      console.log(err);
-      return { success: false, message: '상품을 장바구니에 추가하는데 실패하였습니다. ' };
-    }
-  }
-  async getCartInfo(cartId) {
-    try {
-      const getCartInfo = await OrderStorage.getCartInfo(cartId);
-      return getCartInfo;
-    } catch (err) {
-      console.log(err);
-      return { success: false, message: '장바구니 정보 조회에 실패하였습니다.' };
-    }
-  }
-  async order(userId, productId, option, totalPrice, requirements, designUrl, selectedDate) {
-    try {
-      const postOrder = await OrderStorage.postOrder(userId, productId, option, totalPrice, requirements, designUrl, selectedDate);
+      const order = this.body;
+      if (!order.selectedDate) return { success: false, message: '픽업날짜를 선택해 주세요.' };
+      const params = [userId, productId, order.option, order.totalPrice, order.requirements, order.designUrl, order.selectedDate];
+      const postOrder = await OrderStorage.createOrder(params);
       return { success: true, orderId: postOrder.insertId };
     } catch (err) {
       console.log(err);

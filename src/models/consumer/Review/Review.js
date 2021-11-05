@@ -5,10 +5,14 @@ class Review {
   constructor(body) {
     this.body = body;
   }
-  async review(userId, storeId, orderId, imageUrl, contents, score) {
+  async createReview(userId, storeId, orderId) {
     try {
-      await ReviewStorage.postReview(userId, storeId, orderId, imageUrl, contents, score);
-      return { success: true, message: '리뷰 게시가 완료되었습니다. ' };
+      const review = this.body;
+      if (!review.contents) return res.json({ success: false, message: '리뷰 내용을 입력해주세요. ' });
+      if (!review.score) return res.json({ success: false, message: '리뷰 점수를 입력해주세요.' });
+      const params = [userId, storeId, orderId, review.imageUrl, review.contents, review.score];
+      await ReviewStorage.createReview(params);
+      return { success: true, storeId };
     } catch (err) {
       console.log(err);
       return { success: false, message: '리뷰 게시에 실패하였습니다. ' };

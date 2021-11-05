@@ -6,10 +6,9 @@ class Inquiry {
     this.body = body;
   }
   async inquiry(id, storeId) {
-    const contents = this.body.contents;
-    console.log(contents);
-    if (!contents) return res.json({ success: false, message: '문의 내용을 입력해주세요. ' });
     try {
+      const contents = this.body.contents;
+      if (!contents) return res.json({ success: false, message: '문의 내용을 입력해주세요. ' });
       await InquiryStorage.createInquiry(id, storeId, contents);
       return { success: true };
     } catch (err) {

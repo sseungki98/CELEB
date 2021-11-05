@@ -52,7 +52,7 @@ function order() {
     designUrl: designUrl.files[0],
     selectedDate: selectedDate.value,
   };
-  fetch(window.location.href + '/order', {
+  fetch(window.location.pathname + '/order', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

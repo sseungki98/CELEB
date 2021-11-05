@@ -39,7 +39,7 @@ const process = {
     const mainImage = req.files['productMain'][0].location;
     let detailImage = req.files['productDetail'];
     if (detailImage) {
-      detailImage = detailImage.map(img => img.location);
+      detailImage = detailImage.map((img) => img.location);
       detailImage = JSON.stringify(detailImage);
       detailImage = detailImage.replace(/[\"\[\]]/g, '');
     }
@@ -52,14 +52,13 @@ const process = {
     const productId = req.params.productId;
     try {
       const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
-
       const main = productDetail[0].image;
       let detailImage = productDetail[0].detailImageUrl;
       const mainImage = req.files ? (req.files['productMain'] ? req.files['productMain'][0].location : main) : main;
       if (req.files) {
         detailImage = req.files['productDetail'] ? req.files['productDetail'] : detailImage;
         if (detailImage != productDetail[0].detailImageUrl) {
-          detailImage = detailImage.map(img => img.location);
+          detailImage = detailImage.map((img) => img.location);
           detailImage = JSON.stringify(detailImage);
           detailImage = detailImage.replace(/[\"\[\]]/g, '');
         }
@@ -73,7 +72,8 @@ const process = {
       const response = await product.updateProduct(storeId, mainImage, detailUrl, productDetail);
       return res.json(response);
     } catch (err) {
-      return res.json({ success: false, message: err });
+      console.log(err);
+      return res.json({ success: false, message: '상품 수정에 실패하였습니다.' });
     }
   },
   deleteProduct: async (req, res) => {

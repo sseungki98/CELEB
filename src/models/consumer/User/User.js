@@ -25,7 +25,7 @@ class User {
   async register() {
     const client = this.body;
     try {
-      const emailcheck = await UserStorage.getUserDetail(client.email);
+      const emailcheck = await UserStorage.getUserInfo(client.email);
       if (emailcheck) return { success: false, message: '중복된 이메일입니다.' };
       if (client.password != client.checkpassword) return { success: false, message: '비밀번호 확인에 실패하였습니다.' };
       const hashedPassword = await crypto.createHash('sha512').update(client.password).digest('hex'); //비밀번호 암호화
@@ -37,14 +37,14 @@ class User {
       return { success: false, message: '회원가입에 실패하였습니다.' };
     }
   }
-  async inquiry(id, storeId, productId, type, contents) {
-    try {
-      await UserStorage.postInquiry(id, storeId, productId, type, contents);
-      return { success: true, message: '문의 게시가 완료되었습니다. ' };
-    } catch (err) {
-      console.log(err);
-      return { success: false, message: '문의 게시에 실패하였습니다. ' };
-    }
-  }
+  // async inquiry(id, storeId, productId, type, contents) {
+  //   try {
+  //     await UserStorage.postInquiry(id, storeId, productId, type, contents);
+  //     return { success: true, message: '문의 게시가 완료되었습니다. ' };
+  //   } catch (err) {
+  //     console.log(err);
+  //     return { success: false, message: '문의 게시에 실패하였습니다. ' };
+  //   }
+  // }
 }
 module.exports = User;
