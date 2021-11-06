@@ -6,21 +6,29 @@ const InquiryStorage = require('../../models/seller/Inquiry/InquiryStorage');
 const output = {
   inquiry: async (req, res) => {
     if (req.session.user) {
-      const storeId = req.session.user.id;
-      const response = await InquiryStorage.getInquiryListByStoreId(storeId);
-      return res.render('seller/inquiryList', { response });
+      try {
+        const storeId = req.session.user.id;
+        const response = await InquiryStorage.getInquiryListByStoreId(storeId);
+        return res.render('seller/inquiryList', { response, layout: 'seller/layout' });
+      } catch (err) {
+        return res.render('common/500error', { err, layout: false });
+      }
     } else {
-      return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+      return res.render('seller/login', { layout: 'seller/layout' });
     }
   },
   inquiryDetail: async (req, res) => {
     if (req.session.user) {
-      const userId = req.params.userId;
-      const storeId = req.session.user.id;
-      const response = await InquiryStorage.getInquiryDetailByUserId(userId, storeId);
-      return res.json(response);
+      try {
+        const userId = req.params.userId;
+        const storeId = req.session.user.id;
+        const response = await InquiryStorage.getInquiryDetailByUserId(userId, storeId);
+        return res.render('seller/inquiryDetail', { response, layout: 'seller/layout' });
+      } catch (err) {
+        return res.render('common/500error', { err, layout: false });
+      }
     } else {
-      return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
+      return res.render('seller/login', { layout: 'seller/layout' });
     }
   },
 };

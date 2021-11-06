@@ -17,12 +17,12 @@ const output = {
           start = (page - 1) * pageSize;
         }
         const orderList = await OrderStorage.getOrderByStoreId(storeId, start, pageSize);
-        return res.render('seller/orderList', { orderList });
+        return res.render('seller/orderList', { orderList, layout: 'seller/layout' });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
       }
     } else {
-      return res.render('seller/login');
+      return res.render('seller/login', { layout: 'seller/layout' });
     }
   },
 };
