@@ -1,7 +1,9 @@
-<h1>"<%= keyword %>"의 검색 결과</h1>
-<hr />
+<div class="container-fluid mt-3">
+    <h1>"<%= keyword %>"의 검색 결과</h1>
+<br>
 <% if (result.length > 0) { %><% for (post of result) { %>
 <div><%= post.storeName %></div>
 <% } %><% } else { %>
 <div>검색 결과가 없습니다.</div>
 <% } %>
+</div>
