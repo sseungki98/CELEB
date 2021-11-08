@@ -13,12 +13,12 @@ const output = {
       try {
         const storeId = req.session.user.id;
         const storeDetail = await StoreStorage.getStoreDetailByStoreId(storeId);
-        res.render('seller/editStoreDetail', { storeDetail });
+        res.render('seller/editStoreDetail', { storeDetail, layout: 'seller/layout' });
       } catch (err) {
-        res.render('common/500error', { err });
+        res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('seller/login');
+      res.render('seller/login', { layout: 'seller/layout' });
     }
   },
   main: async (req, res) => {
@@ -29,12 +29,12 @@ const output = {
         const recentOrder = await OrderStorage.getRecentOrderProductByStoreId(storeId);
         const orderCount = await OrderStorage.getRecentOrderCountByStoreId(storeId);
         const statistics = await StoreStorage.getMonthStatisticsByStoreId(storeId);
-        res.render('seller/storeMain', { productRank, recentOrder, orderCount, statistics });
+        res.render('seller/storeMain', { productRank, recentOrder, orderCount, statistics, layout: 'seller/layout' });
       } catch (err) {
-        res.render('common/500error', { err });
+        res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('seller/login');
+      res.render('seller/login', { layout: 'seller/layout' });
     }
   },
 };

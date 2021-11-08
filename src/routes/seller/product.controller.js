@@ -10,12 +10,12 @@ const output = {
       try {
         const storeId = req.session.user.id;
         const productList = await ProductStorage.getProductListByStoreId(storeId);
-        res.render('seller/productList', { productList });
+        res.render('seller/productList', { productList, layout: 'seller/layout' });
       } catch (err) {
-        res.render('common/500error', { err });
+        res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('seller/login');
+      res.render('seller/login', { layout: 'seller/layout' });
     }
   },
   productDetail: async (req, res) => {
@@ -24,12 +24,12 @@ const output = {
         const storeId = req.session.user.id;
         const productId = req.params.productId;
         const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
-        res.render('seller/editProduct', { productDetail });
+        res.render('seller/editProduct', { productDetail, layout: 'seller/layout' });
       } catch (err) {
-        res.render('common/500error', { err });
+        res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('seller/login');
+      res.render('seller/login', { layout: 'seller/layout' });
     }
   },
 };

@@ -36,207 +36,55 @@
     <!--BootStrap ?-->
     <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <link rel="stylesheet" href="/css/seller/layout.css">
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
-      * {
-        font-family: 'IBM Plex Sans KR', sans-serif;
-      }
-      body {
-        background-color: rgb(247, 238, 238);
-      }
-      body .main-logo {
-        width: 100%;
-        height: 400px;
-      }
-      .search-bar {
-        background-color: plum;
-        width: 440px;
-        padding: 3px;
-        border: solid 1px gainsboro;
-        border-radius: 15px;
-      }
-      i.fa-search {
-        margin-left: 7px;
-      }
-
-      input[type='search'] {
-        height: 40px;
-        padding-left: 10px;
-        border: none;
-        border-radius: 10px;
-      }
-
-      .navbar:first-child {
-        z-index: 10;
-        position: sticky;
-        top: 0px;
-        font-size: 14px;
-        background-color: whitesmoke;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: nowrap;
-      }
-
-      .image-logo {
-        margin-left: 20px;
-      }
-
-      .menu {
-        text-align: right;
-        float: right;
-        width: 320px;
-        display: flex;
-        flex-wrap: nowrap;
-      }
-
-      .nav__link {
-        padding: 0;
-        margin-top: 14px;
-        list-style: none;
-        font-family: 'Montserrat', sans-serif;
-      }
-      .nav__link li {
-        display: inline-block;
-        padding: 0px 10px;
-        font-size: 17px;
-      }
-      .nav__link li a {
-        text-decoration: none;
-        color: black;
-        transition: all 0.3s ease 0s;
-      }
-      .nav__link li a:hover {
-        color: purple;
-      }
-      .d-flex {
-        max-width: 600px;
-      }
-      .form-control {
-        background-color: rgb(247, 238, 238);
-        opacity: 0.6;
-      }
-      input[type='search']::placeholder {
-        color: gray;
-      }
-      input[type='search']:focus {
-        background-color: rgb(247, 238, 238);
-        color: gray;
-      }
-      input:focus::-webkit-input-placeholder,
-      textarea:focus::-webkit-input-placeholder {
-        color: transparent;
-      }
-
-      #searchButton {
-        background-color: #ffd5d5;
-        color: grey;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/seller/layout.css" />
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/"><img src="/img/logo2.png" width="100px" height="40px" /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="d-flex" action="/search" method="GET">
-            <input class="form-control me-2" name="keyword" type="search" placeholder="스토어를 검색하세요" aria-label="Search" />
-            <button class="btn" id="searchButton" type="submit"><i class="xi-search"></i></button>
-          </form>
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <%if (user) { %>
-              <form name="logout" action="/logout" method="POST">
-                <a class="nav-link" href="javascript:document.logout.submit()">로그아웃</a>
-              </form>
-              <% }else{ %>
-              <a class="nav-link" href="/login">로그인</a>
-              <%}%>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                카테고리
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="/category/1">🎂 레터링 케이크</a></li>
-                <li><a class="dropdown-item" href="/category/2">💐 꽃다발</a></li>
-                <li><a class="dropdown-item" href="/category/3">🚩 현수막/배너</a></li>
-                <li><a class="dropdown-item" href="/category/4">📱 폰케이스</a></li>
-                <li><a class="dropdown-item" href="/category/5">🎁 선물</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/mypage">마이페이지</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!--sidebar-->
-    <div class="sidebar">
-      <div class="logo-details">
-        <div class="logo_name">승현이네 케이크가게</div>
-        <i class="bx bx-menu" id="btn"></i>
-      </div>
-      <ul class="nav-list">
-        <li>
-          <a href="#">
-            <i class="bx bx-home"></i>
-            <span class="links_name">스토어관리</span>
-          </a>
-          <span class="tooltip">스토어관리</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-gift"></i>
-            <span class="links_name">상품관리</span>
-          </a>
-          <span class="tooltip">상품관리</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-receipt"></i>
-            <span class="links_name">주문관리</span>
-          </a>
-          <span class="tooltip">주문관리</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-won"></i>
-            <span class="links_name">정산관리</span>
-          </a>
-          <span class="tooltip">정산관리</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-question-mark"></i>
-            <span class="links_name">문의관리</span>
-          </a>
-          <span class="tooltip">문의관리</span>
-        </li>
-        <li></li>
-      </ul>
+  <!--sidebar-->
+  <div class="sidebar">
+    <div class="logo-details">
+      <div class="logo_name">승현이네 케이크가게</div>
+      <i class="bx bx-menu" id="btn"></i>
     </div>
+    <ul class="nav-list">
+      <li>
+        <a href="#">
+          <i class="bx bx-home"></i>
+          <span class="links_name">스토어관리</span>
+        </a>
+        <span class="tooltip">스토어관리</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-gift"></i>
+          <span class="links_name">상품관리</span>
+        </a>
+        <span class="tooltip">상품관리</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-receipt"></i>
+          <span class="links_name">주문관리</span>
+        </a>
+        <span class="tooltip">주문관리</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-won"></i>
+          <span class="links_name">정산관리</span>
+        </a>
+        <span class="tooltip">정산관리</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-question-mark"></i>
+          <span class="links_name">문의관리</span>
+        </a>
+        <span class="tooltip">문의관리</span>
+      </li>
+      <li></li>
+    </ul>
+  </div>
+  <body>
+    <%- body %>
 
     <script>
       let sidebar = document.querySelector('.sidebar');
@@ -263,9 +111,6 @@
         }
       }
     </script>
-
-    <%- body %>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>

@@ -10,11 +10,11 @@ const output = {
     if (req.session.user) {
       res.send("<script>alert('이미 로그인되었습니다.'); location.href='/s';</script>");
     } else {
-      res.render('seller/login');
+      res.render('seller/login', { layout: 'seller/layout' });
     }
   },
   register: (req, res) => {
-    res.render('seller/register');
+    res.render('seller/register', { layout: 'seller/layout' });
   },
 };
 
@@ -37,10 +37,10 @@ const process = {
     if (req.session.host) {
       req.session.destroy(function (err) {
         if (err) throw err;
-        return res.redirect('/s/login');
+        return res.redirect('/s/login', { layout: 'seller/layout' });
       });
     } else {
-      return res.redirect('/s/login');
+      return res.redirect('/s/login', { layout: 'seller/layout' });
     }
   },
   register: async (req, res) => {
