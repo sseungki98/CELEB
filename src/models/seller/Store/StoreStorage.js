@@ -42,5 +42,34 @@ class StoreStorage {
       });
     });
   }
+  static getStoreDetail(storeId) {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT * FROM Store WHERE storeId = ?;';
+      db.query(query, [storeId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data[0]);
+      });
+    });
+  }
+  static getLicenseNumberDuplication(rgno) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT exists (SELECT id FROM Store WHERE licenseNum=? and status='ACTIVE') as exist;`;
+      db.query(query, [rgno], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data);
+      });
+    });
+  }
+  static registerStore(params) {
+    return new Promise((resolve, reject) => {
+      const query = `
+        INSERT INTO Store(storeId,Store.password,storeName,imageUrl,info,phoneNum,categoryId,provinceId,cityId,roadAddress,detailAddress,Store.type,licenseNum,openTime,Store.limit)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`;
+      db.query(query, params, (err, data) => {
+        if (err) reject(`${err}`);
+        resolve({ success: true });
+      });
+    });
+  }
 }
 module.exports = StoreStorage;
