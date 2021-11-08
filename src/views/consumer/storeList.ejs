@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="/css/consumer/storeList.css" />
 <div class="banner">
-  <img class="banner-image" src="/img/main-logo-image.jpg" />
+  <img class="banner-image" src="/img/cake-big-logo.png" />
 </div>
 
 <nav class="navbar2 navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">지역선택</a>
+    <a class="navbar-brand">지역선택</a><span id="province-city"></span>
     <button
       class="navbar-toggler"
       type="button"
@@ -21,7 +21,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% for (let i = 0; i < province.length; i++) { %>
         <li>
-          <a class="nav-link" href="/category/<%= category.categoryId %>?provinceId=<%= province[i].provinceId %>"
+          <a class="nav-link province" href="/category/<%= category.categoryId %>?provinceId=<%= province[i].provinceId %>"
             ><%= province[i].provinceName %></a
           >
         </li>
@@ -39,13 +39,31 @@
     <ul class="navbar-nav">
       <% for (let i = 0; i < city.length; i++) { %>
       <li class="nav-item">
-        <a class="nav-link" href="/category/<%= category.categoryId %>?provinceId=<%= city[i].provinceId %>&cityId=<%= city[i].cityId %>"
+        <a class="nav-link city" href="/category/<%= category.categoryId %>?provinceId=<%= city[i].provinceId %>&cityId=<%= city[i].cityId %>"
           ><%= city[i].cityName %></a
         >
       </li>
       <% } %>
     </ul>
   </div>
+  <script>
+    var click_province = document.getElementsByClassName('province');
+    var click_city = document.getElementsByClassName('city');
+    for (var i=0; i<click_province.length;i++)
+    {
+      var each_click_province = click_province[i];
+      each_click_province.addEventListener('click',function(){
+        document.getElementById('province-city').innerHTML = each_click_province;
+      });
+    }
+    for (var j=0; j<click_city.length;j++)
+    {
+      var each_click_city = click_city[j];
+      each_click_city.addEventListener('click',function(){
+        document.getElementById('province-city').innerHTML = each_click_city;
+      });
+    }
+  </script>
 </nav>
 <div class="container">
   <div class="row gx-4 gx-lg-5">
