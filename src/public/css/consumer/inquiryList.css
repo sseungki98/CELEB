@@ -5,7 +5,6 @@ body {
   line-height: 1.4285714286;
   color: #212529;
   text-align: left;
-  background-color: #f9f9fa;
 }
 
 #page-content {
@@ -306,6 +305,10 @@ a:not([href]):not([tabindex]):focus {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
+}
+
+.list-item:hover {
+  background-color: rgba(194,194,194,0.4)
 }
 
 .list-row .list-item {
