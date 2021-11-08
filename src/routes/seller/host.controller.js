@@ -7,7 +7,7 @@ const emt = require('elementTree');
 
 const output = {
   login: (req, res) => {
-    if (req.session.user) {
+    if (req.session.store) {
       res.send("<script>alert('이미 로그인되었습니다.'); location.href='/s';</script>");
     } else {
       res.render('seller/login', { layout: 'seller/layout' });
@@ -24,7 +24,7 @@ const process = {
     const response = await host.login();
 
     if (response.success) {
-      req.session.user = {
+      req.session.host = {
         id: response.id,
         storeId: req.body.storeId,
         storeName: response.storeName,

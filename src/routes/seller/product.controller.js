@@ -6,9 +6,9 @@ const ProductStorage = require('../../models/seller/Product/ProductStorage');
 
 const output = {
   productList: async (req, res) => {
-    if (req.session.user) {
+    if (req.session.store) {
       try {
-        const storeId = req.session.user.id;
+        const storeId = req.session.store.id;
         const productList = await ProductStorage.getProductListByStoreId(storeId);
         res.render('seller/productList', { productList, layout: 'seller/layout' });
       } catch (err) {
@@ -19,9 +19,9 @@ const output = {
     }
   },
   productDetail: async (req, res) => {
-    if (req.session.user) {
+    if (req.session.store) {
       try {
-        const storeId = req.session.user.id;
+        const storeId = req.session.store.id;
         const productId = req.params.productId;
         const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
         res.render('seller/editProduct', { productDetail, layout: 'seller/layout' });
@@ -35,7 +35,7 @@ const output = {
 };
 const process = {
   createProduct: async (req, res) => {
-    const storeId = req.session.user.id;
+    const storeId = req.session.store.id;
     const mainImage = req.files['productMain'][0].location;
     let detailImage = req.files['productDetail'];
     if (detailImage) {
@@ -48,7 +48,7 @@ const process = {
     return res.json(response);
   },
   updateProduct: async (req, res) => {
-    const storeId = req.session.user.id;
+    const storeId = req.session.store.id;
     const productId = req.params.productId;
     try {
       const productDetail = await ProductStorage.getProductDetailByProductId(storeId, productId);
@@ -77,7 +77,7 @@ const process = {
     }
   },
   deleteProduct: async (req, res) => {
-    const storeId = req.session.user.id;
+    const storeId = req.session.store.id;
     const productId = req.params.productId;
     const product = new Product();
     const response = await product.deleteProduct(storeId, productId);

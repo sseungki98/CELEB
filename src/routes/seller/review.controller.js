@@ -5,9 +5,9 @@ const ReviewStorage = require('../../models/seller/Review/ReviewStorage');
 
 const output = {
   review: async (req, res) => {
-    if (req.session.user) {
+    if (req.session.store) {
       try {
-        const storeId = req.session.user.id;
+        const storeId = req.session.store.id;
         const page = req.query.page ? req.query.page : 1;
         const pageSize = 10;
         let start = 0;
@@ -28,18 +28,14 @@ const output = {
 };
 const process = {
   reviewReply: async (req, res) => {
-    if (req.session.user) {
-      const reviewId = req.params.reviewId;
-      const { contents } = req.body;
-      const storeId = req.session.user.id;
-      if (!reviewId) return res.json({ success: false, message: '리뷰 id를 입력해주세요. ' });
-      if (!contents) return res.json({ success: false, message: '리뷰 답변 내용을 입력해주세요. ' });
-      const review = new Review(req.body);
-      const response = await review.createReviewReply(storeId, reviewId, contents);
-      return res.json(response);
-    } else {
-      return res.json({ success: false, message: '스토어 로그인이 되어있지 않습니다. ' });
-    }
+    const reviewId = req.params.reviewId;
+    const { contents } = req.body;
+    const storeId = req.session.store.id;
+    if (!reviewId) return res.json({ success: false, message: '리뷰 id를 입력해주세요. ' });
+    if (!contents) return res.json({ success: false, message: '리뷰 답변 내용을 입력해주세요. ' });
+    const review = new Review(req.body);
+    const response = await review.createReviewReply(storeId, reviewId, contents);
+    return res.json(response);
   },
 };
 
