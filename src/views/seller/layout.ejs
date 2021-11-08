@@ -38,7 +38,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="stylesheet" href="/css/seller/layout.css" />
   </head>
-  <!--sidebar-->
+ 
+  <body>
+     <!-- sidebar
   <div class="sidebar">
     <div class="logo-details">
       <div class="logo_name">승현이네 케이크가게</div>
@@ -82,10 +84,42 @@
       </li>
       <li></li>
     </ul>
-  </div>
-  <body>
+  </div> -->
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+      </div>
+      <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);">
+        <div class="user-logo">
+          <div class="img" style="background-image: url(/img/ex-cake1.png);"></div>
+          <h3>승현이네 케이크집</h3>
+        </div>
+      </div>
+      <ul class="list-unstyled components mb-5">
+        <li class="active">
+          <a href="#"> <i class="fa fa-home mr-3"></i>스토어관리</a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-gift mr-3"></i>상품관리</a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-receipt mr-3"></i> 주문관리</a>
+        </li>
+        <li>
+          <a href="#"> <i class="fa fa-won mr-3"></i>정산관리</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-question mr-3"></i> 문의관리</a>
+        </li>
+        <li>
+          <a href="#"><span class="fa fa-sign-out mr-3"></span>로그아웃</a>
+        </li>
+      </ul>
+
+    </nav>
     <%- body %>
 
+    </div>
     <script>
       let sidebar = document.querySelector('.sidebar');
       let closeBtn = document.querySelector('#btn');
@@ -111,6 +145,7 @@
         }
       }
     </script>
+    <script src="/js/seller/popper.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
