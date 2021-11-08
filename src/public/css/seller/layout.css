@@ -8431,13 +8431,16 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 300px;
   max-width: 300px;
-  height:100vh;
+  height:110vh;
+  
   background: #ffc4fe;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
-  position: relative; }
+  position: -webkit-sticky;
+  position: sticky;
+  top:0; }
   #sidebar .h6 {
     color: #fff; }
   #sidebar.active {
@@ -8495,6 +8498,7 @@ h1, h2, h3, h4, h5,
       color: #50434F; }
       #sidebar ul li.active > a:hover {
         background: #ff82fd;
+        color:white;
         border-bottom: 1px solid #ff82fd; }
   @media (max-width: 991.98px) {
     #sidebar {
