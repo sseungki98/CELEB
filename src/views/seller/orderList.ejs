@@ -1,9 +1,9 @@
-<h1>주문 내역</h1>
-
-<div class="container">
+<link rel="stylesheet" href="/css/seller/orderList.css">
+<div class="container mt-5">
+  <h1 class="fw-bold">주문 내역</h1>
   <table class="table">
     <thead>
-      <tr>
+      <tr class="text-center">
         <th scope="col">주문번호</th>
         <th scope="col">상품명</th>
         <th scope="col">고객명</th>
@@ -13,7 +13,7 @@
         <th scope="col">주문일시</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
       <% for (let i=0; i < orderList.length; i++) { %>
       <tr>
         <th scope="row"><%= orderList[i].orderId %></th>

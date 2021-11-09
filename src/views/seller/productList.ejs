@@ -1,4 +1,4 @@
-<button class="btn btn-primary btn-lg"></button>
+<link rel="stylesheet" href="/css/seller/productList.css">
 <div class="row gx-4 gx-lg-5">
   <% for (let i = 0; i < product.length; i++) { %>
   <div class="col-md-4 mb-5">
@@ -6,6 +6,13 @@
       <div class="card-body">
         <h2 class="card-title text-center"><%= product[i].name %></h2>
         <img class="card-img" src="<%= product[i].image %>" />
+        <div class="card-text text-center mt-3">
+          <span style="font-size:20px; color:black;">내가 설정한 옵션</span>
+          <ul>
+            <li>초 개수 + 100/개</li>
+            <li>초콜렛 토핑 + 500원</li>
+          </ul>
+        </div>
       </div>
       <div class="card-footer">
         <div class="card-text">

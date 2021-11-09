@@ -3,43 +3,37 @@
 <div class="container">
   <div class="row">
     <div class="col md-5">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">상품명</span>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="상품명을 입력해주세요."
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        />
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupFile01">대표사진</label>
-          <input type="file" class="form-control" id="inputGroupFile01" />
-        </div>
-        <div class="input-group">
-          <span class="input-group-text">주문시 유의사항</span>
-          <textarea class="form-control" aria-label="With textarea" placeholder="주문시 유의사항을 입력해주세요."></textarea>
-        </div>
-
-        <div class="input-group mb-3">
-          <span class="input-group-text">기본가격</span>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
-          <span class="input-group-text">원</span>
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupFile01">상세이미지1</label>
-          <input type="file" class="form-control" id="inputGroupFile01" />
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupFile01">상세이미지2</label>
-          <input type="file" class="form-control" id="inputGroupFile01" />
-        </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupFile01">상세이미지3</label>
-          <input type="file" class="form-control" id="inputGroupFile01" />
-        </div>
+      <div class="input-group rounded mb-3">
+        <span class="input-group-text">상품명</span>
+        <textarea class="form-control" aria-label="With textarea" placeholder="상품명을 입력해주세요"></textarea>
+      </div>
+      <div class="input-group mb-3 rounded">
+        <label class="input-group-text" for="inputGroupFile01">대표사진</label>
+        <input type="file" class="form-control" id="inputGroupFile01" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-text rounded">주문시 유의사항</span>
+        <textarea class="form-control" aria-label="With textarea" placeholder="주문시 유의사항을 입력해주세요."></textarea>
+      </div>
+      <div class="input-group mb-3 rounded">
+        <span class="input-group-text">기본가격</span>
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+        <span class="input-group-text">원</span>
+      </div>
+      <div class="input-group mb-3 rounded" >
+        <label class="input-group-text" for="inputGroupFile01">상세이미지1</label>
+        <input type="file" class="form-control" id="inputGroupFile01" />
+      </div>
+      <div class="input-group mb-3 rounded">
+        <label class="input-group-text" for="inputGroupFile01">상세이미지2</label>
+        <input type="file" class="form-control" id="inputGroupFile01" />
+      </div>
+      <div class="input-group mb-3 rounded">
+        <label class="input-group-text" for="inputGroupFile01">상세이미지3</label>
+        <input type="file" class="form-control" id="inputGroupFile01" />
       </div>
     </div>
+    
     <div class="col md-7">
       <h1>카테고리 설정</h1>
       <hr />
@@ -55,7 +49,7 @@
         <div class="input-group mb-3">
           <i class="fas fa-circle" style="color: #03befc"></i>
 
-          <span class="input-group-text" id="basic-addon1">카테고리 이름 입력</span>
+          <span class="input-group-text rounded mb-3" id="basic-addon1">카테고리 이름 입력</span>
           <input
             type="text"
             class="form-control"
@@ -67,8 +61,8 @@
         </div>
       </div>
       <div id="addtextform" style="display: none">
-        <div class="input-group mb-3">
-          <i class="fas fa-circle" style="color: yellow"></i>
+        <i class="fas fa-circle" style="color: yellow"></i>
+        <div class="input-group mb-3 rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
@@ -77,7 +71,7 @@
         </div>
       </div>
       <div id="addcheckbox" style="display: none">
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 rounded">
           <i class="fas fa-circle" style="color: #0352fc"></i>
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
@@ -87,7 +81,7 @@
         </div>
       </div>
       <div id="addradiobox" style="display: none">
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 rounded">
           <i class="fas fa-circle" style="color: #086e2f"></i>
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
@@ -97,7 +91,7 @@
         </div>
       </div>
       <div id="addcolorbox" style="display: none">
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 rounded">
           <i class="fas fa-circle" style="color: #ff0a0e"></i>
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />

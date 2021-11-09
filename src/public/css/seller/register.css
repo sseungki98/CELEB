@@ -5,7 +5,7 @@ body {
   }
   body::before {
     content: '';
-    background-color: #fff29c;
+    background-color: #f8f2de;
     background-size: cover;
     opacity: 0.9;
     position: absolute;

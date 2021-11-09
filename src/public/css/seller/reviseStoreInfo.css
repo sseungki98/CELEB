@@ -1,6 +1,8 @@
 .container {
-    background-color: white;
     padding-top:10px;
     padding-bottom: 10px;
 }
 
+.input-group {
+    border:1px rgba(134, 90, 90, 0.2) solid;
+}
