@@ -14,7 +14,7 @@ const output = {
         return res.render('common/500error', { err, layout: false });
       }
     } else {
-      return res.render('seller/login', { layout: 'seller/layout' });
+      return res.render('seller/login');
     }
   },
   inquiryDetail: async (req, res) => {
@@ -28,7 +28,7 @@ const output = {
         return res.render('common/500error', { err, layout: false });
       }
     } else {
-      return res.render('seller/login', { layout: 'seller/layout' });
+      return res.render('seller/login');
     }
   },
 };

@@ -5,17 +5,24 @@ const Product = require('../../models/seller/Product/Product');
 const ProductStorage = require('../../models/seller/Product/ProductStorage');
 
 const output = {
+  registProduct: async (req, res) => {
+    if (req.session.store) {
+      res.render('seller/registProduct', { layout: 'seller/layout' });
+    } else {
+      res.render('seller/login');
+    }
+  },
   productList: async (req, res) => {
     if (req.session.store) {
       try {
         const storeId = req.session.store.id;
-        const productList = await ProductStorage.getProductListByStoreId(storeId);
-        res.render('seller/productList', { productList, layout: 'seller/layout' });
+        const product = await ProductStorage.getProductListByStoreId(storeId);
+        res.render('seller/productList', { product, layout: 'seller/layout' });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('seller/login', { layout: 'seller/layout' });
+      res.render('seller/login');
     }
   },
   productDetail: async (req, res) => {
@@ -29,7 +36,7 @@ const output = {
         res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('seller/login', { layout: 'seller/layout' });
+      res.render('seller/login');
     }
   },
 };

@@ -10,7 +10,7 @@ const output = {
     if (req.session.store) {
       res.send("<script>alert('이미 로그인되었습니다.'); location.href='/s';</script>");
     } else {
-      res.render('seller/login', { layout: 'seller/layout' });
+      res.render('seller/login');
     }
   },
   register: (req, res) => {

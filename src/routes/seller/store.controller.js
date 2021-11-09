@@ -11,13 +11,13 @@ const output = {
     if (req.session.store) {
       res.send("<script>alert('이미 로그인되었습니다.'); location.href='/s';</script>");
     } else {
-      res.render('seller/login', { layout: 'seller/layout' });
+      res.render('seller/login');
     }
   },
   register: (req, res) => {
     res.render('seller/register', { layout: 'seller/layout' });
   },
-  storePage: async (req, res) => {
+  storeDetail: async (req, res) => {
     //TODO: code review
     if (req.session.store) {
       try {
@@ -28,7 +28,7 @@ const output = {
         res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('seller/login', { layout: 'seller/layout' });
+      res.render('seller/login');
     }
   },
   main: async (req, res) => {
@@ -44,13 +44,13 @@ const output = {
         res.render('common/500error', { err, layout: false });
       }
     } else {
-      res.render('seller/login', { layout: 'seller/layout' });
+      res.render('seller/login');
     }
   },
 };
 
 const process = {
-  storePage: async (req, res) => {
+  updateStore: async (req, res) => {
     const storeId = req.session.store.id;
     const store = new Store(req.body);
     const response = await store.updateStoreDetail(storeId);
