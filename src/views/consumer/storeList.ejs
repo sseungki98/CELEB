@@ -47,21 +47,17 @@
     </ul>
   </div>
   <script>
-    var click_province = document.getElementsByClassName('province');
-    var click_city = document.getElementsByClassName('city');
-    for (var i=0; i<click_province.length;i++)
-    {
-      var each_click_province = click_province[i];
-      each_click_province.addEventListener('click',function(){
-        document.getElementById('province-city').innerHTML = each_click_province;
-      });
+    var province = document.getElementsByClassName('province');
+    var city = document.getElementsByClassName('city');
+    var province_city = document.getElementById('province-city');
+    function printPC(evt) {
+      province_city.innerHTML = evt.target.innerHTML;
+      window.addEventListener('DOMContentLoaded',function(){province_city.innerHTML = evt.target.innerHTML;})
+  
     }
-    for (var j=0; j<click_city.length;j++)
+    for (var i=0;i<province.length;i++)
     {
-      var each_click_city = click_city[j];
-      each_click_city.addEventListener('click',function(){
-        document.getElementById('province-city').innerHTML = each_click_city;
-      });
+      province[i].onclick = printPC;
     }
   </script>
 </nav>

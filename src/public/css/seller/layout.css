@@ -8431,7 +8431,7 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 300px;
   max-width: 300px;
-  height:110vh;
+  height:100vh;
   
   background: #ffc4fe;
   color: #fff;
@@ -8465,7 +8465,9 @@ h1, h2, h3, h4, h5,
   #sidebar ul.components {
     padding: 0; }
   #sidebar ul li {
-    font-size: 16px; }
+    font-size: 16px;
+    text-align: left;
+  }
     #sidebar ul li > ul {
       margin-left: 10px; }
       #sidebar ul li > ul li {
@@ -8523,7 +8525,7 @@ h1, h2, h3, h4, h5,
         -o-transition: none;
         transition: none; } }
     #sidebar .custom-menu .btn.btn-primary {
-      background: #2f89fc;
+      background: #f6daff;
       border-color: transparent;
       position: relative;
       color: #000;

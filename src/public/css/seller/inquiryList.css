@@ -360,3 +360,7 @@ body {
     text-decoration: none;
   }
   
+  .list-item:hover {
+    background-color: rgba(0,0,0,0.1);
+  }
+  

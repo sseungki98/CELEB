@@ -15,8 +15,8 @@ body {
     right: 0;
   }
   .bg {
-    width: 420px;
-    height: 650px;
+    width: 600px;
+    height: 740px;
     position: absolute;
     top: 54%;
     left: 50%;
@@ -31,7 +31,7 @@ body {
   }
   .box {
     z-index: 11;
-    width: 500px;
+    width: 600px;
     padding: 40px;
     position: absolute;
     top: 55%;
@@ -73,7 +73,7 @@ body {
   .box input[type='password']:focus,
   .box input[type='email']:focus,
   .box input[type='tel']:focus {
-    width: 280px;
+    width: 230px;
     border-color: #ff0066;
   }
   
@@ -97,3 +97,10 @@ body {
     background: #fdbebe;
   }
   
+  .col{
+    display:inline-block;
+  }
+
+  .form-select {
+    margin-left:10px;
+  }
