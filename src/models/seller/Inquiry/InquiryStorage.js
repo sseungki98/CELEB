@@ -5,7 +5,7 @@ const db = require('../../../config/database');
 class InquiryStorage {
   static getInquiryListByStoreId(storeId) {
     // 승환: 유저 네임 done
-    //TODO: 이미지 보류
+    //TODO: 이미지 보류, userId, userName, inquiryId, inquriyContent, createdAt
     return new Promise((resolve, reject) => {
       const query = `select a.storeId as storeId
       , a.storeName as storeName
@@ -13,7 +13,7 @@ class InquiryStorage {
       , a.userId as userId
       , b.name as userName
       , a.id as inquiryId
-      , a.contents as inquiryContents
+      , a.contents as lastContents
       , date_format(a.createdAt, '%Y-%m-%d %H:%i') as createdAt
 from ( select i.storeId, s.storeName, s.imageUrl, i.userId, i.id, i.contents, i.createdAt, ROW_NUMBER() over (PARTITION BY i.storeId ORDER BY i.createdAt DESC) as rowNum from Inquiry i left join Store s on i.storeId=s.id where i.storeId = ?) a
 left join ( select id, name
@@ -28,21 +28,18 @@ where rowNum = 1;`;
   }
   static getInquiryDetailByUserId(userId, storeId) {
     return new Promise((resolve, reject) => {
-      const query = `select a.id as inquiryContentId
-          , a.type as type
-          , case when a.type='OUTGOING' then b.id else c.id end as senderId
-          , case when a.type='OUTGOING' then b.storeName else c.name end as senderName
-          , a.contents as contents
-          , date_format(a.createdAt, '%Y-%m-%d %H:%i') as createdAt
-     from Inquiry a
-     left join ( select id,storeName
-                 from Store ) as b
-                 on a.storeId = b.id
-     left join ( select id, name
-                 from User ) as c
-                 on a.userId = c.id
-     where a.userId = ? and a.storeId = ? and a.status = 'ACTIVE'
-     order by a.createdAt desc;`;
+      const query = `select a.id as id
+      , b.id as userId
+      , b.name as userName
+      , a.type as type
+      , a.contents as contents
+      , date_format(a.createdAt, '%Y-%m-%d %H:%i') as createdAt
+ from Inquiry a
+ right join ( select id, name
+             from User ) as b
+             on a.userId = b.id
+ where a.userId = ? and a.storeId = ? and a.status = 'ACTIVE'
+ order by a.createdAt`;
       db.query(query, [userId, storeId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);

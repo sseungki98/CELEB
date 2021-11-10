@@ -8,8 +8,8 @@ const output = {
     if (req.session.store) {
       try {
         const storeId = req.session.store.id;
-        const response = await InquiryStorage.getInquiryListByStoreId(storeId);
-        return res.render('seller/inquiryList', { response, layout: 'seller/layout' });
+        const inquiryList = await InquiryStorage.getInquiryListByStoreId(storeId);
+        return res.render('seller/inquiryList', { inquiryList, layout: 'seller/layout' });
       } catch (err) {
         return res.render('common/500error', { err, layout: false });
       }
@@ -22,8 +22,8 @@ const output = {
       try {
         const userId = req.params.userId;
         const storeId = req.session.store.id;
-        const response = await InquiryStorage.getInquiryDetailByUserId(userId, storeId);
-        return res.render('seller/inquiryDetail', { response, layout: 'seller/layout' });
+        const inquiryDetail = await InquiryStorage.getInquiryDetailByUserId(userId, storeId);
+        return res.render('seller/inquiryDetail', { inquiryDetail, layout: 'seller/layout' });
       } catch (err) {
         return res.render('common/500error', { err, layout: false });
       }

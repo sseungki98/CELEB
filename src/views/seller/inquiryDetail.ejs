@@ -1,24 +1,28 @@
 <link rel="stylesheet" href="/css/seller/inquiryDetail.css" />
+
 <div class="container clearfix">
   <br />
-  <h2 class="fw-bold">유저 이름</h2>
+  <h2 class="fw-bold"><%= inquiryDetail[0].userName %></h2>
   <div class="chat">
     <div class="chat-history rounded" id="chatScreen">
       <ul class="chat-ul">
+        <% for (inquiry of inquiryDetail) { %> <% if (inquiry.type === 'INCOMING') { %>
         <li class="clearfix">
           <div class="message-data">
             <span class="message-data-name"><i class="fa fa-circle you"></i></span>
-            <span class="ml-3">질문시간</span>
+            <span class="ml-3"><%= inquiry.createdAt %></span>
           </div>
-          <div class="message you-message float-left">대화내역1</div>
+          <div class="message you-message float-left"><%= inquiry.contents %></div>
         </li>
+        <% } else if (inquiry.type === 'OUTGOING') { %>
         <li class="clearfix">
           <div class="message-data align-right">
-            <span class="mr-3">답변시간</span>
+            <span class="mr-3"><%= inquiry.createdAt %></span>
             <span class="message-data-name"><i class="fa fa-circle me"></i></span>
           </div>
-          <div class="message me-message float-right">대화내역2</div>
+          <div class="message me-message float-right"><%= inquiry.contents %></div>
         </li>
+        <% } } %>
       </ul>
     </div>
   </div>
@@ -26,10 +30,9 @@
     <textarea
       class="form-control"
       id="textarea-field"
-      placeholder="답변메세지 작성"
+      placeholder="문의메세지 작성"
       aria-label="Recipient's username"
       aria-describedby="button-addon2"
-      style="color:black"
     ></textarea>
     <button class="btn" type="submit" id="button-addon2">전송하기</button>
   </div>
