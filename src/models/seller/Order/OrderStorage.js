@@ -28,7 +28,7 @@ class OrderStorage {
       const query = `
       SELECT od.id as orderId,pd.name as productName,od.selectedDate,od.orderStatusId
       FROM Orders od join Product pd on pd.id = od.productId
-      WHERE pd.storeId = ?
+      WHERE pd.storeId = ? and orderStatusId = 'WAITING'
       ORDER BY od.createdAt DESC
       limit 5;
       `;
