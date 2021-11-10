@@ -103,7 +103,7 @@ class ProductStorage {
       WHERE pd.storeId = ?
       GROUP BY pd.id
       ORDER BY orderCnt DESC
-      limit 5;
+      limit 3;
       `;
       db.query(query, storeId, (err, data) => {
         if (err) reject(`${err}`);

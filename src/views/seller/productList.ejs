@@ -1,33 +1,31 @@
-<link rel="stylesheet" href="/css/seller/productList.css">
+<link rel="stylesheet" href="/css/seller/productList.css" />
 <div class="container mt-5">
-  <h2 class="fw-bold">상품 관리<button class="btn btn-primary mb-2 ml-3">상품 등록하기</button></h2>
-<div class="row gx-4 gx-lg-5">
-  <% for (let i = 0; i < product.length; i++) { %>
-  <div class="col-md-4 mb-5 mr-4">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title text-center"><%= product[i].name %></h2>
-        <img class="card-img" src="<%= product[i].image %>" />
-        <div class="card-text text-center mt-3">
-          <span style="font-size:20px; color:black;">내가 설정한 옵션</span>
-          <ul>
-            <li>초 개수 + 100/개</li>
-            <li>초콜렛 토핑 + 500원</li>
-          </ul>
+  <h2 class="fw-bold">
+    상품 관리<button class="btn mb-2 ml-3 btn-n" onclick="location.href='/s/product/regist'">새 상품 등록하기</button>
+  </h2>
+  <hr />
+  <div class="row gx-4 gx-lg-5">
+    <% for (let i = 0; i < product.length; i++) { %>
+    <div class="col-md-4 mb-5 mr-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center"><%= product[i].name %></h2>
+          <img class="card-img" src="<%= product[i].image %>" />
         </div>
-      </div>
-      <div class="card-footer">
-        <div class="card-text">
-          <ul>
-            <li>가격 : <%= product[i].price %>~</li>
-            <li>소개 : <%= product[i].info %></li>
-          </ul>
+        <div class="card-footer">
+          <div class="card-text">
+            <ul>
+              <li>가격 : <%= product[i].price %>~</li>
+              <li>소개 : <%= product[i].info %></li>
+            </ul>
+          </div>
+          <button class="btn text-center btn-primary btn-sm" onclick="location.href='/s/product/<%= product[i].productId %>'">
+            수정하기
+          </button>
+          <button class="btn text-center btn-danger btn-sm" style="display: inline-block">삭제하기</button>
         </div>
-        <button class="btn text-center btn-info btn-sm">수정하기</button>
-        <button class="btn text-center btn-warning btn-sm" style="display:inline-block">삭제하기</button>
       </div>
     </div>
+    <% } %>
   </div>
-  <% } %>
-</div>
 </div>
