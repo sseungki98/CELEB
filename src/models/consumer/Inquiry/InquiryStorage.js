@@ -15,15 +15,10 @@ class InquiryStorage {
   static getInquiryDetailByStoreId(id, storeId) {
     return new Promise((resolve, reject) => {
       const query = `select a.id as id
-      , b.id as storeId
-      , b.storeName as storeName
       , a.type as type
       , a.contents as contents
       , date_format(a.createdAt, '%Y-%m-%d %H:%i') as createdAt
  from Inquiry a
- left join ( select id,storeName
-             from Store ) as b
-             on a.storeId = b.id
  where a.userId = ? and a.storeId = ? and a.status = 'ACTIVE'
  order by a.createdAt`;
       db.query(query, [id, storeId], (err, data) => {

@@ -2,6 +2,7 @@
 
 const Inquiry = require('../../models/consumer/Inquiry/Inquiry');
 const InquiryStorage = require('../../models/consumer/Inquiry/InquiryStorage');
+const StoreStorage = require('../../models/consumer/Store/StoreStorage');
 
 const output = {
   inquiryDetail: async (req, res) => {
@@ -9,9 +10,10 @@ const output = {
       try {
         const userId = req.session.user.id;
         const storeId = req.params.storeId;
+        const store = await StoreStorage.getStoreNameByStoreId(storeId);
         const inquiryDetail = await InquiryStorage.getInquiryDetailByStoreId(userId, storeId);
         console.log(inquiryDetail);
-        res.render('consumer/inquiryDetail', { inquiryDetail });
+        res.render('consumer/inquiryDetail', { storeName: store.storeName, inquiryDetail });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
       }
