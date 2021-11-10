@@ -28,15 +28,18 @@ class StoreStorage {
   static getMonthStatisticsByStoreId(storeId) {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT oc.orderCnt,case when oc.totalSum is null then 0 else oc.totalSum end as totalSum,iq.InquiryCnt
+      SELECT oc.orderCnt,case when oc.totalSum is null then 0 else oc.totalSum end as totalSum,iq.InquiryCnt,rv.reviewCnt
       FROM (SELECT count(*) as orderCnt,sum(od.totalPrice) as totalSum
 	          FROM Orders od JOIN Product pd ON od.productId=pd.id
             WHERE od.createdAt BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH) AND NOW() AND pd.storeId=?) oc,
 	         (SELECT count(*) as inquiryCnt
             FROM Inquiry
-            WHERE createdAt BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH) AND NOW() AND storeId=?) iq
+            WHERE createdAt BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH) AND NOW() AND storeId=?) iq,
+           (SELECT count(*) as reviewCnt
+            FROM Review
+            WHERE createdAt BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH) AND NOW() AND storeId=?) rv
       `;
-      db.query(query, [storeId, storeId], (err, data) => {
+      db.query(query, [storeId, storeId, storeId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
