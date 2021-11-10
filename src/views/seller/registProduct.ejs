@@ -3,53 +3,53 @@
 <div class="container">
   <div class="row">
     <div class="col md-5">
+      <h2 class="fw-bold">상품 등록하기<button class="btn btn-secondary mb-2 ml-3">상품 등록완료</button></h2>
       <div class="input-group rounded mb-3">
         <span class="input-group-text">상품명</span>
         <textarea class="form-control" aria-label="With textarea" placeholder="상품명을 입력해주세요"></textarea>
       </div>
-      <div class="input-group mb-3 rounded">
-        <label class="input-group-text" for="inputGroupFile01">대표사진</label>
-        <input type="file" class="form-control" id="inputGroupFile01" />
+      <div>
+        <label for="formFileLg" class="form-label fw-bold ml-1">대표사진</label>
+        <input class="form-control form-control-lg mb-3 rounded" id="formFileLg" type="file">
       </div>
-      <div class="input-group">
-        <span class="input-group-text rounded">주문시 유의사항</span>
+      <div class="input-group rounded mb-3">
+        <span class="input-group-text">주문시 유의사항</span>
         <textarea class="form-control" aria-label="With textarea" placeholder="주문시 유의사항을 입력해주세요."></textarea>
       </div>
       <div class="input-group mb-3 rounded">
         <span class="input-group-text">기본가격</span>
-        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+        <input type="text" class="form-control" aria-label="Amount" />
         <span class="input-group-text">원</span>
       </div>
-      <div class="input-group mb-3 rounded" >
-        <label class="input-group-text" for="inputGroupFile01">상세이미지1</label>
-        <input type="file" class="form-control" id="inputGroupFile01" />
+      <div>
+        <label for="formFileLg" class="form-label ml-1 fw-bold">상세이미지1</label>
+        <input class="form-control form-control-lg rounded mb-3" id="formFileLg" type="file">
       </div>
-      <div class="input-group mb-3 rounded">
-        <label class="input-group-text" for="inputGroupFile01">상세이미지2</label>
-        <input type="file" class="form-control" id="inputGroupFile01" />
+      <div>
+        <label for="formFileLg" class="form-label ml-1 fw-bold">상세이미지2</label>
+        <input class="form-control form-control-lg mb-3 rounded" id="formFileLg" type="file">
       </div>
-      <div class="input-group mb-3 rounded">
-        <label class="input-group-text" for="inputGroupFile01">상세이미지3</label>
-        <input type="file" class="form-control" id="inputGroupFile01" />
+      <div>
+        <label for="formFileLg" class="form-label ml-1 fw-bold">상세이미지3</label>
+        <input class="form-control form-control-lg mb-3 rounded" id="formFileLg" type="file">
       </div>
     </div>
     
     <div class="col md-7">
       <h1>카테고리 설정</h1>
       <hr />
-      <button class="btn btn-info" onclick="add_category()">카테고리 생성</button>
-      <button class="btn btn-warning" onclick="add_textform()">텍스트폼 추가</button>
-      <button class="btn btn-primary" onclick="add_checkbox()">체크박스 추가</button>
+      <button class="btn btn-info form-btn" onclick="add_category()">카테고리 생성</button>
+      <button class="btn btn-warning form-btn" onclick="add_textform()">텍스트폼 추가</button>
+      <button class="btn btn-primary form-btn" onclick="add_checkbox()">체크박스 추가</button>
       <br />
-      <button class="btn btn-success" onclick="add_radiobox()">라디오(택1) 추가</button>
-      <button class="btn btn-danger" onclick="add_color()">색상선택폼 추가</button>
+      <button class="btn btn-success form-btn" onclick="add_radiobox()">라디오(택1) 추가</button>
+      <button class="btn btn-danger form-btn" onclick="add_color()">색상선택폼 추가</button>
       <hr />
 
       <div id="makecategory" style="display: none">
-        <div class="input-group mb-3">
-          <i class="fas fa-circle" style="color: #03befc"></i>
-
-          <span class="input-group-text rounded mb-3" id="basic-addon1">카테고리 이름 입력</span>
+        <i class="fas fa-circle" style="color: #03befc"></i>
+        <div class="input-group rounded">
+          <span class="input-group-text " id="basic-addon1">카테고리 이름 입력</span>
           <input
             type="text"
             class="form-control"
@@ -57,47 +57,48 @@
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
-          <button class="btn btn-secondary" onclick="remove_item(this)">제거하기</button>
+          <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>
       <div id="addtextform" style="display: none">
         <i class="fas fa-circle" style="color: yellow"></i>
-        <div class="input-group mb-3 rounded">
+        <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
-          <button class="btn btn-secondary" onclick="remove_item(this)">제거하기</button>
+          <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>
+
       <div id="addcheckbox" style="display: none">
-        <div class="input-group mb-3 rounded">
-          <i class="fas fa-circle" style="color: #0352fc"></i>
+        <i class="fas fa-circle" style="color: #0352fc"></i>
+        <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
-          <button class="btn btn-secondary" onclick="remove_item(this)">제거하기</button>
+          <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>
       <div id="addradiobox" style="display: none">
-        <div class="input-group mb-3 rounded">
-          <i class="fas fa-circle" style="color: #086e2f"></i>
+        <i class="fas fa-circle" style="color: #086e2f"></i>
+        <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
-          <button class="btn btn-secondary" onclick="remove_item(this)">제거하기</button>
+          <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>
       <div id="addcolorbox" style="display: none">
-        <div class="input-group mb-3 rounded">
-          <i class="fas fa-circle" style="color: #ff0a0e"></i>
+        <i class="fas fa-circle" style="color: #ff0a0e"></i>
+        <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
-          <button class="btn btn-secondary" onclick="remove_item(this)">제거하기</button>
+          <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>
       <form id="field"></form>
