@@ -35,11 +35,12 @@ const output = {
     if (req.session.store) {
       try {
         const storeId = req.session.store.id;
+        console.log(storeId);
         const productRank = await ProductStorage.getProductRankByStoreId(storeId);
         const recentOrder = await OrderStorage.getRecentOrderProductByStoreId(storeId);
         const orderCount = await OrderStorage.getRecentOrderCountByStoreId(storeId);
-        const statistics = await StoreStorage.getMonthStatisticsByStoreId(storeId);
-        res.render('seller/storeMain', { productRank, recentOrder, orderCount, statistics, layout: 'seller/layout' });
+        const statistic = await StoreStorage.getMonthStatisticsByStoreId(storeId);
+        res.render('seller/storeMain', { productRank, recentOrder, orderCount, statistic, layout: 'seller/layout' });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
       }
@@ -74,10 +75,10 @@ const process = {
     if (req.session.store) {
       req.session.destroy(function (err) {
         if (err) throw err;
-        return res.redirect('/s/login', { layout: 'seller/layout' });
+        return res.redirect('/s/login');
       });
     } else {
-      return res.redirect('/s/login', { layout: 'seller/layout' });
+      return res.redirect('/s/login');
     }
   },
   register: async (req, res) => {

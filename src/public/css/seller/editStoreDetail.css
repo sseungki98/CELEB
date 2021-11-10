@@ -1,0 +1,17 @@
+.container {
+  background-color: white;
+  margin: 100px 16%;
+  padding: 4%;
+}
+
+.input-group {
+  border: 1px rgba(134, 90, 90, 0.2) solid;
+}
+
+.form-control-lg {
+  border: 2px rgba(0, 0, 0, 0.2) solid;
+}
+
+.btn {
+  background-color: #ffdb88;
+}

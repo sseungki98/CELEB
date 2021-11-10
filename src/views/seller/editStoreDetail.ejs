@@ -1,27 +1,28 @@
-<link rel="stylesheet" href="/css/seller/reviseStoreInfo.css" />
-<div class="container mt-5 rounded">
+<link rel="stylesheet" href="/css/seller/editStoreDetail.css" />
+<div class="container mt-6 rounded">
   <form>
-  <h3 class="fw-bold mb-3">스토어 정보수정 <button type="submit" class="btn btn-outline-info mb-2 ml-3">수정완료</button></h3>
- 
-    <div class="input-group mb-3 rounded">
+    <h3 class="fw-bold mb-5">스토어 정보</h3>
+
+    <div class="input-group mb-4 rounded">
       <span class="input-group-text" id="inputGroup-sizing-default">스토어명</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+      <input type="text" class="form-control" value="<%= storeDetail.storeName %>" />
     </div>
-    <div class="mb-3 rounded">
-      <label for="formFileLg" class="form-label fw-bold ml-1">스토어 대표사진</label>
-      <input class="form-control form-control-lg" id="formFileLg" type="file">
+    <div class="mb-4 rounded">
+      <label for="formFileLg" class="form-label fw-bold ml-1">스토어 대표사진 변경</label>
+      <input class="form-control form-control-lg" id="formFileLg" type="file" />
     </div>
-    <div class="input-group mb-3 rounded">
+    <div class="input-group mb-4 rounded">
       <span class="input-group-text" id="inputGroup-sizing-default">대표번호</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+      <input type="text" class="form-control" value="<%= storeDetail.phoneNum %>" />
     </div>
-    <div class="input-group mb-3 rounded">
-      <span class="input-group-text">스토어 설명</span>
-      <textarea class="form-control" aria-label="With textarea"></textarea>
-    </div>
-    <div class="input-group mb-3 rounded">
+    <div class="input-group mb-4 rounded">
       <span class="input-group-text" id="inputGroup-sizing-default">오픈시간</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+      <input type="text" class="form-control" value="<%= storeDetail.operatingHour %>" />
     </div>
+    <div class="input-group mb-4 rounded">
+      <span class="input-group-text">스토어 설명</span>
+      <textarea class="form-control"><%= storeDetail.info %></textarea>
+    </div>
+    <button type="submit" class="btn mb-2 ml-3" style="float: right">정보 수정하기</button>
   </form>
 </div>
