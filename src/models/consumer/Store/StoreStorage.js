@@ -142,5 +142,15 @@ order by orderCount desc;`;
       });
     });
   }
+  static getStoreNameByStoreId(storeId) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT id as storeId, storeName from Store where id=? and status='ACTIVE'`;
+      db.query(query, [storeId], (err, data) => {
+        if (err) reject(`${err}`);
+        resolve(data[0]);
+      });
+    });
+  }
 }
+
 module.exports = StoreStorage;
