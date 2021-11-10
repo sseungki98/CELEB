@@ -1,8 +1,10 @@
 <link rel="stylesheet" href="/css/seller/productList.css">
+<div class="container mt-5">
+  <h2 class="fw-bold">상품 관리<button class="btn btn-primary mb-2 ml-3">상품 등록하기</button></h2>
 <div class="row gx-4 gx-lg-5">
   <% for (let i = 0; i < product.length; i++) { %>
-  <div class="col-md-4 mb-5">
-    <div class="card h-100">
+  <div class="col-md-4 mb-5 mr-4">
+    <div class="card">
       <div class="card-body">
         <h2 class="card-title text-center"><%= product[i].name %></h2>
         <img class="card-img" src="<%= product[i].image %>" />
@@ -21,9 +23,11 @@
             <li>소개 : <%= product[i].info %></li>
           </ul>
         </div>
-        <a class="btn d-grid mx-auto text-center btn-primary btn-sm" href="">수정하기</a>
+        <button class="btn text-center btn-info btn-sm">수정하기</button>
+        <button class="btn text-center btn-warning btn-sm" style="display:inline-block">삭제하기</button>
       </div>
     </div>
   </div>
   <% } %>
+</div>
 </div>
