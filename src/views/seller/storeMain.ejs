@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
 <div class="container" style="margin-left: 10%; margin-top:5%">
   <div class="row mb-3 gx-5" style="flex-wrap: nowrap">
     <div class="col-md-6 mr-3 pt-3 rounded" style="background: white">
@@ -8,9 +11,9 @@
         <li>3위 :</li>
       </ul>
     </div>
-    <div class="col-md-6 pt-3 rounded" style="background: white">
+    <div class="col-md-8 pt-3 rounded" style="background: white">
       <b
-        ><h4 class="fw-bold">최근 주문건<button class="btn btn-sm btn-info ml-3">주문목록 확인하기</button></h4></b
+        ><h4 class="fw-bold">최근 주문건<button class="btn btn-sm btn-info ml-3 mb-2">주문목록 확인하기</button></h4></b
       >
       <ul class="pl-3">
         <li>주문1 <a class="fas fa-arrow-right text-right" href="#"></a></li>
@@ -84,13 +87,79 @@
         });
       </script>
     </div>
-    <div class="col-md-6 pt-3 rounded" style="background: white">
+    <div class="col-md-8 pt-3 rounded" style="background: white">
       <b><h4 class="fw-bold">통계</h4></b>
-      <ul class="pl-3">
-        <li>이번달 주문 수 :</li>
-        <li>이번달 정산량 :</li>
-        <li>이번달 문의 수 :</li>
-      </ul>
+      <div class="row">
+        <div class="col-xl-6 col-sm-6 col-6">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="align-self-center">
+                    <i class="fas fa-receipt info font-large-2 float-left"></i>
+                  </div>
+                  <div class="media-body text-right">
+                    <h3>30건</h3>
+                    <span>이번달 주문 수</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-sm-6 col-6">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="align-self-center">
+                    <i class="fas fa-won-sign success font-large-2 float-left"></i>
+                  </div>
+                  <div class="media-body text-right">
+                    <h3>100,000원</h3>
+                    <span>이번달 판매액</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div><div class="row">
+          <div class="col-xl-6 col-sm-6 col-6">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="align-self-center">
+                      <i class="far fa-question-circle warning font-large-2 float-left"></i>
+                    </div>
+                    <div class="media-body text-right">
+                      <h3>8건</h3>
+                      <span>이번달 문의수</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-sm-6 col-6">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="media d-flex">
+                    <div class="align-self-center">
+                      <i class="fas fa-heart danger font-large-2 float-left"></i>
+                    </div>
+                    <div class="media-body text-right">
+                      <h3>12건</h3>
+                      <span>이번달 리뷰수</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
     </div>
   </div>
 </div>
