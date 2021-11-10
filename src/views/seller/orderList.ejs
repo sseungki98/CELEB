@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/seller/orderList.css">
+<link rel="stylesheet" href="/css/seller/orderList.css" />
 <div class="container mt-5 rounded">
   <h1 class="fw-bold">주문관리</h1>
   <table class="table">
@@ -24,9 +24,11 @@
         <td><%= orderList[i].totalPrice %></td>
         <td>
           <div><%= orderList[i].orderStatus %></div>
-          <% if (orderList[i].orderStatusId === 'COMPLETE') { %>
-          <a class="btn btn-outline-secondary btn-sm" href="/mypage/order/<%= orderList[i].orderId %>/review" role="button">리뷰확인 </a> <%
-          } %>
+          <% if (orderList[i].orderStatusId === 'WAITING') { %>
+          <a class="btn btn-outline-secondary btn-sm" href="" role="button">승인/거부</a>
+          <% } %> <% if (orderList[i].orderStatusId === 'WAITING') { %>
+          <a class="btn btn-outline-secondary btn-sm" href="" role="button">승인/거부</a>
+          <% } %>
         </td>
         <td>
           <a

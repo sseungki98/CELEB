@@ -29,11 +29,8 @@ const output = {
 const process = {
   orderStatus: async (req, res) => {
     const orderId = req.params.orderId;
-    const { status } = req.body;
-    if (!orderId) return res.json({ success: false, message: '주문 id를 입력해주세요. ' });
-    if (!status) return res.json({ success: false, message: '상태를 입력해주세요. ' });
     const order = new Order(req.body);
-    const response = await order.patchStatus(status, orderId);
+    const response = await order.patchStatus(orderId);
     return res.json(response);
   },
 };
