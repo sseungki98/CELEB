@@ -45,56 +45,54 @@
   </head>
 
   <body>
-  <div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar">
-      <div class="custom-menu">
-        <button type="button" id="sidebarCollapse" class="btn btn-primary">
-        </button>
-      </div>
-      <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);">
-        <div class="user-logo">
-          <div class="img" style="background-image: url(/img/ex-cake1.png);"></div>
-          <h3 class="fw-bold">승현이네 케이크집</h3>
+    <div class="wrapper d-flex align-items-stretch">
+      <nav id="sidebar">
+        <div class="custom-menu">
+          <button type="button" id="sidebarCollapse" class="btn btn-primary"></button>
+        </div>
+        <div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg)">
+          <div class="user-logo">
+            <a href="/s"><div class="img" style="background-image: url(/img/ex-cake1.png)"></div></a>
+            <h3 class="fw-bold">승현이네 케이크집</h3>
+          </div>
         </div>
         <ul class="list-unstyled components mb-5">
           <li class="active">
-            <a href="#"> <i class="fa fa-home mr-3"></i>스토어관리</a>
+            <a href="/s/store"> <i class="fa fa-home mr-3"></i>스토어관리</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-gift mr-3"></i>상품관리</a>
+            <a href="/s/product"><i class="fa fa-gift mr-3"></i>상품관리</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-receipt mr-3"></i> 주문관리</a>
+            <a href="/s/order"><i class="fa fa-receipt mr-3"></i> 주문관리</a>
           </li>
           <li>
-            <a href="#"> <i class="fa fa-won mr-3"></i>정산관리</a>
+            <a href=""> <i class="fa fa-won mr-3"></i>정산관리</a>
           </li>
           <li>
-            <a href="#"><i class="fas fa-question mr-3"></i> 문의관리</a>
+            <a href="/s/inquiry"><i class="fas fa-question mr-3"></i> 문의관리</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-sign-out mr-3"></span>로그아웃</a>
+            <form name="logout" action="/s/logout" method="POST">
+              <a href="javascript:document.logout.submit()"><span class="fa fa-sign-out mr-3"></span>로그아웃</a>
+            </form>
           </li>
         </ul>
       </nav>
       <%- body %>
     </div>
     <script>
-      var sidebar = document.getElementById('sidebar')
+      var sidebar = document.getElementById('sidebar');
       var active = 0;
-      document.getElementById('sidebarCollapse').addEventListener('click',function(){
-        if(active == 0)
-        {
-          sidebar.style.marginLeft="-300px";
+      document.getElementById('sidebarCollapse').addEventListener('click', function () {
+        if (active == 0) {
+          sidebar.style.marginLeft = '-300px';
           active = 1;
+        } else if (active == 1) {
+          sidebar.style.marginLeft = '0';
+          active = 0;
         }
-        else if (active == 1)
-        {
-          sidebar.style.marginLeft="0";
-          active=0;
-        }
-      })
-
+      });
     </script>
     <script src="/js/seller/popper.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
