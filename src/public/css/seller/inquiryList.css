@@ -250,7 +250,6 @@ body {
     -ms-flex-negative: 0;
     flex-shrink: 0;
     border-radius: 500px;
-    box-shadow: 0 5px 10px 0 rgba(50, 50, 50, 0.15);
   }
   
   .avatar img {
@@ -258,29 +257,7 @@ body {
     width: 100%;
   }
   
-  .gd-primary {
-    color: #fff;
-    border: none;
-    background: #448bff linear-gradient(45deg, #448bff, #44e9ff);
-  }
   
-  .gd-success {
-    color: #fff;
-    border: none;
-    background: #31c971 linear-gradient(45deg, #31c971, #3dc931);
-  }
-  
-  .gd-info {
-    color: #fff;
-    border: none;
-    background: #14bae4 linear-gradient(45deg, #14bae4, #14e4a6);
-  }
-  
-  .gd-warning {
-    color: #fff;
-    border: none;
-    background: #f4c414 linear-gradient(45deg, #f4c414, #f45414);
-  }
   
   @media (min-width: 992px) {
     .page-container {

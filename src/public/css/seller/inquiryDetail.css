@@ -4,11 +4,11 @@
 *:after {
   box-sizing: border-box;
 }
+
 .chat .chat-history {
   padding: 30px 30px 20px;
-  border-bottom: 2px solid white;
-  height:80vh;
-  overflow:auto;
+  height: 70vh;
+  overflow: auto;
 }
 .chat .chat-history .message-data {
   margin-bottom: 15px;
@@ -24,7 +24,6 @@
   font-size: 16px;
   border-radius: 5px;
   margin-bottom: 30px;
-  width: 90%;
   position: relative;
 }
 .chat .chat-history .message:after {
@@ -61,7 +60,9 @@
   color: gray;
   cursor: pointer;
 }
-
+.chat-ul {
+  padding-left: 0;
+}
 .chat-ul li {
   list-style-type: none;
 }
@@ -74,10 +75,6 @@
   text-align: right;
 }
 
-.float-right {
-  float: right;
-}
-
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -87,20 +84,11 @@
   height: 0;
 }
 .you {
-  color: #ccdbdc;
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  margin-right: 5px;
+  color: #a8aab1;
 }
-
 .me {
   color: #e9724c;
 }
-.you {
-  color:#a8aab1;
-}
-
 h1,
 h2,
 h3,
@@ -109,3 +97,19 @@ h5,
 h6 {
   color: #003366;
 }
+#textarea-field {
+  background-color: white;
+}
+#button-addon2 {
+  background-color: #ffd5d5;
+  color: grey;
+}
+
+.chat-history {
+  background-color: whitesmoke;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
