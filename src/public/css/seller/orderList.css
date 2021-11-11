@@ -1,15 +1,20 @@
 .pagination {
-    padding-bottom: 2%;
-  }
+  padding-bottom: 2%;
+}
 
-  .click {
-    padding:0;
-  }
-  .click:hover {
-    cursor:pointer;
-    color:gray;
-  }
+.click {
+  padding: 0;
+}
+.click:hover {
+  cursor: pointer;
+  color: gray;
+}
 
-  .container {
-    background-color: rgba(255, 255, 255, 0.438);
-  }
+.container {
+  background-color: rgba(255, 137, 130, 0.08);
+  padding: 2%;
+}
+
+.page-link {
+  color: #f6cc4a;
+}
