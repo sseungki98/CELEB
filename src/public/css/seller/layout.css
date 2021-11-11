@@ -1,3 +1,7 @@
+body {
+  background-color: #faf3ec;
+}
+
 .img {
   background-size: cover;
   background-repeat: no-repeat;
@@ -13,7 +17,7 @@
   max-width: 300px;
   height: 100vh;
 
-  background: #fffdf2;
+  background: whitesmoke;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
