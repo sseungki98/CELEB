@@ -46,21 +46,30 @@
       <button class="btn btn-danger form-btn" onclick="add_color()">색상선택폼 추가</button>
       <hr />
 
-      <div id="makecategory" style="display: none">
-        <i class="fas fa-circle" style="color: #03befc"></i>
-        <div class="input-group rounded">
-          <span class="input-group-text " id="basic-addon1">카테고리 이름 입력</span>
+      
+      <form id="field"></form>
+      <script>
+        function add_category() {
+          var FD = document.getElementById('field');
+          FD.insertAdjacentHTML("afterend",`<div id='makecategory' style='display: flex;'> 
+        <i class='fas fa-circle' style='color: #03befc'></i>
+        <div class='input-group rounded'>
+          <span class='input-group-text' id='basic-addon1'>카테고리 이름 입력</span>
           <input
-            type="text"
-            class="form-control"
-            placeholder="카테고리 이름을 입력하세요"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
+            type='text'
+            class='form-control'
+            placeholder='카테고리 이름을 입력하세요'
+            aria-label='Username'
+            aria-describedby='basic-addon1'
           />
-          <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
+          <button class='btn btn-secondary x' onclick='remove_item(this)'>X</button>
         </div>
-      </div>
-      <div id="addtextform" style="display: none">
+      </div>`);
+        }
+
+        function add_textform() {
+          var FD = document.getElementById('field');
+          FD.insertAdjacentHTML("afterend",`<div id="addtextform" style="display: flex">
         <i class="fas fa-circle" style="color: yellow"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
@@ -69,9 +78,12 @@
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
-      </div>
+      </div>`);
+        }
 
-      <div id="addcheckbox" style="display: none">
+        function add_checkbox() {
+          var FD = document.getElementById('field');
+          FD.insertAdjacentHTML("afterend",`<div id="addcheckbox" style="display: flex">
         <i class="fas fa-circle" style="color: #0352fc"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
@@ -80,8 +92,12 @@
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
-      </div>
-      <div id="addradiobox" style="display: none">
+      </div>`);
+        }
+
+        function add_radiobox() {
+          var FD = document.getElementById('field');
+          FD.insertAdjacentHTML("afterend",`<div id="addradiobox" style="display: flex">
         <i class="fas fa-circle" style="color: #086e2f"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
@@ -90,8 +106,12 @@
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
-      </div>
-      <div id="addcolorbox" style="display: none">
+      </div>`);
+        }
+
+        function add_color() {
+          var FD = document.getElementById('field');
+          FD.insertAdjacentHTML("afterend",`<div id="addcolorbox" style="display: flex">
         <i class="fas fa-circle" style="color: #ff0a0e"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
@@ -100,42 +120,12 @@
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
-      </div>
-      <form id="field"></form>
-      <script>
-        function add_category() {
-          var div = document.createElement('div');
-          div.innerHTML = document.getElementById('makecategory').innerHTML;
-          document.getElementById('field').appendChild(div);
+      </div>`);
         }
 
-        function add_textform() {
-          var div = document.createElement('div');
-          div.innerHTML = document.getElementById('addtextform').innerHTML;
-          document.getElementById('field').appendChild(div);
-        }
-
-        function add_checkbox() {
-          var div = document.createElement('div');
-          div.innerHTML = document.getElementById('addcheckbox').innerHTML;
-          document.getElementById('field').appendChild(div);
-        }
-
-        function add_radiobox() {
-          var div = document.createElement('div');
-          div.innerHTML = document.getElementById('addradiobox').innerHTML;
-          document.getElementById('field').appendChild(div);
-        }
-
-        function add_color() {
-          var div = document.createElement('div');
-          div.innerHTML = document.getElementById('addcolorbox').innerHTML;
-          document.getElementById('field').appendChild(div);
-        }
-
-        function remove_item(obj) {
-          document.getElementById('field').removeChild(obj.parentNode);
-        }
+        // function remove_item(obj) {
+        //   document.getElementById('field').removeChild(obj.parentNode);
+        // }
       </script>
     </div>
   </div>

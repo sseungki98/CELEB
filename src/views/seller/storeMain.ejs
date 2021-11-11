@@ -13,28 +13,30 @@
   type="text/css"
   href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css"
 />
-<link rel="stylesheet" href="/css/seller/storeMain.css">
+<link rel="stylesheet" href="/css/seller/storeMain.css" />
 
 <div class="container" style="margin-left: 10%; margin-top: 5%">
   <div class="row mb-3 gx-5" style="flex-wrap: nowrap">
     <div class="col-md-6 mr-3 pt-3 rounded" style="background: white">
       <b><h4 class="fw-bold">제품순위</h4></b>
-     <div class="row">
-      <% for (let i = 0; i < productRank.length; i++) { %>
-       <div class="col-md-4">
-        <div class="card profile-card-5">
-          <div class="card-img-block">
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c">
-          </div>
-            <div class="card-body pt-0">
-            <p class="card-text"><i class="fas fa-crown gold"></i><%= i+1 %>위 : <%= productRank[i].productName %> (<%= productRank[i].orderCnt %>건)</p>
+      <div class="row">
+        <% for (let i = 0; i < productRank.length; i++) { %>
+        <div class="col-md-4">
+          <div class="card profile-card-5">
+            <div class="card-img-block">
+              <img class="card-img-top" src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c" />
             </div>
+            <div class="card-body pt-0">
+              <p class="card-text text-center">
+                <i class="fas fa-crown color1"></i> &nbsp<%= i+1 %>위 <br /><%= productRank[i].productName %><br />
+                (<%= productRank[i].orderCnt %>건)
+              </p>
+            </div>
+          </div>
         </div>
+        <% } %>
       </div>
-      <% } %>
-    </div>
-     
-     
+
       <!-- <ul class="pl-3">
         <% for (let i = 0; i < productRank.length; i++) { %>
         <li><%= i+1 %>위 : <%= productRank[i].productName %> (<%= productRank[i].orderCnt %>건)</li>
@@ -42,17 +44,25 @@
       </ul> -->
     </div>
     <div class="col-md-6 pt-3 rounded" style="background: white">
-      <b
-        ><h4 class="fw-bold">
-          승인 대기 주문 건<button class="btn btn-sm ml-3 mb-2" style="background-color: #ffdb88">주문목록 확인하기</button>
-        </h4>
-        (<% if ( recentOrder.length > 0 ) { %><%= recentOrder[0].orderCount %><% } else { %>0<% } %>건)</b
-      >
-      <ul class="pl-3">
+      <h4 class="fw-bold">
+        <span>승인 대기 주문 건 (<% if ( recentOrder.length > 0 ) { %><%= recentOrder[0].orderCount %><% } else { %>0<% } %>건)</span>
+        <button class="btn btn-sm ml-3 mb-2" style="background-color: #ffdb88">주문목록 확인하기</button>
+      </h4>
+      <div class="row">
         <% for (order of recentOrder) { %>
-        <li>신규 <%= order.productName %> 주문</li>
+        <div class="col-xl-6 col-sm-6 col-12 mt-0">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-body py-0">
+                <div class="media d-flex">
+                  <div class="media-body text-left">신규 <%= order.productName %> 주문</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <% } %>
-      </ul>
+      </div>
     </div>
   </div>
   <div class="row" style="flex-wrap: nowrap">
@@ -137,7 +147,7 @@
                     <i class="fas fa-receipt info font-large-2 float-left"></i>
                   </div>
                   <div class="media-body text-right">
-                    <h3><%= statistic.orderCnt %>건</h3>
+                    <h4><%= statistic.orderCnt %>건</h4>
                     <span>이번달 주문 수</span>
                   </div>
                 </div>
@@ -154,7 +164,7 @@
                     <i class="fas fa-won-sign success font-large-2 float-left"></i>
                   </div>
                   <div class="media-body text-right">
-                    <h3><%= statistic.totalSum %>원</h3>
+                    <h4><%= statistic.totalSum %>원</h4>
                     <span>이번달 판매액</span>
                   </div>
                 </div>
@@ -173,7 +183,7 @@
                     <i class="far fa-question-circle warning font-large-2 float-left"></i>
                   </div>
                   <div class="media-body text-right">
-                    <h3><%= statistic.inquiryCnt %>건</h3>
+                    <h4><%= statistic.inquiryCnt %>건</h4>
                     <span>이번달 문의수</span>
                   </div>
                 </div>
@@ -190,7 +200,7 @@
                     <i class="fas fa-heart danger font-large-2 float-left"></i>
                   </div>
                   <div class="media-body text-right">
-                    <h3><%= statistic.reviewCnt %>건</h3>
+                    <h4><%= statistic.reviewCnt %>건</h4>
                     <span>이번달 리뷰수</span>
                   </div>
                 </div>
