@@ -324,7 +324,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background-color: #faf3ec !important;
 }
 
 [tabindex='-1']:focus {
@@ -10881,7 +10881,7 @@ h5,
   max-width: 300px;
   height: 100vh;
 
-  background: #fffdf2;
+  background: whitesmoke;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
