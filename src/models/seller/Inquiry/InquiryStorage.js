@@ -52,7 +52,7 @@ where rowNum = 1;`;
       const query = 'INSERT INTO Inquiry(storeId, userId, contents, type) VALUES(?,?,?,"OUTGOING");';
       db.query(query, [storeId, userId, contents], (err, data) => {
         if (err) reject(`${err}`);
-        resolve({ success: true });
+        resolve(data[0]);
       });
     });
   }

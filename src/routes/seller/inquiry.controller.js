@@ -36,9 +36,8 @@ const process = {
   inquiry: async (req, res) => {
     const storeId = req.session.store.id;
     const userId = req.params.userId;
-    const { contents } = req.body;
     const inquiry = new Inquiry(req.body);
-    const response = await inquiry.postInquiry(storeId, userId, contents);
+    const response = await inquiry.postInquiry(storeId, userId);
     return res.json(response);
   },
 };
