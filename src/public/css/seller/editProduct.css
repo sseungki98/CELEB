@@ -12,10 +12,11 @@
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: white;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   margin-top: 5%;
   margin-bottom: 5%;
-  padding-top: 10px;
+  padding: 3rem;
 }
 
 .x {
