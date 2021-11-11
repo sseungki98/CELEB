@@ -1,5 +1,5 @@
 body {
-  background-color: #faf3ec;
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
 }
 
 .img {
@@ -16,7 +16,7 @@ body {
   min-width: 300px;
   max-width: 300px;
   height: 100vh;
-
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   background: whitesmoke;
   color: #fff;
   -webkit-transition: all 0.3s;
