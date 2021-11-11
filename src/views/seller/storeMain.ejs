@@ -13,15 +13,33 @@
   type="text/css"
   href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css"
 />
+<link rel="stylesheet" href="/css/seller/storeMain.css">
+
 <div class="container" style="margin-left: 10%; margin-top: 5%">
   <div class="row mb-3 gx-5" style="flex-wrap: nowrap">
     <div class="col-md-6 mr-3 pt-3 rounded" style="background: white">
       <b><h4 class="fw-bold">제품순위</h4></b>
-      <ul class="pl-3">
+     <div class="row">
+      <% for (let i = 0; i < productRank.length; i++) { %>
+       <div class="col-md-4">
+        <div class="card profile-card-5">
+          <div class="card-img-block">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c">
+          </div>
+            <div class="card-body pt-0">
+            <p class="card-text"><i class="fas fa-crown gold"></i><%= i+1 %>위 : <%= productRank[i].productName %> (<%= productRank[i].orderCnt %>건)</p>
+            </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+     
+     
+      <!-- <ul class="pl-3">
         <% for (let i = 0; i < productRank.length; i++) { %>
         <li><%= i+1 %>위 : <%= productRank[i].productName %> (<%= productRank[i].orderCnt %>건)</li>
         <% } %>
-      </ul>
+      </ul> -->
     </div>
     <div class="col-md-6 pt-3 rounded" style="background: white">
       <b
