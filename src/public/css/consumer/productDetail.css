@@ -50,8 +50,8 @@ input {
 }
 
 .slide-image img {
-  width: 14vw;
-  height: 8em;
+  width: 12.7vw;
+  height: 10em;
 }
 
 .card-header {
@@ -132,5 +132,13 @@ a:hover {
 }
 
 .card-image-top {
-  height:100vw;
+  height: 100vw;
+}
+
+.zoom {
+  transition: transform 0.2s;
+}
+
+.zoom:hover {
+  transform: scale(2);
 }

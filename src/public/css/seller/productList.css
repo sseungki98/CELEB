@@ -5,7 +5,8 @@ li {
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: white;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   padding: 40px;
 }
 
@@ -15,5 +16,19 @@ li {
 
 .btn-primary,
 .btn-danger {
+  width: 48%;
+}
+
+.card {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.bg-orange {
+  background-color: #ffc18a;
+  width: 48%;
+}
+
+.bg-brown {
+  background-color: #c0564a;
   width: 48%;
 }
