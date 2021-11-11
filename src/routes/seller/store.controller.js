@@ -60,7 +60,7 @@ const process = {
   login: async (req, res) => {
     const store = new Store(req.body);
     const response = await store.login();
-    console.log(req.body);
+
     if (response.success) {
       req.session.store = {
         id: response.id,
