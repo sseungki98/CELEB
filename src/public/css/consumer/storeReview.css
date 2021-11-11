@@ -136,3 +136,7 @@ i .checked {
 .replydate {
   font-size: 13px;
 }
+
+.page-link {
+  color: rgb(255, 124, 146);
+}

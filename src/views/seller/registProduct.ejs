@@ -1,57 +1,53 @@
 <link rel="stylesheet" href="/css/seller/registProduct.css" />
+<script src="/js/seller/registProduct.js" defer></script>
 
 <div class="container">
   <div class="row">
     <div class="col md-5">
-      <h2 class="fw-bold">상품 등록하기<button class="btn btn-secondary mb-2 ml-3">상품 등록완료</button></h2>
+      <h1 class="fw-bold">
+        상품 등록하기<button class="btn btn-secondary mb-2 ml-3" id="registButton" type="submit">상품 등록완료</button>
+      </h1>
       <div class="input-group rounded mb-3">
         <span class="input-group-text">상품명</span>
-        <input class="form-control" type="text" placeholder="상품명을 입력해주세요"></input>
-      </div>
-      <div>
-        <label for="formFileLg" class="form-label fw-bold ml-1">대표사진</label>
-        <input class="form-control form-control-lg mb-3 rounded" id="formFileLg" type="file">
-      </div>
-      <div class="input-group rounded mb-3">
-        <span class="input-group-text">주문시 유의사항</span>
-        <textarea class="form-control" aria-label="With textarea" placeholder="주문시 유의사항을 입력해주세요."></textarea>
+        <input type="text" class="form-control" id="productName" />
       </div>
       <div class="input-group mb-3 rounded">
         <span class="input-group-text">기본가격</span>
-        <input type="text" class="form-control" aria-label="Amount" />
+        <input type="number" class="form-control" id="productPrice" />
         <span class="input-group-text">원</span>
       </div>
-      <div>
-        <label for="formFileLg" class="form-label ml-1 fw-bold">상세이미지1</label>
-        <input class="form-control form-control-lg rounded mb-3" id="formFileLg" type="file">
+      <div class="input-group">
+        <span class="input-group-text">주문 유의사항</span>
+        <textarea class="form-control" id="info"></textarea>
       </div>
       <div>
-        <label for="formFileLg" class="form-label ml-1 fw-bold">상세이미지2</label>
-        <input class="form-control form-control-lg mb-3 rounded" id="formFileLg" type="file">
+        <label for="mainImage" class="form-label fw-bold ml-1">대표사진</label>
+        <input class="form-control form-control mb-3 rounded" id="mainImage" type="file" />
       </div>
       <div>
-        <label for="formFileLg" class="form-label ml-1 fw-bold">상세이미지3</label>
-        <input class="form-control form-control-lg mb-3 rounded" id="formFileLg" type="file">
+        <label for="detailImage" class="form-label ml-1 fw-bold">상세이미지 (최대 7장)</label>
+        <input class="form-control form-control rounded mb-3" id="detailImage" type="file" multiple />
       </div>
     </div>
-    
+
     <div class="col md-7">
-      <h1>카테고리 설정</h1>
+      <h5><b>카테고리 설정</b></h5>
       <hr />
-      <button class="btn btn-info form-btn" onclick="add_category()">카테고리 생성</button>
-      <button class="btn btn-warning form-btn" onclick="add_textform()">텍스트폼 추가</button>
-      <button class="btn btn-primary form-btn" onclick="add_checkbox()">체크박스 추가</button>
+      <button class="btn btn-info form-btn btn-sm" onclick="add_category()">카테고리 생성</button>
+      <button class="btn btn-warning form-btn btn-sm" onclick="add_textform()">텍스트폼 추가</button>
+      <button class="btn btn-primary form-btn btn-sm" onclick="add_checkbox()">체크박스 추가</button>
       <br />
-      <button class="btn btn-success form-btn" onclick="add_radiobox()">라디오(택1) 추가</button>
-      <button class="btn btn-danger form-btn" onclick="add_color()">색상선택폼 추가</button>
+      <button class="btn btn-success form-btn btn-sm" onclick="add_radiobox()">라디오(택1) 추가</button>
+      <button class="btn btn-danger form-btn btn-sm" onclick="add_color()">색상선택폼 추가</button>
       <hr />
 
-    
       <div id="field"></div>
       <script>
         function add_category() {
           var FD = document.getElementById('field');
-          FD.insertAdjacentHTML("beforeend",`<div id='makecategory' class='' style='display: flex;'> 
+          FD.insertAdjacentHTML(
+            'beforeend',
+            `<div id='makecategory' class='' style='display: flex;'> 
         <i class='fas fa-circle' style='color: #03befc'></i>
         <div class='input-group rounded'>
           <span class='input-group-text' id='basic-addon1'>카테고리 이름 입력</span>
@@ -64,71 +60,83 @@
           />
           <button class='btn btn-secondary x' onclick='remove_item(this)'>X</button>
         </div>
-      </div>`);
+      </div>`,
+          );
         }
 
         function add_textform() {
           var FD = document.getElementById('field');
-          FD.insertAdjacentHTML("beforeend",`<div id="addtextform" class='' style="display: flex">
+          FD.insertAdjacentHTML(
+            'beforeend',
+            `<div id="addtextform" class='' style="display: flex">
         <i class="fas fa-circle" style="color: yellow"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
-          <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
+          <input type="text" class="form-control" placeholder="폼이름 입력" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
-          <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
+          <input type="number" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
-      </div>`);
+      </div>`,
+          );
         }
 
         function add_checkbox() {
           var FD = document.getElementById('field');
-          FD.insertAdjacentHTML("beforeend",`<div id="addcheckbox" class='' style="display: flex">
+          FD.insertAdjacentHTML(
+            'beforeend',
+            `<div id="addcheckbox" class='' style="display: flex">
         <i class="fas fa-circle" style="color: #0352fc"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
-          <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
+          <input type="text" class="form-control" placeholder="폼이름 입력" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
-          <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
+          <input type="number" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
-      </div>`);
+      </div>`,
+          );
         }
 
         function add_radiobox() {
           var FD = document.getElementById('field');
-          FD.insertAdjacentHTML("beforeend",`<div id="addradiobox" class='' style="display: flex">
+          FD.insertAdjacentHTML(
+            'beforeend',
+            `<div id="addradiobox" class='' style="display: flex">
         <i class="fas fa-circle" style="color: #086e2f"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
-          <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
+          <input type="text" class="form-control" placeholder="폼이름 입력" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
-          <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
+          <input type="number" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
-      </div>`);
+      </div>`,
+          );
         }
 
         function add_color() {
           var FD = document.getElementById('field');
-          FD.insertAdjacentHTML("beforeend",`<div id="addcolorbox" class='' style="display: flex">
+          FD.insertAdjacentHTML(
+            'beforeend',
+            `<div id="addcolorbox" class='' style="display: flex">
         <i class="fas fa-circle" style="color: #ff0a0e"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
-          <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
+          <input type="text" class="form-control" placeholder="폼이름 입력" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
-          <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
-          <button class="btn btn-secondary xsfeas" onclick="remove_item(this)">X</button>
+          <input type="number" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
+          <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
-      </div>`);
+      </div>`,
+          );
         }
 
         function remove_item(obj) {
           var select = document.getElementById('field');
           select.removeChild(obj.parentNode.parentNode);
         }
-
-</script>
+      </script>
     </div>
   </div>
 </div>

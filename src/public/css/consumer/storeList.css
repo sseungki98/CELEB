@@ -1,8 +1,3 @@
-nav:last-child {
-  width: 70%;
-  margin-left: 15%;
-}
-
 .navbar2 {
   max-width: 1200px;
   margin: 0 auto;
@@ -10,10 +5,9 @@ nav:last-child {
 }
 .container {
   margin-top: 40px;
-  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width:1230px;
+  max-width: 1230px;
 }
 .store {
   width: 300px;
@@ -70,10 +64,21 @@ label.rate-order,
 }
 
 .navbar-nav {
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
 .card-img {
-  width:100%;
-  height:80%;
-  object-fit:cover;
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+.page-link {
+  color: rgb(255, 124, 146);
+}
+
+.bg {
+  background-color: rgb(255, 161, 177);
+}
+
+.bg:hover {
+  background-color: rgba(255, 161, 177, 0.7);
 }

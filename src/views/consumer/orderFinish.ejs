@@ -1,27 +1,29 @@
-<p><i class="far fa-check-circle"></i>주문이 완료되었습니다 !</p>
-<p id="time-text" onload="Timer()"></p>
-
-<script>
-    function Timer()
-    {
-        setTimeout("locateMypage()",10000);
+<link rel="stylesheet" href="/css/consumer/orderFinish.css" />
+<script language="javascript">
+  function Timer() {
+    setTimeout('locateMP()', 5000);
+  }
+  function locateMP(a) {
+    location.replace('/mypage');
+  }
+  cnt = 5;
+  function countdown() {
+    if (cnt == 0) {
+      locateMP();
+    } else {
+      document.all.choonDiv.innerHTML = cnt + '초후에 마이페이지로 이동이 됩니다..';
+      setTimeout('countdown()', 1000);
+      cnt--;
     }
-    function locateMypage()
-    {
-        location.replace("/mypage");
-    }
-    cnt = 10;
-    function countdown()
-    {
-        if(cnt == 0)
-        {
-            locateMypage();
-        }
-        else{
-            document.getElementById(time-text).innerHTML = cnt + "초 후에 마이페이지로 이동합니다···";
-            setTimeout("countdown()",1000);
-            cnt--;
-        }
-    }
-
+  }
 </script>
+<div class="box text-center">
+  <div class="box-text">
+    <p><i class="far fa-check-circle"></i>주문이 완료되었습니다 !</p>
+    <div id="choonDiv" onLoad="Timer();">
+      <script>
+        countdown();
+      </script>
+    </div>
+  </div>
+</div>
