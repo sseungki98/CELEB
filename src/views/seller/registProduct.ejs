@@ -118,13 +118,14 @@
           <input type="text" class="form-control" placeholder="폼이름 입력" aria-label="Username" aria-describedby="basic-addon1" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
           <input type="text" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
-          <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
+          <button class="btn btn-secondary xsfeas">X</button>
         </div>
       </div>`);
         }
 
         function remove_item(obj) {
-          console.log(obj.id);
+          var select = document.getElementById('field');
+          console.log(select);
         }
 
 </script>
