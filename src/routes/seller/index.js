@@ -32,7 +32,7 @@ router.get('/product/regist', productController.output.registProduct); // 상품
 router.get('/product', productController.output.productList); //내가 등록한 상품 리스트 조회
 router.get('/product/:productId', productController.output.productDetail); //등록 상품 자세히 조회
 router.post(
-  '/product',
+  '/product/regist',
   upload.fields([
     { name: 'productMain', maxCount: 1 },
     { name: 'productDetail', maxCount: 5 },
