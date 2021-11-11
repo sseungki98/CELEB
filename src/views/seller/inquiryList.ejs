@@ -1,26 +1,29 @@
 <link rel="stylesheet" href="/css/seller/inquiryList.css" />
-<div class="page-content page-container" id="page-content">
-  <div class="padding">
-    <h1 class="fw-bold mb-3 ml-3">문의관리</h1>
-    <div class="row">
-      <div class="col">
-        <div class="list list-row block">
-          <% for (inquiry of inquiryList) { %>
-          <a href="/s/inquiry/user/<%= inquiry.userId %>" class="item-author text-color" data-abc="true">
-            <div class="list-item">
-              <div>
-                <span class="w-48 avatar rounded"><img src="/img/avatar-girl.svg" /></span>
+<div class="container">
+  <h1 class="fw-bold mb-3 ml-3">문의관리</h1>
+
+  <div class="page-content page-container" id="page-content">
+    <div class="padding">
+      <div class="row">
+        <div class="col">
+          <div class="list list-row block">
+            <% for (inquiry of inquiryList) { %>
+            <a href="/s/inquiry/user/<%= inquiry.userId %>" class="item-author text-color" data-abc="true">
+              <div class="list-item">
+                <div>
+                  <span class="w-48 avatar rounded"><img src="/img/avatar-girl.svg" /></span>
+                </div>
+                <div class="flex">
+                  <span class="item-author text-color" data-abc="true"><b><%= inquiry.userName %></b></span>
+                  <div class="item-except text-muted text-sm h-1x"><%= inquiry.lastContents %></div>
+                </div>
+                <div class="no-wrap">
+                  <div class="item-date text-muted text-sm d-none d-md-block justify-content-end"><%= inquiry.createdAt %></div>
+                </div>
               </div>
-              <div class="flex">
-                <span class="item-author text-color" data-abc="true"><b><%= inquiry.userName %></b></span>
-                <div class="item-except text-muted text-sm h-1x"><%= inquiry.lastContents %></div>
-              </div>
-              <div class="no-wrap">
-                <div class="item-date text-muted text-sm d-none d-md-block justify-content-end"><%= inquiry.createdAt %></div>
-              </div>
-            </div>
-          </a>
-          <% } %>
+            </a>
+            <% } %>
+          </div>
         </div>
       </div>
     </div>

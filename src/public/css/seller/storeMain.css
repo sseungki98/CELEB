@@ -42,11 +42,16 @@
   color: maroon;
 }
 
-.underline {
-  border-bottom: 0.5px solid rgb(95, 95, 95);
-}
-
 .bg {
   background-color: rgba(255, 254, 209, 0.6);
   box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px, rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+}
+
+.col-md-6 {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.container {
+  margin-left: 20px;
+  margin-right: 20px;
 }

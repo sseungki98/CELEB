@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/seller/orderList.css" />
-<div class="container mt-5 rounded">
+<div class="container rounded">
   <h1 class="fw-bold">주문관리</h1>
   <table class="table">
     <thead>
@@ -25,9 +25,9 @@
         <td>
           <div><%= orderList[i].orderStatus %></div>
           <% if (orderList[i].orderStatusId === 'WAITING') { %>
-          <a class="btn btn-outline-secondary btn-sm" href="" role="button">승인/거부</a>
+          <a class="btn btn-outline-secondary btn-sm" href="" role="button">승인</a>
           <% } %> <% if (orderList[i].orderStatusId === 'WAITING') { %>
-          <a class="btn btn-outline-secondary btn-sm" href="" role="button">승인/거부</a>
+          <a class="btn btn-outline-secondary btn-sm" href="" role="button">거부</a>
           <% } %>
         </td>
         <td>
