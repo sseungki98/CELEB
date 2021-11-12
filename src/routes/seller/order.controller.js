@@ -25,6 +25,9 @@ const output = {
       return res.render('seller/login');
     }
   },
+  salesAccount: async (req, res) => {
+    return res.render('seller/salesAccount', { layout: 'seller/layout' });
+  },
 };
 const process = {
   orderStatus: async (req, res) => {

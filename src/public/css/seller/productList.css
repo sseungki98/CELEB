@@ -29,6 +29,16 @@ li {
 }
 
 .bg-brown {
-  background-color: #c0564a;
+  background-color: #fda49e;
   width: 48%;
+}
+
+.page-link {
+  color: #f6cc4a;
+}
+
+.card-img {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
 }

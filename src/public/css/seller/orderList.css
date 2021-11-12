@@ -25,3 +25,7 @@
 .offcanvas-backdrop {
   background-color: #ffffffa6;
 }
+.table td,
+.table th {
+  vertical-align: middle;
+}
