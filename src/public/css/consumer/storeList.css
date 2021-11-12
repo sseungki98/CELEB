@@ -74,11 +74,15 @@ label.rate-order,
 .page-link {
   color: rgb(255, 124, 146);
 }
-
 .bg {
-  background-color: rgb(255, 161, 177);
+  background-color: #c2c3c5;
 }
 
 .bg:hover {
-  background-color: rgba(255, 161, 177, 0.7);
+  background-color: #c2c3c5;
+  opacity: 0.8;
+}
+
+.xi-truck {
+  color: rgb(72, 130, 255);
 }

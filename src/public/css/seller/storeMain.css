@@ -62,14 +62,13 @@
   box-shadow: none;
 }
 
-.col-md-2 , .exp {
-  margin-top:0.5rem;
-  margin-bottom:0.5rem;
+.col-md-2,
+.exp {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .box {
   display: inline-block;
-}
-.col-md-2 {
 }
 
 .exp {

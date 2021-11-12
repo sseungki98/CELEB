@@ -53,14 +53,15 @@
   </div>
   <script>
     var province_city = document.getElementById('province-city');
+
+    var province_list = document.querySelectorAll('.province');
+    for (var i = 0; i < province_list.length; i++) {
+      province_list[i].addEventListener('click', get_province(province_list[i]));
+    }
     function get_province(e) {
       var text = e.textContent;
       var loc = e.href;
       province_city.innerHTML = e.textContent;
-    }
-    var province_list = document.querySelectorAll('.province');
-    for (var i = 0; i < province_list.length; i++) {
-      province_list[i].addEventListener('click', get_province(province_list[i]));
     }
   </script>
 </nav>
@@ -79,7 +80,7 @@
               <li><i class="xi-star" style="color: #fcba03"></i> 평점 : <%= storeList[i].star %> / 5</li>
               <li><i class="xi-maker" style="color: red"></i> 위치 : <%= storeList[i].location %></li>
               <li><i class="xi-time-o"></i> 영업시간 : <%= storeList[i].operatingHour %></li>
-              <li><i class="xi-info"></i> 픽업/배달 : <%= storeList[i].type %></li>
+              <li><i class="xi-truck"></i> 픽업/배달 : <%= storeList[i].type %></li>
             </ul>
           </div>
           <a class="btn d-grid mx-auto text-center bg btn-sm" href="/store/<%= storeList[i].storeId %>">상품 보기</a>

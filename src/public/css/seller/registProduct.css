@@ -23,3 +23,12 @@
 .x {
   margin: 0;
 }
+
+.btn-n {
+  background-color: #ffdb88;
+}
+
+.btn-n:hover {
+  background-color: #ffdb88;
+  opacity: 0.8;
+}

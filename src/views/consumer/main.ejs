@@ -39,7 +39,7 @@
 <div class="container">
   <div class="card mb-2">
     <div class="card-body" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px">
-      <div class="card-text text-center fs-2">인기 스토어 TOP 9</div>
+      <div class="card-text text-center fs-2 fw-bold">인기 스토어 TOP 9</div>
     </div>
   </div>
   <div class="row gx-4 gx-lg-5">
@@ -56,7 +56,7 @@
               <li><i class="xi-star" style="color: #fcba03"></i> 평점 : <%= popularStore[i].star %> / 5</li>
               <li><i class="xi-maker" style="color: red"></i> 위치 : <%= popularStore[i].location %></li>
               <li><i class="xi-time-o"></i> 영업시간 : <%= popularStore[i].operatingHour %></li>
-              <li><i class="xi-info"></i> 픽업/배달 : <%= popularStore[i].type %></li>
+              <li><i class="xi-truck"></i> 픽업/배달 : <%= popularStore[i].type %></li>
             </ul>
           </div>
           <a class="btn d-grid mx-auto bg text-center btn-sm" href="/store/<%= popularStore[i].storeId %>">상품 보기</a>
