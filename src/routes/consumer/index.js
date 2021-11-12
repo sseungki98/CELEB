@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+const upload = require('../../config/multer');
 
 const userController = require('./user.controller');
 const storeController = require('./store.controller');
@@ -30,7 +31,7 @@ router.post('/store/:storeId/inquiry', inquiryController.process.inquiry); //문
 router.get('/store/:storeId/inquiry', inquiryController.output.inquiryDetail); //스토어별 문의 내용 조회 → 수신/발신 체크
 router.get('/inquiry', inquiryController.output.inquiryList); //나의 문의 내역 조회 → 문의한 스토어 리스트
 //Order Info Router
-router.post('/store/:storeId/product/:productId/order', orderController.process.order); //주문하기
+router.post('/store/:storeId/product/:productId/order', upload.single('designUrl'), orderController.process.order); //주문하기
 router.get('/order/:orderId', orderController.output.order); //주문 확인 조회 → 주문 완료 직후
 //Product Info Router
 router.get('/store/:storeId/product/:productId', productController.output.productDetail); // 상품 디테일 조회
