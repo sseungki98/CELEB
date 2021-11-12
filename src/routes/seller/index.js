@@ -24,6 +24,7 @@ router.post('/store/update', upload.single('uploadImage'), storeController.proce
 //Order Info Router
 router.patch('/order/:orderId/update-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)
 router.get('/order', orderController.output.order); //주문 내역 리스트 조회 → pagenation
+router.get('/sales', orderController.output.salesAccount); // 정산 조회
 //Review Info Router
 router.get('/review', reviewController.output.review); //스토어 리뷰 조회
 router.post('/review/:reviewId/reply', reviewController.process.reviewReply); //스토어 리뷰 답글 작성
