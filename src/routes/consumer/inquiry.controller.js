@@ -12,7 +12,6 @@ const output = {
         const storeId = req.params.storeId;
         const store = await StoreStorage.getStoreNameByStoreId(storeId);
         const inquiryDetail = await InquiryStorage.getInquiryDetailByStoreId(userId, storeId);
-        console.log(inquiryDetail);
         res.render('consumer/inquiryDetail', { storeName: store.storeName, inquiryDetail });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
