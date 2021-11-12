@@ -34,7 +34,7 @@ class InquiryStorage {
       , a.imageUrl as storeImage
       , a.userId as userId
       , a.id as inquiryId
-      , a.contents as inquiryContents
+      , a.contents as lastContents
       , date_format(a.createdAt, '%Y-%m-%d %H:%i') as createdAt
 from ( select i.storeId, s.storeName, s.imageUrl, i.userId, i.id, i.contents, i.createdAt, ROW_NUMBER() over (PARTITION BY i.storeId ORDER BY i.createdAt DESC) as rowNum from Inquiry i left join Store s on i.storeId=s.id where i.userId = ?) a
 where rowNum = 1;`;
