@@ -16,8 +16,9 @@ const output = {
         } else {
           start = (page - 1) * pageSize;
         }
-        const review = await ReviewStorage.getReviewByStoreId(storeId, start, pageSize);
-        res.render('seller/storeReview', { review, layout: 'seller/layout' });
+        const storeReview = await ReviewStorage.getStoreReviewCountByStoreId(storeId);
+        const reviews = await ReviewStorage.getReviewByStoreId(storeId);
+        res.render('seller/storeReview', { storeReview, reviews, layout: 'seller/layout' });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
       }

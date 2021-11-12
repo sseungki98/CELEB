@@ -32,12 +32,17 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: new FileStore({ logFn: function () {} }),
+    cookie: {
+      Secure: true,
+    },
   }),
 );
 
 app.use(function (req, res, next) {
   if (req.session.user) res.locals.user = req.session.user;
   else res.locals.user = undefined;
+  if (req.session.store) res.locals.store = req.session.store;
+  else res.locals.store = undefined;
   next();
 });
 

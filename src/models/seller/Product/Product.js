@@ -23,7 +23,6 @@ class Product {
               optionCategory[i].optionArray[j].price,
               optionCategory[i].optionArray[j].type,
             ];
-            console.log(params);
             await ProductStorage.createProductOption(params);
           }
         } else {
@@ -36,7 +35,6 @@ class Product {
               optionCategory[i].optionArray[j].price,
               optionCategory[i].optionArray[j].type,
             ];
-            console.log(params);
             await ProductStorage.createProductOption(params);
           }
         }
