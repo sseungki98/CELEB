@@ -10,7 +10,7 @@
         <% for (inquiry of inquiryDetail) { %> <% if (inquiry.type === 'OUTGOING') { %>
         <li class="clearfix">
           <div class="message-data">
-            <span class="message-data-name"><i class="fa fa-circle you"></i></span>
+            <span class="message-data-name"><i class="xi-full-moon you"></i></span>
             <span class="ml-3"><%= inquiry.createdAt %></span>
           </div>
           <div class="message you-message float-left"><%= inquiry.contents %></div>
@@ -19,7 +19,7 @@
         <li class="clearfix">
           <div class="message-data align-right">
             <span class="mr-3"><%= inquiry.createdAt %></span>
-            <span class="message-data-name"><i class="fa fa-circle me"></i></span>
+            <span class="message-data-name"><i class="xi-full-moon me"></i></span>
           </div>
           <div class="message me-message float-right"><%= inquiry.contents %></div>
         </li>

@@ -2,15 +2,12 @@
 <div class="container-fluid rate-status">
   <span class="heading"><b><%= storeReview.storeName %></b></span>
   <% for (let i = 1; i <= storeReview.averageScore; i++) { %>
-  <span class="fa fa-star checked"></span>
+  <span class="xi xi-star xi-2x checked"></span>
   <% } for (let i = 0; i < 5 - storeReview.averageScore; i++) { %>
-  <span class="fa fa-star"></span>
+  <span class="xi xi-star xi-2x"></span>
   <% } %>
-  <span class="heading"><%= storeReview.averageScore %></span>
-  <p>
-    최근 리뷰 <%= storeReview.reviewCount %>건
-    <button class="btn btn-outline-warning btn-sm ml-2">리뷰쓰기</button>
-  </p>
+  <span class="heading"> <%= storeReview.averageScore %></span>
+  <p>최근 리뷰 <%= storeReview.reviewCount %>건</p>
   <hr style="border: 3px solid #f1f1f1" />
 
   <div class="row">
@@ -90,9 +87,9 @@
               <span><%= review.reviewAt %></span>
               <span>
                 <% for (let i = 0; i < review.reviewScore; i++) { %>
-                <i class="fas fa-star checked"></i>
+                <i class="xi xi-star xi-x checked"></i>
                 <% } for (let i = 0; i < 5 - review.reviewScore; i++) { %>
-                <i class="fas fa-star"></i>
+                <i class="xi xi-star xi-x"></i>
                 <% } %>
               </span>
             </div>
@@ -113,7 +110,7 @@
             <p class="mt-2"><%= review.reviewContents %></p>
           </div>
           <div>
-            <i class="fas fa-store" style="color: #f06992"></i> <b>스토어 답변</b> <span class="replydate"> <%= review.replyAt %></span>
+            <i class="xi-shop xi-x" style="color: #f06992"></i> <b>스토어 답변</b> <span class="replydate"> <%= review.replyAt %></span>
           </div>
           <div><%= review.replyContents %></div>
           <div class="mt-5">
