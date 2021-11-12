@@ -61,3 +61,17 @@
   border-top: 1px solid rgba(34, 36, 38, 0.1);
   box-shadow: none;
 }
+
+.col-md-2 , .exp {
+  margin-top:0.5rem;
+  margin-bottom:0.5rem;
+}
+.box {
+  display: inline-block;
+}
+.col-md-2 {
+}
+
+.exp {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
