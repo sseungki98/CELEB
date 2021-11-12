@@ -47,16 +47,14 @@
           var FD = document.getElementById('field');
           FD.insertAdjacentHTML(
             'beforeend',
-            `<div id='makecategory' class='' style='display: flex;'> 
+            `<div id='makecategory' style='display: flex;'> 
         <i class='fas fa-circle' style='color: #03befc'></i>
         <div class='input-group rounded'>
           <span class='input-group-text' id='basic-addon1'>카테고리 이름 입력</span>
           <input
             type='text'
-            class='form-control'
-            placeholder='카테고리 이름을 입력하세요'
-            aria-label='Username'
-            aria-describedby='basic-addon1'
+            class='form-control option'
+            name='category'
           />
           <button class='btn btn-secondary x' onclick='remove_item(this)'>X</button>
         </div>
@@ -68,13 +66,13 @@
           var FD = document.getElementById('field');
           FD.insertAdjacentHTML(
             'beforeend',
-            `<div id="addtextform" class='' style="display: flex">
+            `<div id="TEXT" class='option' name='TEXT' style="display: flex">
         <i class="fas fa-circle" style="color: yellow"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
-          <input type="text" class="form-control" placeholder="폼이름 입력" />
+          <input type="text" id='name' class="form-control" placeholder="폼이름 입력" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
-          <input type="number" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
+          <input type="number" id='price' class="form-control" placeholder="추가금액 입력" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>`,
@@ -85,13 +83,13 @@
           var FD = document.getElementById('field');
           FD.insertAdjacentHTML(
             'beforeend',
-            `<div id="addcheckbox" class='' style="display: flex">
+            `<div id="CHECKBOX" class='option' name='CHECKBOX' style="display: flex">
         <i class="fas fa-circle" style="color: #0352fc"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
-          <input type="text" class="form-control" placeholder="폼이름 입력" />
+          <input type="text" id='name' class="form-control" placeholder="폼이름 입력" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
-          <input type="number" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
+          <input type="number" id='price' class="form-control" placeholder="추가금액 입력" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>`,
@@ -102,13 +100,13 @@
           var FD = document.getElementById('field');
           FD.insertAdjacentHTML(
             'beforeend',
-            `<div id="addradiobox" class='' style="display: flex">
+            `<div id="RADIO" class='option' name='RADIO' style="display: flex">
         <i class="fas fa-circle" style="color: #086e2f"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
-          <input type="text" class="form-control" placeholder="폼이름 입력" />
+          <input type="text" id='name' class="form-control" placeholder="폼이름 입력" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
-          <input type="number" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
+          <input type="number" id='price' class="form-control" placeholder="추가금액 입력" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>`,
@@ -119,13 +117,13 @@
           var FD = document.getElementById('field');
           FD.insertAdjacentHTML(
             'beforeend',
-            `<div id="addcolorbox" class='' style="display: flex">
+            `<div id="COLOR" class='option' name='COLOR' style="display: flex">
         <i class="fas fa-circle" style="color: #ff0a0e"></i>
         <div class="input-group rounded">
           <span class="input-group-text" id="basic-addon1">폼 이름</span>
-          <input type="text" class="form-control" placeholder="폼이름 입력" />
+          <input type="text" id='name' class="form-control" placeholder="폼이름 입력" />
           <span class="input-group-text" id="basic-addon2">추가금액</span>
-          <input type="number" class="form-control" placeholder="추가금액 입력" aria-label="Username" aria-describedby="basic-addon2" />
+          <input type="number" id='price' class="form-control" placeholder="추가금액 입력" />
           <button class="btn btn-secondary x" onclick="remove_item(this)">X</button>
         </div>
       </div>`,

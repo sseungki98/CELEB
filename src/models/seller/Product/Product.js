@@ -11,29 +11,32 @@ class Product {
       const mainParams = [storeId, product.productName, mainUrl, product.info, product.productPrice, detailUrl];
       const createProduct = await ProductStorage.createProductByStoreId(mainParams);
       const productId = createProduct.insertId;
-      for (let i = 0; i < product.optionCategory.length; i++) {
-        const categoryResult = await ProductStorage.getCategoryName(product.optionCategory[i].categoryName);
+      const optionCategory = JSON.parse(product.optionCategory);
+      for (let i = 0; i < optionCategory.length; i++) {
+        const categoryResult = await ProductStorage.getCategoryName(optionCategory[i].categoryName);
         if (categoryResult[0]) {
-          for (let j = 0; j < product.optionCategory[i].optionArray.length; j++) {
+          for (let j = 0; j < optionCategory[i].optionArray.length; j++) {
             const params = [
               productId,
               categoryResult[0].id,
-              product.optionCategory[i].optionArray[j].name,
-              product.optionCategory[i].optionArray[j].price,
-              product.optionCategory[i].optionArray[j].type,
+              optionCategory[i].optionArray[j].name,
+              optionCategory[i].optionArray[j].price,
+              optionCategory[i].optionArray[j].type,
             ];
+            console.log(params);
             await ProductStorage.createProductOption(params);
           }
         } else {
-          const createCategoryResult = await ProductStorage.createCategory(product.optionCategory[i].categoryName);
-          for (let j = 0; j < product.optionCategory[i].optionArray.length; j++) {
+          const createCategoryResult = await ProductStorage.createCategory(optionCategory[i].categoryName);
+          for (let j = 0; j < optionCategory[i].optionArray.length; j++) {
             const params = [
               productId,
               createCategoryResult.insertId,
-              product.optionCategory[i].optionArray[j].name,
-              product.optionCategory[i].optionArray[j].price,
-              product.optionCategory[i].optionArray[j].type,
+              optionCategory[i].optionArray[j].name,
+              optionCategory[i].optionArray[j].price,
+              optionCategory[i].optionArray[j].type,
             ];
+            console.log(params);
             await ProductStorage.createProductOption(params);
           }
         }
