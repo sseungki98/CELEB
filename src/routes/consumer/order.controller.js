@@ -36,8 +36,9 @@ const process = {
   order: async (req, res) => {
     const userId = req.session.user.id;
     const productId = req.params.productId;
+    const designUrl = req.file ? req.file.location : NULL;
     const order = new Order(req.body);
-    const response = await order.createOrder(userId, productId);
+    const response = await order.createOrder(userId, productId, designUrl);
     return res.json(response);
   },
 };
