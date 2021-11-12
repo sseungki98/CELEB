@@ -7,9 +7,9 @@ class Order {
   }
   async patchStatus(orderId) {
     try {
-      const status = this.body;
-      if (!status) return res.json({ success: false, message: '상태를 입력해주세요. ' });
-      await OrderStorage.patchStatus(status, orderId);
+      const order = this.body;
+      if (!order) return res.json({ success: false, message: '상태를 입력해주세요. ' });
+      await OrderStorage.patchStatus(order.status, orderId);
       return { success: true, message: '주문 상태를 변경하였습니다. ' };
     } catch (err) {
       console.log(err);

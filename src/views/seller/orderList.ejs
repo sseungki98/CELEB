@@ -1,3 +1,4 @@
+<script src="/js/seller/orderStatus.js" defer></script>
 <link rel="stylesheet" href="/css/seller/orderList.css" />
 <div class="container rounded">
   <h1 class="fw-bold">주문관리</h1>
@@ -25,9 +26,13 @@
         <td>
           <div><%= orderList[i].orderStatus %></div>
           <% if (orderList[i].orderStatusId === 'WAITING') { %>
-          <a class="btn btn-outline-secondary btn-sm" href="" role="button">승인</a>
+          <button class="btn btn-outline-secondary btn-sm" type="submit" onclick="orderStatus('<%= orderList[i].orderId %>','CONFIRMED')">
+            승인
+          </button>
           <% } %> <% if (orderList[i].orderStatusId === 'WAITING') { %>
-          <a class="btn btn-outline-secondary btn-sm" href="" role="button">거부</a>
+          <button class="btn btn-outline-secondary btn-sm" type="submit" onclick="orderStatus('<%= orderList[i].orderId %>','REJECT')">
+            거부
+          </button>
           <% } %>
         </td>
         <td>
