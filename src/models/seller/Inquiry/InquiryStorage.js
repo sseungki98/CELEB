@@ -10,12 +10,19 @@ class InquiryStorage {
       const query = `
         select *
         from (
-		        select i.storeId, s.storeName, s.imageUrl, i.userId, i.id, i.contents, i.createdAt
-		        from Inquiry i left join Store s on s.id=i.storeId
+            select i.storeId as storeId,
+               s.storeName as storeName,
+                     s.imageUrl as storeImage,
+                     i.userId as userId,
+                     u.name as userName,
+                     i.id as inquiryId,
+                     i.contents as lastContents,
+                     date_format(i.createdAt, '%Y-%m-%d %H:%i') as createdAt
+            from Inquiry i left join Store s on s.id=i.storeId left join User u on u.id=i.userId
             where (i.userId,i.createdAt) in (
-				          select userId, max(createdAt) as createdAt
-				          from Inquiry group by storeId,userId) and i.storeId=?
-		        order by i.createdAt DESC) t
+                select userId, max(createdAt) as createdAt
+                from Inquiry group by storeId,userId) and i.storeId=?
+            order by i.createdAt DESC) t
         Group by t.userId;
       `;
       db.query(query, [storeId], (err, data) => {
