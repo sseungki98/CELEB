@@ -1,7 +1,9 @@
 .pagination {
   padding-bottom: 2%;
 }
-
+.product-image {
+  width: 100%;
+}
 .click {
   padding: 0;
 }
@@ -20,6 +22,9 @@
   color: #f6cc4a;
 }
 
+.offcanvas-backdrop {
+  background-color: #ffffffa6;
+}
 .table td,
 .table th {
   vertical-align: middle;

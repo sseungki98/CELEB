@@ -32,6 +32,7 @@ const output = {
 const process = {
   orderStatus: async (req, res) => {
     const orderId = req.params.orderId;
+    console.log(req.body);
     const order = new Order(req.body);
     const response = await order.patchStatus(orderId);
     return res.json(response);
