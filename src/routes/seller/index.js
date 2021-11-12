@@ -22,7 +22,7 @@ router.post('/register/licenseNum', storeController.process.licenseNum); //사�
 router.get('/store', storeController.output.storeDetail); //내 스토어 정보 조회 페이지
 router.post('/store/update', upload.single('uploadImage'), storeController.process.updateStore); //스토어 상세정보 수정
 //Order Info Router
-router.patch('/order/:orderId/update-status', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)
+router.patch('/order/:orderId', orderController.process.orderStatus); //주문 상황 변경(승인or거절→주문확정→제작완료→픽업대기→픽업완료)
 router.get('/order', orderController.output.order); //주문 내역 리스트 조회 → pagenation
 //Review Info Router
 router.get('/review', reviewController.output.review); //스토어 리뷰 조회
