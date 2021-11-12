@@ -23,7 +23,8 @@ class InquiryStorage {
                 select userId, max(createdAt) as createdAt
                 from Inquiry group by storeId,userId) and i.storeId=?
             order by i.createdAt DESC) t
-        Group by t.userId;
+        Group by t.userId
+        Order by createdAt DESC;
       `;
       db.query(query, [storeId], (err, data) => {
         if (err) reject(`${err}`);
