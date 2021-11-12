@@ -104,7 +104,7 @@
           <% if (review.reviewImage) { %>
           <img class="reviewImage mr-2 rounded" src="<%= review.reviewImage %>" alt="리뷰 사진" onclick="window.open(this.src)" style="cursor:pointer"/>
           <% } %>
-          <span><%= review.reviewContents %></span>
+          <p class="mt-2"><%= review.reviewContents %></p>
           </div>
           <p><div><i class="fas fa-store" style="color:#f06992"></i> <b>스토어 답변</b> <span class="replydate"> <%= review.replyAt %></span></div>
           <div><%= review.replyContents %></div></p>
