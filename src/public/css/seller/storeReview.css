@@ -151,3 +151,7 @@ i .checked {
   background-color: rgb(206, 206, 206);
   opacity: 0.8;
 }
+
+.big {
+  font-size: 25px;
+}

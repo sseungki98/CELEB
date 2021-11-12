@@ -2,9 +2,9 @@
 <div class="container-fluid rate-status">
   <span class="heading"><b><%= storeReview.storeName %></b></span>
   <% for (let i = 1; i <= storeReview.averageScore; i++) { %>
-  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star big checked"></span>
   <% } for (let i = 0; i < 5 - storeReview.averageScore; i++) { %>
-  <span class="fa fa-star"></span>
+  <span class="fa fa-star big"></span>
   <% } %>
   <span class="heading"><%= storeReview.averageScore %></span>
   <p>
