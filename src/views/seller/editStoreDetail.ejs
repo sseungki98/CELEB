@@ -20,9 +20,14 @@
       <input type="text" class="form-control" value="<%= storeDetail.operatingHour %>" />
     </div>
     <div class="input-group mb-4 rounded">
+      <span class="input-group-text" id="inputGroup-sizing-default">스토어 위치</span>
+      <input type="text" class="form-control" value="<%= storeDetail.storeLocation %>" />
+    </div>
+    <div class="input-group mb-4 rounded">
       <span class="input-group-text">스토어 설명</span>
       <textarea class="form-control"><%= storeDetail.info %></textarea>
     </div>
+    
     <button type="submit" class="btn mb-2 ml-3" style="float: right">정보 수정하기</button>
   </form>
 </div>
