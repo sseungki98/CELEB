@@ -26,11 +26,11 @@ class OrderStorage {
   static getRecentOrderProductByStoreId(id) {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT od.id as orderId,pd.name as productName,od.selectedDate,od.orderStatusId, c.orderCount
+      SELECT od.id as orderId,pd.name as productName, pd.imageUrl as productImage, date_format(od.selectedDate, '%Y-%m-%d') as selectedDate,od.orderStatusId, c.orderCount
       FROM Orders od join Product pd on pd.id = od.productId left join ( select o.productId, count(o.id) as orderCount from Orders o join Product p on p.id = o.productId where p.storeId = ? and o.orderStatusId = 'WAITING') c on od.productId=c.productId
       WHERE pd.storeId = ? and orderStatusId = 'WAITING'
       ORDER BY od.createdAt DESC
-      limit 5;
+      limit 6;
       `;
       db.query(query, [id, id], (err, data) => {
         if (err) reject(`${err}`);
