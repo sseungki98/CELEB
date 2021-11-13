@@ -40,8 +40,9 @@ const process = {
     const userId = req.session.user.id;
     const storeId = req.params.storeId;
     const orderId = req.params.orderId;
+    const imageUrl = req.file ? req.file.location : NULL;
     const review = new Review(req.body);
-    const response = await review.createReview(userId, storeId, orderId);
+    const response = await review.createReview(userId, storeId, orderId, imageUrl);
     return res.json(response);
   },
   patchReview: async (req, res) => {
