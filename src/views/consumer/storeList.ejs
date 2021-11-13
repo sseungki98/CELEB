@@ -23,7 +23,6 @@
         <li>
           <a
             class="nav-link province"
-            onclick="get_province(this)"
             href="/category/<%= category.categoryId %>?provinceId=<%= province[i].provinceId %>"
             ><%= province[i].provinceName %></a
           >
@@ -51,19 +50,6 @@
       <% } %>
     </ul>
   </div>
-  <script>
-    var province_city = document.getElementById('province-city');
-
-    var province_list = document.querySelectorAll('.province');
-    for (var i = 0; i < province_list.length; i++) {
-      province_list[i].addEventListener('click', get_province(province_list[i]));
-    }
-    function get_province(e) {
-      var text = e.textContent;
-      var loc = e.href;
-      province_city.innerHTML = e.textContent;
-    }
-  </script>
 </nav>
 <div class="container">
   <div class="row gx-4 gx-lg-5">
@@ -113,6 +99,14 @@
   var split_link = link.split('/');
   for (var i = 1; i < 6; i++) {
     if (split_link[split_link.length - 1] == i) {
+      document.getElementById('banner').src = "/img/"+i+".png";
+  }
+  }
+  var nav_link = document.getElementsByClassName('nav-link');
+  for(var j=0;j<nav_link.length;j++){
+    if(nav_link[j].href == link){
+      document.getElementById('province-city').innerHTML = nav_link[j].innerText;
+      break;
     }
   }
 </script>
