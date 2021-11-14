@@ -52,19 +52,27 @@ function order() {
     designUrl: designUrl.files[0],
     selectedDate: selectedDate.value,
   };
-  fetch(window.location.pathname + '/order', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(req),
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.success) {
-        location.href = '/order/' + res.orderId;
-      } else {
-        alert(res.message);
-      }
-    });
+  if (
+    confirm(`
+      결제금액: ${req.totalPrice}원
+
+      결제하시겠습니까?
+  `)
+  ) {
+    fetch(window.location.pathname + '/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          location.href = '/order/' + res.orderId + '/complete';
+        } else {
+          alert(res.message);
+        }
+      });
+  }
 }
