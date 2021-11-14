@@ -24,7 +24,6 @@ class Store {
       this.body.notice,
       storeId,
     ];
-    console.log(this.body, params);
     try {
       await StoreStorage.updateStoreDetail(params);
       return { success: true };
