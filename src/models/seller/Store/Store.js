@@ -39,7 +39,7 @@ class Store {
       const hashedPassword = await crypto.createHash('sha512').update(store.password).digest('hex');
       if (storeDetail) {
         if (storeDetail.storeId === store.email && storeDetail.password === hashedPassword) {
-          return { success: true, id: storeDetail.id, storeName: storeDetail.storeName };
+          return { success: true, id: storeDetail.id, storeName: storeDetail.storeName, storeImage: storeDetail.imageUrl };
         }
         return { success: false, message: '비밀번호가 틀렸습니다.' };
       }

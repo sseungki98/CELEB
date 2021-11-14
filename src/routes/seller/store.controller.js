@@ -66,6 +66,7 @@ const process = {
         id: response.id,
         storeId: req.body.storeId,
         storeName: response.storeName,
+        storeImage: response.storeImage,
         authorized: true,
       };
     }
