@@ -8,7 +8,7 @@ class Store {
   constructor(body) {
     this.body = body;
   }
-  async updateStoreDetail(storeId) {
+  async updateStoreDetail(storeId, imageUrl) {
     const params = [
       this.body.name,
       this.body.phoneNum,
@@ -20,7 +20,7 @@ class Store {
       this.body.detailAddress,
       this.body.limit,
       this.body.type,
-      this.body.image,
+      imageUrl,
       this.body.notice,
       storeId,
     ];

@@ -53,8 +53,10 @@ const output = {
 const process = {
   updateStore: async (req, res) => {
     const storeId = req.session.store.id;
+    const storeImage = await StoreStorage.getStoreDetailByStoreId(storeId);
+    const imageUrl = req.file ? req.file.location : storeImage.image;
     const store = new Store(req.body);
-    const response = await store.updateStoreDetail(storeId);
+    const response = await store.updateStoreDetail(storeId, imageUrl);
     return res.json(response);
   },
   login: async (req, res) => {
