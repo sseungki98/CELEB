@@ -18,12 +18,27 @@ const output = {
     }
   },
   order: async (req, res) => {
+    // TODO: 보류
     if (req.session.user) {
       try {
         const userId = req.session.user.id;
         const orderId = req.params.orderId;
         const orderDetail = await OrderStorage.getOrderDetail(userId, orderId);
         res.render('consumer/orderDetail', { orderDetail });
+      } catch (err) {
+        res.render('common/500error', { err, layout: false });
+      }
+    } else {
+      res.render('consumer/login');
+    }
+  },
+  orderComplete: async (req, res) => {
+    if (req.session.user) {
+      try {
+        const userId = req.session.user.id;
+        const orderId = req.params.orderId;
+        const orderDetail = await OrderStorage.getOrderDetail(userId, orderId);
+        res.render('consumer/orderFinish', { orderDetail });
       } catch (err) {
         res.render('common/500error', { err, layout: false });
       }

@@ -33,6 +33,7 @@ router.get('/inquiry', inquiryController.output.inquiryList); //나의 문의 �
 //Order Info Router
 router.post('/store/:storeId/product/:productId/order', upload.single('designUrl'), orderController.process.order); //주문하기
 router.get('/order/:orderId', orderController.output.order); //주문 확인 조회 → 주문 완료 직후
+router.get('/order/:orderId/complete', orderController.output.orderComplete); // 결제 완료 확인 창
 //Product Info Router
 router.get('/store/:storeId/product/:productId', productController.output.productDetail); // 상품 디테일 조회
 //Review Info Router
