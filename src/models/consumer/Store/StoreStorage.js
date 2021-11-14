@@ -30,46 +30,15 @@ class StoreStorage {
       });
     });
   }
-
-  static getStoreByCategoryId(categoryId, start, pagesize) {
-    return new Promise((resolve, reject) => {
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, s.openTime as operatingHour, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type  
-      FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
-                   left JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by s.id) tt ON s.id=tt.sid
-                   left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
-      WHERE s.categoryId = ? and s.status='ACTIVE'
-      ORDER BY tt.cnt DESC
-      limit ?,?;`;
-      db.query(query, [categoryId, start, pagesize], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data);
-      });
-    });
-  }
-  static getStoreByCategoryIdWithProvinceId(categoryId, provinceId, start, pagesize) {
+  static getStoreListByCategoryId(categoryId, provinceId, cityId, start, pagesize) {
     return new Promise((resolve, reject) => {
       const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, s.openTime as operatingHour, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type
       FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id
-                   left JOIN (Select s.id as sid,count(*) as cnt From Orders od join Product pd on pd.id=od.productId join Store s on s.id=pd.storeId WHERE od.orderStatusId='CONFIRMED' or od.orderStatusId='PICKUPED' Group by s.id) tt ON s.id=tt.sid
-                   left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
-      WHERE s.categoryId = ? and s.provinceId = ? and s.status='ACTIVE'
-      ORDER BY star DESC
-      limit ?,?;`;
-      db.query(query, [categoryId, provinceId, start, pagesize], (err, data) => {
-        if (err) reject(`${err}`);
-        resolve(data);
-      });
-    });
-  }
-  static getStoreByCategoryIdWithCityId(categoryId, provinceId, cityId, start, pagesize) {
-    return new Promise((resolve, reject) => {
-      const query = `SELECT s.id as storeId, s.storeName, s.imageURL as image, s.info, s.openTime as operatingHour, case when rtt.avgstar is null then '-' else rtt.avgstar end as 'star', concat(p.name,' ',c.name) as location, type
-      FROM Store s left JOIN Province p ON s.provinceId=p.id JOIN City c ON s.cityId=c.id 
-                   left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id 
-      WHERE s.categoryId = ? and s.provinceId = ? and s.cityId = ? and s.status='ACTIVE'
+                   left JOIN (Select rv.storeId as sid, round(AVG(rv.score),1) as avgstar From Review rv Where rv.status='ACTIVE' Group by rv.storeId) rtt on rtt.sid=s.id
+      WHERE s.categoryId = ? and if(?, s.provinceId=?, 1=1) and if(?, s.cityId=?, 1=1) and s.status='ACTIVE'
       ORDER BY star DESC
       limit ?,?;`; // TODO: 판매순
-      db.query(query, [categoryId, provinceId, cityId, start, pagesize], (err, data) => {
+      db.query(query, [categoryId, provinceId, provinceId, cityId, cityId, start, pagesize], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);
       });
@@ -114,10 +83,10 @@ order by orderCount desc;`;
     });
   }
 
-  static getCategoryDetailByCateoryId(categoryId) {
+  static getCategoryDetailByCateoryId(categoryId, provinceId, cityId) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT id as categoryId, name as categoryName, imageUrl as categoryImage FROM Category WHERE id=?`;
-      db.query(query, categoryId, (err, data) => {
+      const query = `SELECT c.id as categoryId, c.name as categoryName, c.imageUrl as categoryImage, if(?, p.name, null) as provinceName, if(?, ci.name, null) as cityName FROM Category c, Province p, City ci WHERE c.id=? and if(?, p.id=?, p.id=true) and if(?, ci.id=?, ci.id=true)`;
+      db.query(query, [provinceId, cityId, categoryId, provinceId, provinceId, cityId, cityId], (err, data) => {
         if (err) reject(`${err}`);
         resolve(data[0]);
       });
