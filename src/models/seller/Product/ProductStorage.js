@@ -16,7 +16,7 @@ class ProductStorage {
   static getProductDetailByProductId(storeId, productId) {
     // 쿼리 합치기 완료
     return new Promise((resolve, reject) => {
-      const query = `SELECT pd.id as productId,pd.name,pd.imageUrl as image,pd.info,format(pd.price,0) as price,pd.detailImageUrl,date_format(pd.createdAt,'%Y-%m-%d') as createdAt,pdoc.name as categoryName,pdo.name as optionName,pdo.price as plusPrice,pdo.type
+      const query = `SELECT pd.id as productId,pd.name,pd.imageUrl as image,pd.info,pd.notice,format(pd.price,0) as price,pd.detailImageUrl,date_format(pd.createdAt,'%Y-%m-%d') as createdAt,pdoc.name as categoryName,pdo.name as optionName,pdo.price as plusPrice,pdo.type
         FROM Product pd left join ProductOption pdo on pd.id=pdo.productId left join ProductOptionCategory pdoc on pdo.optionCategoryId=pdoc.id
         WHERE pd.storeId=? and pd.id=? and pd.status='ACTIVE' and pdo.status='ACTIVE';`;
       db.query(query, [storeId, productId], (err, data) => {
@@ -28,7 +28,7 @@ class ProductStorage {
   static createProductByStoreId(params) {
     return new Promise((resolve, reject) => {
       const query = `
-      INSERT INTO Product(storeId,name,ImageUrl,info,price,detailImageUrl) VALUES (?,?,?,?,?,?);`;
+      INSERT INTO Product(storeId,name,ImageUrl,info,notice,price,detailImageUrl) VALUES (?,?,?,?,?,?,?);`;
       db.query(query, params, (err, data) => {
         if (err) reject(`${err}`);
         resolve(data);

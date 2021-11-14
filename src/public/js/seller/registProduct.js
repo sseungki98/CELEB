@@ -2,6 +2,7 @@ const registButton = document.getElementById('registButton'),
   productName = document.getElementById('productName'),
   mainImage = document.getElementById('mainImage'),
   info = document.getElementById('info'),
+  notice = document.getElementById('notice'),
   productPrice = document.getElementById('productPrice'),
   detailImage = document.getElementById('detailImage');
 registButton.addEventListener('click', regist);
@@ -26,6 +27,7 @@ function regist() {
   var formData = new FormData();
   formData.append('productName', productName.value);
   formData.append('info', info.value);
+  formData.append('notice', notice.value);
   formData.append('productPrice', productPrice.value);
   formData.append('optionCategory', JSON.stringify(optionCategory));
   formData.append('productMain', mainImage.files[0]);

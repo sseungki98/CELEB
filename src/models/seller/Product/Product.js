@@ -8,7 +8,7 @@ class Product {
   async createProduct(storeId, mainUrl, detailUrl) {
     try {
       const product = this.body;
-      const mainParams = [storeId, product.productName, mainUrl, product.info, product.productPrice, detailUrl];
+      const mainParams = [storeId, product.productName, mainUrl, product.info, product.notice, product.productPrice, detailUrl];
       const createProduct = await ProductStorage.createProductByStoreId(mainParams);
       const productId = createProduct.insertId;
       const optionCategory = JSON.parse(product.optionCategory);

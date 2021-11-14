@@ -15,15 +15,15 @@
         <div class="card mx-auto">
           <div class="card-header">주문시 유의사항</div>
           <div class="card-body">
-            <p class="card-text"><%= product.info %></p>
+            <p class="card-text"><%= product.notice %></p>
           </div>
         </div>
         <div class="card mx-auto mt-4 mb-4">
           <div class="card-header">상품 상세보기</div>
           <div class="card-body slide-image gx-2">
-            <% for ( let image of product.detailImageUrl.split(',')) { %>
+            <% if (product.detailImageUrl) { for ( let image of product.detailImageUrl.split(',')) { %>
             <img class="example-image zoom" src="<%= image %>" />
-            <% } %>
+            <% } } %>
           </div>
           <!-- <script type="text/javascript">
             // 승현: 이거 뭐임?
