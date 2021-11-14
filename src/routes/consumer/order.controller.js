@@ -37,7 +37,7 @@ const output = {
       try {
         const userId = req.session.user.id;
         const orderId = req.params.orderId;
-        const orderDetail = await OrderStorage.getOrderDetail(userId, orderId);
+        const orderDetail = await OrderStorage.getOrderDetailByOrderId(userId, orderId);
         res.render('consumer/orderFinish', { orderDetail });
       } catch (err) {
         res.render('common/500error', { err, layout: false });

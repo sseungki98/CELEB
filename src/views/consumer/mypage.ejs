@@ -67,7 +67,7 @@
               <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <h4><b><%= orderList[i].storeName %> </b></h4>
+              <h4><b><%= orderList[i].productName %> </b></h4>
               <img class="product-image" src="<%= orderList[i].productImage %>" />
               <hr />
               <h5>픽업/배달 예정일: <%= orderList[i].selectedDate %></h5>
@@ -80,6 +80,14 @@
               <% for (let option of orderList[i].options.split(',')) { %>
               <div><%= option %></div>
               <% } %>
+              <hr />
+              <h5><b>< 도안 ></b></h5>
+              <% if (orderList[i].designUrl) { %>
+              <img class="product-image" src="<%= orderList[i].designUrl %>" />
+              <% } else { %> 없음 <% } %>
+              <hr />
+              <h5><b>< 요청 사항 ></b></h5>
+              <% if (orderList[i].requirements) { %> <%= orderList[i].requirements %> <% } else { %> 없음 <% } %>
               <hr />
               <h5>결제 금액 합계: <%= orderList[i].totalPrice %></h5>
             </div>
