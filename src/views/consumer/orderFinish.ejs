@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/consumer/orderFinish.css" />
-<script language="javascript">
+<!-- <script language="javascript">
   function Timer() {
     setTimeout('locateMP()', 5000);
   }
@@ -16,14 +16,34 @@
       cnt--;
     }
   }
-</script>
-<div class="box text-center">
+</script> -->
+<!-- <div class="box text-center">
   <div class="box-text">
-    <p><i class="far fa-check-circle"></i>주문이 완료되었습니다 !</p>
-    <div id="choonDiv" onLoad="Timer();">
+    <p>주문이 완료되었습니다 !</p>
+
       <script>
         countdown();
       </script>
+  </div>
+</div> -->
+<div class="container text-center">
+  <div class="card text-center">
+    <div class="card-header">
+      <h2 class="card-title fw-bold">주문이 완료되었습니다 !</h2>
+      <img class="card-img" src="/img/cat-cake-transparent.png" />
     </div>
+    <div class="card-body">
+      <h5 class="card-title fw-bold">제품명</h5>
+      <p class="card-text">생크림 케이크</p>
+      <h5 class="card-title fw-bold">옵션 확인</h5>
+      <p class="card-text">옵션내역</p>
+      <h5 class="card-title fw-bold">도안 확인</h5>
+      <div class="card-img"><img src="/img/cat-cake-transparent.png"></div>
+      <h5 class="card-title fw-bold">나의 요청사항</h5>
+      <p class="card-text">나의 요청사항</p>
+      <h3 class="fw-bold">가격 : 50000원</h3>
+    </div>
+    <div class="card-footer"><a class="btn btn-warning btn-lg d-grid mx-auto" href="/mypage">마이페이지로 이동하기</a></div>
   </div>
 </div>
+
