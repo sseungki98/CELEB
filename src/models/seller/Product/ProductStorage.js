@@ -98,7 +98,7 @@ class ProductStorage {
   static getProductRankByStoreId(storeId) {
     return new Promise((resolve, reject) => {
       const query = `
-      SELECT pd.id as productId, pd.name as productName, count(pd.id) as orderCnt
+      SELECT pd.id as productId, pd.imageUrl as productImage, pd.name as productName, count(pd.id) as orderCnt
       FROM Product pd join Orders od on od.productId = pd.id
       WHERE pd.storeId = ?
       GROUP BY pd.id
