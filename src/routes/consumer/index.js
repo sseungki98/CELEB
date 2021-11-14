@@ -37,7 +37,7 @@ router.get('/order/:orderId', orderController.output.order); //주문 확인 조
 router.get('/store/:storeId/product/:productId', productController.output.productDetail); // 상품 디테일 조회
 //Review Info Router
 router.get('/mypage/order/:orderId/review', reviewController.output.review); // 리뷰 작성 페이지 가져오기
-router.post('store/:storeId/order/:orderId/review', reviewController.process.review); //스토어 리뷰 작성하기
+router.post('store/:storeId/order/:orderId/review', upload.single('imageUrl'), reviewController.process.review); //스토어 리뷰 작성하기
 router.patch('/review/:reviewId', reviewController.process.patchReview); //스토어 리뷰 삭제하기
 router.get('/store/:storeId/review', reviewController.output.storeReview); //스토어 리뷰 조회
 
