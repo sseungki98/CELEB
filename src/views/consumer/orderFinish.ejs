@@ -30,20 +30,34 @@
   <div class="card text-center">
     <div class="card-header">
       <h2 class="card-title fw-bold">주문이 완료되었습니다 !</h2>
-      <img class="card-img" src="/img/cat-cake-transparent.png" />
     </div>
     <div class="card-body">
+      <h5 class="card-title fw-bold">스토어명</h5>
+      <p class="card-text"><%= orderDetail.storeName %></p>
       <h5 class="card-title fw-bold">제품명</h5>
-      <p class="card-text">생크림 케이크</p>
+      <p class="card-text"><%= orderDetail.productName %></p>
       <h5 class="card-title fw-bold">옵션 확인</h5>
-      <p class="card-text">옵션내역</p>
+      <p class="card-text">
+        <% for (let option of orderDetail.options.split(',')) { %>
+        <div><%= option %></div> 
+        <% } %>
+      </p>
       <h5 class="card-title fw-bold">도안 확인</h5>
-      <div class="card-img"><img src="/img/cat-cake-transparent.png"></div>
+      <% if (orderDetail.designUrl) { %>
+        <P class="card-img"><img src="<%= orderDetail.designUrl %>" width="300"/></P>
+      <% } else { %> 
+        <p class="card-text">없음</p>  
+      <% } %>
       <h5 class="card-title fw-bold">나의 요청사항</h5>
-      <p class="card-text">나의 요청사항</p>
-      <h3 class="fw-bold">가격 : 50000원</h3>
+      <% if (orderDetail.requirements) { %>
+        <p class="card-text"><%= orderDetail.requirements %></p>
+      <% } else { %> 
+        <p class="card-text">없음</p>  
+      <% } %>
+      <h5 class="card-title fw-bold">픽업 날짜</h5>
+      <p class="card-text"><%= orderDetail.selectedDate %></p>
+      <h4 class="fw-bold">총 결제금액 : <%= orderDetail.totalPrice %></h4>
     </div>
     <div class="card-footer"><a class="btn btn-warning btn-lg d-grid mx-auto" href="/mypage">마이페이지로 이동하기</a></div>
   </div>
 </div>
-
