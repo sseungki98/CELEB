@@ -82,7 +82,7 @@
   <div class="row px-4">
     <% for (review of reviews) { %>
     <div class="col-md-6 my-3">
-      <div class="card p-3 mb-2 ">
+      <div class="card p-3 mb-2 h-100">
         <div class="d-flex justify-content-between">
           <div class="d-flex flex-row align-items-center">
             <div class="icon"><img src="/img/avatar.svg" /></div>
@@ -118,21 +118,24 @@
           </div>
           <div><%= review.replyContents %></div>
           <div class="mt-5">
-            <div class="mt-3"><span class="text2"><%= review.productName %></span></div>
+            <div class="mt-3">
+              <span class="text2"><%= review.productName %></span></div>
+            
           </div>
+          <% if (review.replyId) { %>
+            <div class="form-floating mt-3">
+              <textarea class="form-control" placeholder="답변을 입력하세요." id="floatingTextarea" disabled></textarea>
+              <label for="floatingTextarea">이미 답변이 등록되었습니다.</label>
+            </div>
+            <% } else { %>
+            <div class="input-group mt-3">
+              <textarea class="form-control" id="textarea-field" placeholder="답변메세지 작성"></textarea>
+              <button class="btn btn-gray" type="submit" id="button-addon2">답변하기</button>
+            </div>
+            <% } %>
         </div>
       </div>
-      <% if (review.replyId) { %>
-      <div class="form-floating">
-        <textarea class="form-control" placeholder="답변을 입력하세요." id="floatingTextarea" disabled></textarea>
-        <label for="floatingTextarea">이미 답변이 등록되었습니다.</label>
-      </div>
-      <% } else { %>
-      <div class="input-group mb-3 mt-3">
-        <textarea class="form-control" id="textarea-field" placeholder="답변메세지 작성"></textarea>
-        <button class="btn btn-gray" type="submit" id="button-addon2">답변하기</button>
-      </div>
-      <% } %>
+      
     </div>
     <% } %>
   </div>
