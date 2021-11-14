@@ -1,16 +1,17 @@
 .box {
   width: 500px;
-  height: 500px;
+  height: 110vh;
   background-color: white;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  margin-bottom:10%;
+  transform: translate(-50%,-50%);
 }
 
-.box-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.container {
+  margin-top:100px;
+  margin-bottom:50px;
+  max-width:500px;
 }
+
