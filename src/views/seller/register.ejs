@@ -1,31 +1,28 @@
 <link rel="stylesheet" href="/css/seller/register.css" />
 <div class="bg"></div>
 <div class="inbox">
-  <form class="box" action="sellerRegister.html" method="post">
+  <form class="box" action="/s/register" method="post">
     <h3><b>CELEB과 함께 하세요!</b></h3>
     <div class="container px-4">
       <div class="row gx-5">
         <div class="col-md-6">
-
-           <input type="email" name="" placeholder="E-MAIL" required />
-          <input type="password" name="" placeholder="PASSWORD" required />
-          <input type="password" name="" placeholder="PASSWORD CONFIRM" required />
-          <input type="text" name="" placeholder="STORE NAME" required />
-          <input type="text" name="" placeholder="OPERATE HOUR" required />
-          <input type="text" name="" placeholder="STORE INFO" required />
+          <input type="text" name="storeId" placeholder="STORE ID" required />
+          <input type="password" name="password" placeholder="PASSWORD" required />
+          <input type="password" name="passwordConfirm" placeholder="PASSWORD CONFIRM" required />
+          <input type="text" name="storeName" placeholder="STORE NAME" required />
+          <input type="text" name="openTime" placeholder="OPERATE HOUR" required />
+          <input type="text" name="info" placeholder="STORE INFO" required />
           <label for="formFile" class="form-label">스토어 사진</label>
-          <input class="form-control" type="file" id="formFile" >
+          <input class="form-control" name="uploadImage" type="file" id="formFile" />
         </div>
         <div class="col-md-6">
-
-           
-          <input type="text" name="" placeholder="STORE NUMBER" required />
+          <input type="text" name="phoneNum" placeholder="STORE NUMBER" required />
           <input type="text" name="" placeholder="CITY" required />
-          <input type="text" name="" placeholder="LICENSE NUMBER" required />
-          <input type="text" name="" placeholder="ROAD ADDRESS" required />
-          <input type="text" name="" placeholder="STORE INFO" required />
-          <input type="text" name="" placeholder="ORDER TYPE" required /> 
-          <select class="form-select text-center mb-3" aria-label="Default select example" style="width:200px">
+          <input type="text" name="" placeholder="PROVINCE" required />
+          <input type="text" name="licenseNum" placeholder="LICENSE NUMBER" required />
+          <input type="text" name="roadAddress" placeholder="ROAD ADDRESS" required />
+          <input type="text" name="type" placeholder="ORDER TYPE" required />
+          <select class="form-select text-center mb-3" name="categoryId" aria-label="Default select example" style="width: 200px">
             <option selected>CATEGORY</option>
             <option value="1">레터링 케이크</option>
             <option value="2">꽃다발</option>
@@ -33,9 +30,10 @@
             <option value="4">핸드폰 케이스</option>
             <option value="5">선물</option>
           </select>
-          <input type="number" style="width:200px;"class="text-center" name="" placeholder="ORDER LIMIT" required />
+          <input type="number" style="width: 200px" class="text-center" name="limit" placeholder="ORDER LIMIT" required />
         </div>
       </div>
     </div>
     <input type="submit" name="" value="Register" required />
-   </form>
+  </form>
+</div>

@@ -15,7 +15,7 @@ const output = {
     }
   },
   register: (req, res) => {
-    res.render('seller/register', { layout: 'seller/layout' });
+    res.render('seller/register');
   },
   storeDetail: async (req, res) => {
     //TODO: code review
