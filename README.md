@@ -19,3 +19,6 @@
 - Frontend: `HTML/CSS/JS` `EJS`
 - Backend: `Node.js` `Express`
 - Database: `Mysql` `AWS RDS`
+
+## 🎬 시연 영상
+- https://drive.google.com/file/d/1epCftv61JCCzhwpGLhuLcY2IYl7yTte9/view
